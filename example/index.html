@@ -1,0 +1,84 @@
+<html>
+<head>
+<script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+<script src="../src/kkmserver.js"></script>
+<script>
+        // Функция вызываемая после обработки команды - обработка возвращаемых данных
+        function ExecuteSuccess(Rezult) {
+
+            //----------------------------------------------------------------------
+            // ОБЩЕЕ
+            //----------------------------------------------------------------------
+
+            var Responce = "";
+
+            if (Rezult.Status == 0) {
+                Responce = Responce + "Статус: " + "Ok" + "\r\n";
+            } else if (Rezult.Status == 1) {
+                Responce = Responce + "Статус: " + "Выполняется" + "\r\n";
+            } else if (Rezult.Status == 2) {
+                Responce = Responce + "Статус: " + "Ошибка!" + "\r\n";
+            } else if (Rezult.Status == 3) {
+                Responce = Responce + "Статус: " + "Данные не найдены!" + "\r\n";
+            };
+
+            // Текст ошибки
+            if (Rezult.Error != undefined && Rezult.Error != "") {
+                Responce = Responce + "Ошибка: " + Rezult.Error + "\r\n";
+            }
+
+            if (Rezult != undefined) {
+                var JSon = JSON.stringify(Rezult, "", 4);
+                Responce = Responce + "JSON ответа: \r\n" + JSon + "\r\n";
+            }
+
+            document.getElementById('Responce').textContent = Responce;
+            //$(".Responce").text(Responce);
+        }
+
+	KkmServer.funSuccess =  ExecuteSuccess;
+
+        function SetDevice() {
+            KkmServer.default.numDevice = document.getElementById('SetDevice').value;
+        }
+
+
+
+</script>
+</head>
+<body>
+<body>
+    Номер устройства:
+    <select id="SetDevice" onchange="SetDevice()">
+        <option value="0">Первое активное: 0</option>
+        <option value="1">Устройство №: 1</option>
+        <option value="2">Устройство №: 2</option>
+        <option value="3">Устройство №: 3</option>
+        <option value="4">Устройство №: 4</option>
+        <option value="5">Устройство №: 5</option>
+        <option value="6">Устройство №: 6</option>
+        <option value="7">Устройство №: 7</option>
+        <option value="8">Устройство №: 8</option>
+    </select>
+    <p><button onclick="KkmServer.Execute(KkmServer.OpenShift())" style="width: 300px;">Открытие смены</button></p>
+    <p><button onclick="KkmServer.Execute(KkmServer.XReport())" style="width: 300px;">Печать Х отчета</button></p>
+    <p><button onclick="KkmServer.Execute(KkmServer.ZReport())" style="width: 300px;">Печать Z отчета</button></p>
+    <p><button onclick="KkmServer.Execute(KkmServer.OfdReport())" style="width: 300px;">Печать состояния расчетов и связи с ОФД </button></p>
+    <hr>
+    <p><button onclick="KkmServer.Execute(KkmServer.PaymentCash())" style="width: 300px;">Инкассация денег из кассы</button></p>
+    <p><button onclick="KkmServer.Execute(KkmServer.DepositingCash())" style="width: 300px;">Внесение денег в кассу</button></p>
+    <p><button onclick="KkmServer.Execute(KkmServer.OpenCashDrawer())" style="width: 300px;">Открытие денежного ящика</button></p>
+    <hr>
+    <p><button onclick="KkmServer.Execute(KkmServer.GetDataKKT())" style="width: 300px;">Получить текущее состояние ККТ. </button></p>
+    <p>--------------------------------------------------------</p>
+    <p><button onclick="KkmServer.Execute(KkmServer.List())" style="width: 300px;">Получение списка ККМ</button></p>
+    <p>Ответ сервера:</p>
+    <p id="Responce" style="white-space:pre;"></p>
+
+
+
+</body>
+</html>

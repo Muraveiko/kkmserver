@@ -4,7 +4,7 @@
  *
  *  @author Oleg Muraveyko
  *  @link https://github.com/Muraveiko/kkmserver
- *  @version 0.0.1-dev
+ *  @version 0.0.2
  */
 if (!window.KkmServer) {
     KkmServer = {
@@ -34,9 +34,9 @@ if (!window.KkmServer) {
         $.extend($, {
             /**
              *  Параметры подключения
-             * @param user
-             * @param password
-             * @param urlServer
+             * @param user Имя пользователя
+             * @param password Пароль
+             * @param urlServer Адрес сервера
              * @return this;
              */
             Connect: function(user,password,urlServer){
@@ -50,26 +50,18 @@ if (!window.KkmServer) {
             },
             /**
              * Передача команды серверу
-             * @param  Data
+             * @param  Data Подготовленный по правилам объект
              *
              */
             Execute: function (Data) {
                 var JSon = $.toJSON(Data);
-                jQuery.support.cors = true;
-                var jqXHRvar = jQuery.ajax({
-                    type: 'POST',
-                    async: true,
-                    timeout: $.timeout,
-                    url: $.urlServer + 'Execute/sync',
-                    crossDomain: true,
-                    dataType: 'json',
-                    contentType: 'application/json; charset=UTF-8',
-                    processData: false,
-                    data: JSon,
-                    headers: $.auth !== ""  ? {"Authorization": $.auth} : "",
-                    success: $.funSuccess,
-                    error: $.funError
-                });
+                var r = new XMLHttpRequest();
+                r.open("POST", $.urlServer+ 'Execute/sync', true);
+                r.responseType =  'json';
+                r.setRequestHeader("Authorization", $.auth);
+                r.onload = function(){$.funSuccess(r.response);};
+                r.onerror = function(){$.funError(r,'ajax error');};
+                r.send(JSon);
             },
             // -------------------------------------------------------
             //  Хуки на обработку результата ajax запроса
@@ -350,6 +342,7 @@ if (!window.KkmServer) {
              * @param Tax - Налогообложение
              * @param Department - отдел магазина
              * @param EAN13 - штрих код
+             * @param EGAIS
              *
              * @return {Register|{Name, Quantity, Price, Amount, Department, Tax, EAN13, EGAIS}}
              * @constructor
@@ -357,7 +350,7 @@ if (!window.KkmServer) {
             AddRegisterString: function (DataCheck, Name, Quantity, Price, Amount, Tax, Department, EAN13,EGAIS) {
                 var Data;
 
-                if (DataCheck.VerFFD == "1.0") {
+                if (DataCheck.VerFFD === "1.0") {
                     Data = {
                         Register: {
                             Name: Name,
@@ -418,7 +411,7 @@ if (!window.KkmServer) {
             },
 
             // --------------------------------------------------------------------------------------------
-            // Герерация GUID
+            // Служебное
             // --------------------------------------------------------------------------------------------
             /**
              * Внутрений метод.
@@ -428,12 +421,9 @@ if (!window.KkmServer) {
              */
             _NewGuid: function () {
                 function S4() {
-                    var s = (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-                    return s;
+                    return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
                 }
-
-                var guid = (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
-                return guid;
+                return  (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
             }
         });
     })(KkmServer);

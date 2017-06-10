@@ -1,14 +1,13 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <script
-            src="https://code.jquery.com/jquery-1.12.4.min.js"
-            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-            crossorigin="anonymous"></script>
     <script src="../src/kkmserver.js"></script>
     <script>
 
-        // Функция вызываемая после обработки команды - обработка возвращаемых данных
+        /**
+         * Функция вызываемая после обработки команды - обработка возвращаемых данных
+         * @param {{Status,Error,URL,Command,IdCommand,NumDevice}} Rezult - ответ ККM
+         */
         function ExecuteSuccess(Rezult) {
             var Responce = "";
 
@@ -29,17 +28,16 @@
             }
 
             if (Rezult !== undefined) {
-                var JSon = JSON.stringify(Rezult, "", 4);
+                var JSon = JSON.stringify(Rezult, '', 4);
                 Responce = Responce + "JSON ответа: \r\n" + JSon + "\r\n";
             }
 
             document.getElementById('Responce').textContent = Responce;
-            //$(".Responce").text(Responce);
         }
 
         // Инитим
         // минимальный вызов  KkmServer.Connect('Admin','').HookAjaxSuccess(ExecuteSuccess);
-        KkmServer.Connect('Admin','','http://localhost:5893/').HookAjaxSussecc(ExecuteSuccess).SetCashierName('Иванова О.П.').SetNumDevice(0);
+        KkmServer.Connect('Admin','','http://localhost:5893/').HookAjaxSuccess(ExecuteSuccess).SetCashierName('Иванова О.П.').SetInnKkm('7701237658 ').SetNumDevice(0);
 
         // примеры
         function SetDevice() {
@@ -58,7 +56,7 @@
     </script>
 </head>
 <body>
-Номер устройства:
+<label>Номер устройства:
 <select id="SetDevice" onchange="SetDevice()">
     <option value="0">Первое активное: 0</option>
     <option value="1">Устройство №: 1</option>
@@ -69,7 +67,7 @@
     <option value="6">Устройство №: 6</option>
     <option value="7">Устройство №: 7</option>
     <option value="8">Устройство №: 8</option>
-</select>
+</select></label>
 <p>
     <button onclick="Fiscal_order()" style="width: 300px;">Печать заранее заготовленного чека</button>
 </p>
@@ -91,7 +89,7 @@
 </p>
 <hr>
 <p>
-     Сумма : <input id="Amount" type="text" value="0.01" />
+    <label>Сумма : <input id="Amount" type="text" value="0.01" /></label>
 </p>
 <p>
     <button onclick="KkmServer.Execute(KkmServer.PaymentCash(document.getElementById('Amount').value))" style="width: 300px;">Инкассация денег из кассы

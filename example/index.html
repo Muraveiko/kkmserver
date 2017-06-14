@@ -36,82 +36,143 @@
         }
 
         // Инитим
-        // минимальный вызов  KkmServer.Connect('Admin','').HookAjaxSuccess(ExecuteSuccess);
-        KkmServer.Connect('Admin','','http://localhost:5893/').HookAjaxSuccess(ExecuteSuccess).SetCashierName('Иванова О.П.').SetInnKkm('7701237658 ').SetNumDevice(0);
+        // минимальный вызов  KkmServer.connect('Admin','').setHookAjaxSuccess(ExecuteSuccess);
+        KkmServer.connect('Admin', '').setHookAjaxSuccess(ExecuteSuccess).setCashierName('Иванова О.П.').setInnKkm('7701237658').setNumDevice(0);
 
         // примеры
         function SetDevice() {
-            KkmServer.SetNumDevice(document.getElementById('SetDevice').value);
+            KkmServer.setNumDevice(document.getElementById('SetDevice').value);
         }
 
-        function Fiscal_order(){
+        function Fiscal_order() {
             var check = KkmServer.RegisterCheck(0);
-            KkmServer.AddRegisterString(check,'Шило',1,10.01,10.01);
-            KkmServer.AddRegisterString(check,'Мыло',1,2,2);
-            check.Cash=12.01;
-            check.CashLessType1=0;
+            KkmServer.AddRegisterString(check, 'Шило', 1, 10.01, 10.01);
+            KkmServer.AddRegisterString(check, 'Мыло', 1, 2, 2);
+            check.Cash = 12.01;
+            check.CashLessType1 = 0;
             KkmServer.Execute(check);
         }
+
 
     </script>
 </head>
 <body>
 <label>Номер устройства:
-<select id="SetDevice" onchange="SetDevice()">
-    <option value="0">Первое активное: 0</option>
-    <option value="1">Устройство №: 1</option>
-    <option value="2">Устройство №: 2</option>
-    <option value="3">Устройство №: 3</option>
-    <option value="4">Устройство №: 4</option>
-    <option value="5">Устройство №: 5</option>
-    <option value="6">Устройство №: 6</option>
-    <option value="7">Устройство №: 7</option>
-    <option value="8">Устройство №: 8</option>
-</select></label>
+    <select id="SetDevice" onchange="SetDevice()">
+        <option value="0">Первое активное: 0</option>
+        <option value="1">Устройство №: 1</option>
+        <option value="2">Устройство №: 2</option>
+        <option value="3">Устройство №: 3</option>
+        <option value="4">Устройство №: 4</option>
+        <option value="5">Устройство №: 5</option>
+        <option value="6">Устройство №: 6</option>
+        <option value="7">Устройство №: 7</option>
+        <option value="8">Устройство №: 8</option>
+    </select></label>
 <p>
     <button onclick="Fiscal_order()" style="width: 300px;">Печать заранее заготовленного чека</button>
 </p>
 
-<p>--------------------------------------------------------</p>
-<p>
-    <button onclick="KkmServer.Execute(KkmServer.OpenShift())" style="width: 300px;">Открытие смены</button>
-</p>
-<p>
-    <button onclick="KkmServer.Execute(KkmServer.XReport())" style="width: 300px;">Печать Х отчета</button>
-</p>
-<p>
-    <button onclick="KkmServer.Execute(KkmServer.ZReport())" style="width: 300px;">Печать Z отчета</button>
-</p>
-<p>
-    <button onclick="KkmServer.Execute(KkmServer.OfdReport())" style="width: 300px;">Печать состояния расчетов и связи с
-        ОФД
-    </button>
-</p>
-<hr>
-<p>
-    <label>Сумма : <input id="Amount" type="text" value="0.01" /></label>
-</p>
-<p>
-    <button onclick="KkmServer.Execute(KkmServer.PaymentCash(document.getElementById('Amount').value))" style="width: 300px;">Инкассация денег из кассы
-    </button>
-</p>
-<p>
-    <button onclick="KkmServer.Execute(KkmServer.DepositingCash(document.getElementById('Amount').value))" style="width: 300px;">Внесение денег в кассу
-    </button>
-</p>
-<p>
-    <button onclick="KkmServer.Execute(KkmServer.OpenCashDrawer())" style="width: 300px;">Открытие денежного ящика
-    </button>
-</p>
-<hr>
-<p>
-    <button onclick="KkmServer.Execute(KkmServer.GetDataKKT())" style="width: 300px;">Получить текущее состояние ККТ.
-    </button>
-</p>
-<hr>
-<p>
-    <button onclick="KkmServer.Execute(KkmServer.List())" style="width: 300px;">Получение списка ККМ</button>
-</p>
+<table>
+    <tr>
+        <td style="width:50%">
+            <h2>Команда как аргумент</h2>
+            <p>
+                <button onclick="KkmServer.Execute(KkmServer.commandOpenShift())" style="width: 300px;">Открытие смены</button>
+            </p>
+            <p>
+                <button onclick="KkmServer.Execute(KkmServer.commandXReport())" style="width: 300px;">Печать Х отчета</button>
+            </p>
+            <p>
+                <button onclick="KkmServer.Execute(KkmServer.commandZReport())" style="width: 300px;">Печать Z отчета</button>
+            </p>
+            <p>
+                <button onclick="KkmServer.Execute(KkmServer.commandOfdReport())" style="width: 300px;">Печать состояния
+                    расчетов и связи с
+                    ОФД
+                </button>
+            </p>
+            <hr>
+            <p>
+                <label>Сумма : <input id="Amount" type="text" value="0.01"/></label>
+            </p>
+            <p>
+                <button onclick="KkmServer.Execute(KkmServer.commandPaymentCash(document.getElementById('Amount').value))"
+                        style="width: 300px;">Инкассация денег из кассы
+                </button>
+            </p>
+            <p>
+                <button onclick="KkmServer.Execute(KkmServer.commandDepositingCash(document.getElementById('Amount').value))"
+                        style="width: 300px;">Внесение денег в кассу
+                </button>
+            </p>
+            <p>
+                <button onclick="KkmServer.Execute(KkmServer.commandOpenCashDrawer())" style="width: 300px;">Открытие денежного
+                    ящика
+                </button>
+            </p>
+            <hr>
+            <p>
+                <button onclick="KkmServer.Execute(KkmServer.commandGetDataKKT())" style="width: 300px;">Получить текущее
+                    состояние ККТ.
+                </button>
+            </p>
+            <hr>
+            <p>
+                <button onclick="KkmServer.Execute(KkmServer.commandList())" style="width: 300px;">Получение списка ККМ
+                </button>
+            </p>
+        </td>
+        <td>
+            <h2>Короткий вызов</h2>
+            <p>
+                <button onclick="KkmServer.OpenShift().Execute()" style="width: 300px;">Открытие смены</button>
+            </p>
+            <p>
+                <button onclick="KkmServer.XReport().Execute()" style="width: 300px;">Печать Х отчета</button>
+            </p>
+            <p>
+                <button onclick="KkmServer.printZReport()" style="width: 300px;">Печать Z отчета</button>
+            </p>
+            <p>
+                <button onclick="KkmServer.OfdReport().Execute()" style="width: 300px;">Печать состояния
+                    расчетов и связи с
+                    ОФД
+                </button>
+            </p>
+            <hr>
+            <p>
+                <label>Сумма : <input id="Amount2" type="text" value="0.01"/></label>
+            </p>
+            <p>
+                <button onclick="KkmServer.PaymentCash(document.getElementById('Amount').value).Execute()"
+                        style="width: 300px;">Инкассация денег из кассы
+                </button>
+            </p>
+            <p>
+                <button onclick="KkmServer.DepositingCash(document.getElementById('Amount').value).Execute()"
+                        style="width: 300px;">Внесение денег в кассу
+                </button>
+            </p>
+            <p>
+                <button onclick="KkmServer.OpenCashDrawer().Execute()" style="width: 300px;">Открытие денежного
+                    ящика
+                </button>
+            </p>
+            <hr>
+            <p>
+                <button onclick="KkmServer.GetDataKKT().Execute()" style="width: 300px;">Получить текущее
+                    состояние ККТ.
+                </button>
+            </p>
+            <hr>
+            <p>
+                <button onclick="KkmServer.List().Execute()" style="width: 300px;">Получение списка ККМ
+                </button>
+            </p>
+        </td>
+    </tr>
+</table>
 <p>Ответ сервера:</p>
 <p id="Responce" style="white-space:pre;"></p>
 

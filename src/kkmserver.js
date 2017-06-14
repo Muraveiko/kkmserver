@@ -1,159 +1,189 @@
 /**
- *  Синглетон для работы с фискальными регистраторами, подключенных к  KkmServer
- *  @see https://kkmserver.ru/KkmServer
+ * @fileOverview Js-библиотека для взаимодействия со специальным сервером, посредством  Ajax запросов.
+ * Дополнительные библиотеки не требуются.<br />
+ * window.KkmServer -  Синглетон для работы с фискальными регистраторами, подключенными к  KkmServer.
+ * @module KkmServer
  *
- *  @author Oleg Muraveyko
- *  @link https://github.com/Muraveiko/kkmserver
- *  @version 0.0.2
+ * @author Oleg Muraveyko
+ * @version 0.1.0
+ *
+ * @see Source code on Github  {@link https://github.com/Muraveiko/kkmserver}
+ * @see Server API part by Dmitriy Garbuz  {@link https://kkmserver.ru/KkmServer}
+ *
  */
 if (!window.KkmServer) {
-    KkmServer = {
-        default: {
-            NumDevice: 0,
-            CashierName: '',
-            InnKkm: ''
-        },
-        funSuccess: undefined,
-        funError: function(xhr, status) {
-            alert("Request failed: " +status);
-        },
-        urlServer: 'http://localhost:5893/',
-        auth: '',
-        timeout: 60000 //Минута - некоторые драйверы при работе выполняют интерактивные действия с пользователем - тогда увеличте тайм-аут
-    };
-
-    KkmServer.extend = function (dest, src, skipexist) {
-        var overwrite = !skipexist;
-        for (var i in src)
-            if (overwrite || !dest.hasOwnProperty(i))
-                dest[i] = src[i];
-        return dest;
-    };
-
-    (function ($) {
-        $.extend($, {
+    (function(){
+        /**
+         *  Синглетон для работы с фискальными регистраторами, подключенными к  KkmServer
+         *  @global
+         *  @namespace
+         */
+        this.KkmServer =  {
+            default: {
+                NumDevice: 0,
+                CashierName: '',
+                InnKkm: ''
+            },
+            /**
+             * @method
+             */
+            funSuccess: null,
+            funError: function (xhr, status) {
+                alert("Request failed: " + status);
+            },
+            curCommand: {}, // for support chaining as jQuery
+            urlServer: 'http://localhost:5893/',
+            auth: '',
+            timeout: 60000, //Минута - некоторые драйверы при работе выполняют интерактивные действия с пользователем - тогда увеличте тайм-аут
             /**
              *  Параметры подключения
-             * @param user Имя пользователя
-             * @param password Пароль
-             * @param urlServer Адрес сервера
+             *
+             * @param {string} user Имя пользователя
+             * @param {string} password Пароль
+             * @param {string} [urlServer] Адрес сервера
              * @return this;
+             *
              */
-            Connect: function(user,password,urlServer){
-                if(undefined !== urlServer){
+            connect: function (user, password, urlServer) {
+                if (undefined !== urlServer) {
                     $.urlServer = urlServer;
                 }
-                if(undefined !== password || undefined !== user){
+                if (undefined !== password || undefined !== user) {
                     $.auth = "Basic " + btoa(user + ":" + password);
                 }
                 return $;
             },
             /**
-             * Передача команды серверу
-             * @param  Data Подготовленный по правилам объект
+             * Передача команды серверу .
+             * @param  {KkmServer.CommandKkm|KkmServer.CommandKkmWithCashier} Data Структура для передачи серверу
              *
              */
-            Execute: function (Data) {
+            execute: function (Data) {
+                $.lastCommand = Data;
                 var JSon = $.toJSON(Data);
                 var r = new XMLHttpRequest();
-                r.open("POST", $.urlServer+ 'Execute/sync', true);
-                r.responseType =  'json';
+                r.open("POST", $.urlServer + 'Execute/sync', true);
+                r.responseType = 'json';
                 r.setRequestHeader("Authorization", $.auth);
-                r.onload = function(){$.funSuccess(r.response);};
-                r.onerror = function(){$.funError(r,'ajax error');};
+                r.onload = function () {
+                    $.funSuccess(r.response);
+                };
+                r.onerror = function () {
+                    $.funError(r, 'ajax error');
+                };
                 r.send(JSon);
             },
+
             // -------------------------------------------------------
             //  Хуки на обработку результата ajax запроса
             // -------------------------------------------------------
-            HookAjaxSuccess: function(funSuccess){
+            /**
+             *  Обработчик успешного запроса к серверу
+             *
+             * @param {function} funSuccess  callback
+             * @return this
+             */
+            setHookAjaxSuccess: function (funSuccess) {
                 $.funSuccess = funSuccess;
                 return $;
             },
-            HookAjaxFail: function(funError){
+            /**
+             *  Обработчик ошибки запроса
+             *
+             * @param {function} funError callback
+             * @return this
+             */
+            setHookAjaxFail: function (funError) {
                 $.funError = funError;
                 return $;
             },
+
             // -------------------------------------------------------
             //  Сеттеры
             // -------------------------------------------------------
 
             /**
              * Номер Устройства по умолчанию
-             * @param NumDevice целое 0-9
+             * @param {number} NumDevice целое 0-9
              * @returns this
+             *
              */
-            SetNumDevice: function (NumDevice) {
+            setNumDevice: function (NumDevice) {
                 $.default.NumDevice = NumDevice;
                 return $;
             },
             /**
              * Кассир по умолчанию
-             * @param CashierName ФИО
+             * @param {string} CashierName ФИО
              * @returns this
              */
-            SetCashierName: function (CashierName) {
+            setCashierName: function (CashierName) {
                 $.default.CashierName = CashierName;
                 return $;
             },
             /**
              * Инн кассы чтобы чек не ушел неправильно
-             * @param InnKkm
+             * @param {string} InnKkm
              * @return this
              */
-            SetInnKkm : function (InnKkm) {
+            setInnKkm: function (InnKkm) {
                 $.default.InnKkm = InnKkm;
                 return $;
             },
+
             // -------------------------------------------------------
             //  Формирование команд к серверу
             // -------------------------------------------------------
 
             /**
-             * Внесение денег в кассу
-             * @param Amount Сумма (0.00)
-             * @param CashierName  Кассир
-             * @param NumDevice
-             * @returns {{Command: string, NumDevice: (*|number), Amount: (*|string), CashierName: (*|string), IdCommand: *}}
-             * @constructor
+             * Команда Внесение денег в кассу
+             * @param {number} Amount Сумма
+             * @param {string} [CashierName] имя кассира
+             * @param {number} [NumDevice] Номер устройства
+             * @returns {{Command: string, NumDevice: number, Amount: number, CashierName: string, IdCommand: string}}
+             * @see  описание возращаемой структуры см. {@link CommandKkmWithCashier}
              */
-            DepositingCash: function (Amount, CashierName, NumDevice) {
-                CashierName = CashierName || $.default.CashierName;
-                NumDevice = NumDevice || $.default.NumDevice;
-
-                return {
-                    Command: "DepositingCash",
-                    NumDevice: NumDevice,
-                    Amount: Amount,
-                    CashierName: CashierName,
-                    IdCommand: $._NewGuid()
-                };
+            CommandDepositingCash: function (Amount, CashierName, NumDevice) {
+                var Data = $.CommandKkmWithCashier('DepositingCash', CashierName, NumDevice);
+                Data.Amount = Amount;
+                return Data;
+            },
+            /**
+             * Внесение денег в кассу
+             * @param {number} Amount Сумма
+             * @param {string} [CashierName] имя кассира
+             * @param {number} [NumDevice] Номер устройства
+             * @returns this
+             */
+            depositingCash: function (Amount, CashierName, NumDevice) {
+                $.curCommand = $.CommandDepositingCash(Amount, CashierName, NumDevice);
+                return $;
+            },
+            /**
+             * Команда Получение данных KKT
+             * @param {number} [NumDevice] Номер устройства
+             * @returns {KkmServer.CommandKkm}
+             */
+            CommandGetDataKKT: function (NumDevice) {
+                return $.CommandKkm("GetDataKKT", NumDevice);
             },
             /**
              * Получение данных KKT
-             * @param NumDevice
-             * @returns {{Command: string, NumDevice: (*|number), IdCommand: *}}
-             * @constructor
+             * @param {number} [NumDevice] Номер устройства
+             * @returns this
              */
-            GetDataKKT: function (NumDevice) {
-                NumDevice = NumDevice || $.default.NumDevice;
-
-                return {
-                    Command: "GetDataKKT",
-                    NumDevice: NumDevice,
-                    IdCommand: $._NewGuid()
-                };
+            getDataKKT: function (NumDevice) {
+                $.curCommand = $.CommandGetDataKKT(NumDevice);
+                return $;
             },
-            /**
-             * Запрос результата выполнения команды
-             * @param IdCommand
-             * @param NumDevice
-             * @returns {{Command: string, NumDevice: *, IdCommand: *}}
-             * @constructor
-             */
-            GetRezult: function (IdCommand, NumDevice) {
-                NumDevice = NumDevice || $.default.NumDevice;
 
+            /**
+             * Команда Запрос результата выполнения команды
+             * @param {string} IdCommand
+             * @param {number} NumDevice
+             * @returns {KkmServer.CommandKkm}
+             */
+            CommandGetRezult: function (IdCommand, NumDevice) {
                 return {
                     Command: "GetRezult",
                     NumDevice: NumDevice,
@@ -161,11 +191,33 @@ if (!window.KkmServer) {
                 };
             },
             /**
-             * Список ККТ подключенных к серверу
-             * @returns {{Command: string, NumDevice: number, IdCommand: *, InnKkm: string, Active: null, OnOff: null, OFD_Error: null, OFD_DateErrorDoc: string, FN_DateEnd: string, FN_MemOverflowl: null, FN_IsFiscal: null}}
+             * Запрос результата выполнения команды
+             * @param {string} IdCommand
+             * @param {number} NumDevice
+             * @returns this
+             */
+            getRezult: function (IdCommand, NumDevice) {
+                $.curCommand = $.CommandGetRezult(IdCommand, NumDevice);
+                return $;
+            },
+            /**
+             * Команда Список ККТ подключенных к серверу
+             * @returns {{
+             *      Command: string,
+             *      NumDevice: number,
+             *      IdCommand: string,
+             *      InnKkm: string,
+             *      Active: (null|boolean),
+             *      OnOff: (null|boolean),
+             *      OFD_Error: (null|boolean),
+             *      OFD_DateErrorDoc: string,
+             *      FN_DateEnd: string,
+             *      FN_MemOverflowl: (null|boolean),
+             *      FN_IsFiscal: (null|boolean)
+             * }}
              * @constructor
              */
-            List: function () {
+            CommandList: function () {
 
                 return {
                     Command: "List",
@@ -183,86 +235,96 @@ if (!window.KkmServer) {
 
             },
             /**
-             * Выемка наличных
-             * @param Amount Сумма
-             * @param CashierName Кассир
-             * @param NumDevice
-             * @returns {{Command: string, NumDevice: (*|number), Amount: (*|string), CashierName: (*|string), IdCommand: *}}
-             * @constructor
+             * Список ККТ подключенных к серверу
+             * @returns this
              */
-            PaymentCash: function (Amount, CashierName, NumDevice) {
-                Amount = Amount || '0.00';
-                CashierName = CashierName || $.default.CashierName;
-                NumDevice = NumDevice || $.default.NumDevice;
+            getList: function () {
+                $.curCommand = $.CommandList();
+                return $;
+            },
+            /**
+             * Команда Выемка наличных
+             * @param {number} Amount Сумма
+             * @param {string} [CashierName] имя кассира
+             * @param {number} [NumDevice] Номер устройства
+             * @returns {{Command: string, NumDevice: number, Amount: number, CashierName: string, IdCommand: string}}
+             */
+            CommandPaymentCash: function (Amount, CashierName, NumDevice) {
 
-                return {
-                    Command: "PaymentCash",
-                    NumDevice: NumDevice,
-                    Amount: Amount,
-                    CashierName: CashierName,
-                    IdCommand: $._NewGuid()
-                };
+                var Data = $.CommandKkmWithCashier('PaymentCash', CashierName, NumDevice);
+                Data.Amount = Amount;
+
+                return Data;
+            },
+            /**
+             * Выемка наличных
+             * @param {number} Amount Сумма
+             * @param {string} [CashierName] имя кассира
+             * @param {number} [NumDevice] Номер устройства
+             */
+            paymentCash: function (Amount, CashierName, NumDevice) {
+                $.execute($.CommandPaymentCash(Amount, CashierName, NumDevice));
+            },
+            /**
+             * Команда Печать состояния обмена с ОФД
+             * @param {number} [NumDevice] Номер устройства
+             * @returns {KkmServer.CommandKkm}
+             */
+            CommandOfdReport: function (NumDevice) {
+                return $.CommandKkm("OfdReport", NumDevice);
             },
             /**
              * Печать состояния обмена с ОФД
-             * @param NumDevice
-             * @returns {{Command: string, NumDevice: (*|number), IdCommand: *}}
-             * @constructor
+             * @param {number} [NumDevice] Номер устройства
              */
-            OfdReport: function (NumDevice) {
-                NumDevice = NumDevice || $.default.NumDevice;
-
-                return {
-                    Command: "OfdReport",
-                    NumDevice: NumDevice,
-                    IdCommand: $._NewGuid()
-                };
+            printOfdReport: function (NumDevice) {
+                $.execute($.CommandOfdReport(NumDevice));
+            },
+            /**
+             * Команда Открыть денежный ящик
+             * @param {number} [NumDevice] Номер устройства
+             * @returns {KkmServer.CommandKkm}
+             */
+            CommandOpenCashDrawer: function (NumDevice) {
+                return $.CommandKkm("OpenCashDrawer", NumDevice);
             },
             /**
              * Открыть денежный ящик
-             * @param NumDevice
-             * @returns {{Command: string, NumDevice: (*|number), IdCommand: *}}
-             * @constructor
+             * @param {number} [NumDevice] Номер устройства
              */
-            OpenCashDrawer: function (NumDevice) {
-                NumDevice = NumDevice || $.default.NumDevice;
-
-                return {
-                    Command: "OpenCashDrawer",
-                    NumDevice: NumDevice,
-                    IdCommand: $._NewGuid()
-                };
+            openCashDrawer: function (NumDevice) {
+                $.execute($.CommandOpenCashDrawer(NumDevice));
+            },
+            /**
+             * Команда Окрыть смену
+             * @param {string} [CashierName] имя кассира
+             * @param {number} [NumDevice] Номер устройства
+             * @returns {KkmServer.CommandKkmWithCashier}
+             */
+            CommandOpenShift: function (CashierName, NumDevice) {
+                return $.CommandKkmWithCashier('OpenShift', CashierName, NumDevice);
             },
             /**
              * Окрыть смену
-             * @param NumDevice
-             * @param CashierName
-             * @returns {{Command: string, NumDevice: (*|number), CashierName: (*|string), IdCommand: *}}
-             * @constructor
+             * @param {string} [CashierName] имя кассира
+             * @param {number} [NumDevice] Номер устройства
              */
-            OpenShift: function (NumDevice, CashierName) {
-                NumDevice = NumDevice || $.default.NumDevice;
-                CashierName = CashierName || $.default.CashierName;
-
-                return {
-                    Command: "OpenShift",
-                    NumDevice: NumDevice,
-                    CashierName: CashierName,
-                    IdCommand: $._NewGuid()
-                };
+            openShift: function (CashierName, NumDevice) {
+                $.execute($.CommandOpenShift(CashierName,NumDevice));
             },
+
             /**
              * Инициализировать команду для печати чека, потом нужно добавить к ней строки
              * @see https://kkmserver.ru/KkmServer#PrimerJavaCheck
-             * 
-             * @param TypeCheck смотри типы по ссылке 
+             *
+             * @param TypeCheck смотри типы по ссылке
              * @param CashierName
              * @param InnKkm
              * @param NumDevice
              * @returns {{VerFFD: string, Command: string, NumDevice: (*|number), InnKkm: (*|string), KktNumber: string, Timeout: number, IdCommand: *, IsFiscalCheck: boolean, TypeCheck: (*|number), CancelOpenedCheck: boolean, NotPrint: boolean, NumberCopies: number, CashierName: (*|string), ClientAddress: string, TaxVariant: string, CheckProps: Array, AdditionalProps: Array, KPP: string, ClientId: string, KeySubLicensing: string, CheckStrings: Array, Cash: number, CashLessType1: number, CashLessType2: number, CashLessType3: number}}
              * @constructor
              */
-            RegisterCheck: function (TypeCheck, CashierName, InnKkm, NumDevice) {
+            CommandRegisterCheck: function (TypeCheck, CashierName, InnKkm, NumDevice) {
                 TypeCheck = TypeCheck || 0; // продажа
                 NumDevice = NumDevice || $.default.NumDevice;
                 InnKkm = InnKkm || $.default.InnKkm;
@@ -297,37 +359,38 @@ if (!window.KkmServer) {
                 };
             },
             /**
-             * Печать Х-отчета 
-             * @param NumDevice
-             * @returns {{Command: string, NumDevice: (*|number), IdCommand: *}}
-             * @constructor
+             * Команда Печать Х-отчета
+             * @param {string} [CashierName] имя кассира
+             * @param {number} [NumDevice] Номер устройства
+             * @returns {KkmServer.CommandKkmWithCashier}
              */
-            XReport: function (NumDevice) {
-                NumDevice = NumDevice || $.default.NumDevice;
-
-                return {
-                    Command: "XReport",
-                    NumDevice: NumDevice,
-                    IdCommand: $._NewGuid()
-                };
+            CommandXReport: function (CashierName,NumDevice) {
+                return $.CommandKkmWithCashier('XReport', NumDevice);
+            },
+            /**
+             * Печать Х-отчета
+             * @param {string} [CashierName] имя кассира
+             * @param {number} [NumDevice] Номер устройства
+             */
+            printXReport: function (CashierName,NumDevice) {
+                $.execute($.CommandXReport(CashierName,NumDevice));
+            },
+            /**
+             * Команда Закрытие смены
+             * @param {string} [CashierName] имя кассира
+             * @param {number} [NumDevice] Номер устройства
+             * @returns {KkmServer.CommandKkmWithCashier}
+             */
+            CommandZReport: function (CashierName, NumDevice) {
+                return $.CommandKkmWithCashier('ZReport', CashierName, NumDevice);
             },
             /**
              * Закрытие смены
-             * @param CashierName
-             * @param NumDevice
-             * @returns {{Command: string, NumDevice: (*|number), CashierName: (*|string), IdCommand: *}}
-             * @constructor
+             * @param {string} [CashierName] имя кассира
+             * @param {number} [NumDevice] Номер устройства
              */
-            ZReport: function (CashierName,NumDevice) {
-                NumDevice = NumDevice || $.default.NumDevice;
-                CashierName = CashierName || $.default.CashierName;
-
-                return {
-                    Command: "ZReport",
-                    NumDevice: NumDevice,
-                    CashierName: CashierName,
-                    IdCommand: $._NewGuid()
-                };
+            printZReport: function (CashierName, NumDevice) {
+                $.execute($.CommandZReport(CashierName,NumDevice));
             },
             // --------------------------------------------------------------------------------------------
             // Добавление строк к чеку
@@ -347,7 +410,7 @@ if (!window.KkmServer) {
              * @return {Register|{Name, Quantity, Price, Amount, Department, Tax, EAN13, EGAIS}}
              * @constructor
              */
-            AddRegisterString: function (DataCheck, Name, Quantity, Price, Amount, Tax, Department, EAN13,EGAIS) {
+            checkRegisterString: function (DataCheck, Name, Quantity, Price, Amount, Tax, Department, EAN13, EGAIS) {
                 var Data;
 
                 if (DataCheck.VerFFD === "1.0") {
@@ -369,7 +432,16 @@ if (!window.KkmServer) {
                 return Data.Register;
 
             },
-            AddTextString: function (DataCheck, Text, Font, Intensity) {
+            /**
+             *
+             * @param DataCheck
+             * @param Text
+             * @param Font
+             * @param Intensity
+             * @return {PrintText|{Text, Font, Intensity}}
+             * @constructor
+             */
+            checkTextString: function (DataCheck, Text, Font, Intensity) {
                 var Data;
 
                 Data = {
@@ -384,7 +456,15 @@ if (!window.KkmServer) {
                 return Data.PrintText;
 
             },
-            AddBarcodeString: function (DataCheck, BarcodeType, Barcode) {
+            /**
+             *
+              * @param DataCheck
+             * @param BarcodeType
+             * @param Barcode
+             * @return {BarCode|{BarcodeType, Barcode}}
+             * @constructor
+             */
+            checkBarcodeString: function (DataCheck, BarcodeType, Barcode) {
                 var Data;
                 Data = {
                     BarCode: {
@@ -396,7 +476,14 @@ if (!window.KkmServer) {
                 DataCheck.CheckStrings.push(Data);
                 return Data.BarCode;
             },
-            AddImageString: function (DataCheck, Image) {
+            /**
+             *
+             * @param DataCheck
+             * @param Image
+             * @return {PrintImage|{Image}}
+             * @constructor
+             */
+            checkImageString: function (DataCheck, Image) {
                 var Data;
 
                 Data = {
@@ -414,6 +501,69 @@ if (!window.KkmServer) {
             // Служебное
             // --------------------------------------------------------------------------------------------
             /**
+             * Подготовка структуры запроса к серверу
+             * @param {string} Command Имя команды
+             * @param {number} [NumDevice] 0-первое свободное
+             * @returns {{Command: string,NumDevice: number,IdCommand: string}}
+             * @constructor
+             * @see см. вариант с ФИО {@link KkmServer.CommandKkmWithCashier}
+             * @see Устройство по умолчанию {@link KkmServer.setNumDevice}
+             *
+             * @example <caption>возвращаемая структура</caption>
+             * {
+             *      Command: string,   // Имя команды
+             *      NumDevice: number, // Устройство [0-9], где
+             *                         //    0 - первое свободное
+             *                         //    если не указано явно берется указанное по умолчанию
+             *      IdCommand: string  // Идентификатор команды для возможности последующего запроса о ее выполнении
+             *                         // для чеков рекомендую формировать самостоятельно, чтобы избежать дублирования
+             * }
+             *
+             */
+            CommandKkm: function (Command, NumDevice) {
+                NumDevice = NumDevice || $.default.NumDevice;
+
+                return {
+                    Command: Command,
+                    NumDevice: NumDevice,
+                    IdCommand: $._NewGuid()
+                };
+            },
+            /**
+             * Подготовка структуры запроса к серверу c ФИО кассира
+             *
+             * @param {string} Command Имя команды
+             * @param {string} [CashierName] ФИО Кассира
+             * @param {number} [NumDevice] 0-первое свободное
+             * @returns {{Command: string,NumDevice: number,CashierName: string,IdCommand: string}}
+             * @constructor
+             * @see см. вариант без ФИО {@link CommandKkm}
+             * @see Устройство по умолчанию {@link setNumDevice}
+             * @see  ФИО Кассира {@link setCashierName}
+             *
+             * @example <caption>возвращаемая структура</caption>
+             * {
+             *      Command: string,    // Имя команды
+             *      NumDevice: number,  // Устройство [0-9], где
+             *                          //    0 - первое свободное
+             *                          //    если не указано явно берется указанное по умолчанию
+             *      CashierName: string, //  имя кассира,
+             *                          //  если не указано явно берется указанное по умолчанию
+             *      IdCommand: string   // Идентификатор команды для возможности последующего запроса о ее выполнении
+             *                          // для чеков рекомендую формировать самостоятельно, чтобы избежать дублирования
+             * }
+             */
+            CommandKkmWithCashier: function (Command, CashierName, NumDevice) {
+                CashierName = CashierName || $.default.CashierName;
+
+                var Data = $.CommandKkm(Command, NumDevice);
+                Data.CashierName = CashierName;
+
+                return Data;
+            },
+
+
+            /**
              * Внутрений метод.
              * Советую для регистрации чеков формировать idCommand самостоятельно
              * @returns {string}
@@ -423,12 +573,15 @@ if (!window.KkmServer) {
                 function S4() {
                     return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
                 }
-                return  (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+
+                return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
             }
-        });
-    })(KkmServer);
+        };
+        var $ = this.KkmServer;
+    }).apply(window);
 
 //  --------------------------------------------------------------------------------------------
+
     /**
      импорт сторонней функции toJson
      @see code.google.com/p/jquery-json

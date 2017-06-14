@@ -1,0 +1,32 @@
+{
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc"]
+  },
+  "source": {
+    "include": ["./src","./README.md"],
+    "includePattern": ".+\\.js$",
+    "excludePattern": "(docs)"
+  },
+  "plugins": [],
+  "templates": {
+    "systemName"            : "KkmServer API",
+    "copyright"             : "&copy; 2017 Oleg Muraveyko",
+    "includeDate"           : false,
+    "navType"               : "vertical",
+    "theme"                 : "Cerulean",
+    "linenums"              : true,
+    "methodHeadingReturns"  : false
+  },
+  "markdown": {
+    "parser": "gfm",
+    "hardwrap": true
+  },
+  "opts": {
+    "template": "../ink-docstrap/template",
+    "encoding": "utf8",
+    "destination": "docs/",
+    "recurse": true,
+    "private": false
+  }
+}

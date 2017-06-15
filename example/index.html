@@ -28,7 +28,7 @@
             }
 
             if (Rezult !== undefined) {
-                var JSon = JSON.stringify(Rezult, '', 4);
+                var JSon = JSON.stringify(Rezult, null, 4);
                 Responce = Responce + "JSON ответа: \r\n" + JSon + "\r\n";
             }
 
@@ -36,29 +36,34 @@
         }
 
         // Инитим
-        // минимальный вызов  KkmServer.connect('Admin','').setHookAjaxSuccess(ExecuteSuccess);
         KkmServer.connect('Admin', '').setHookAjaxSuccess(ExecuteSuccess).setCashierName('Иванова О.П.').setInnKkm('7701237658').setNumDevice(0);
 
+        // свой обработчик ошибок запроса
+        function AjaxError(xhr, status) {
+            alert("Request failed: " + status);
+        }
+        KkmServer.setHookAjaxFail(AjaxError);
+
         // примеры
-        function SetDevice() {
+        function setDevice() {
             KkmServer.setNumDevice(document.getElementById('SetDevice').value);
         }
 
-        function Fiscal_order() {
-            var check = KkmServer.RegisterCheck(0);
-            KkmServer.AddRegisterString(check, 'Шило', 1, 10.01, 10.01);
-            KkmServer.AddRegisterString(check, 'Мыло', 1, 2, 2);
-            check.Cash = 12.01;
-            check.CashLessType1 = 0;
-            KkmServer.Execute(check);
+        function printFiscalOrder(){
+            var check = KkmServer.OpenCheck();
+            check.addRegisterString('Мыло',1,1,1);
+            check.addRegisterString('Шило',1,1,1,18,0,"1234567890123");
+            check.addTextString('может очень пригодиться',4);
+            check.addBarcodeString('EAN13',"1234567890123");
+            check.Data.Cash = 2;
+            KkmServer.execute(check.Data);
         }
-
 
     </script>
 </head>
 <body>
 <label>Номер устройства:
-    <select id="SetDevice" onchange="SetDevice()">
+    <select id="SetDevice" onchange="setDevice()">
         <option value="0">Первое активное: 0</option>
         <option value="1">Устройство №: 1</option>
         <option value="2">Устройство №: 2</option>
@@ -70,24 +75,27 @@
         <option value="8">Устройство №: 8</option>
     </select></label>
 <p>
-    <button onclick="Fiscal_order()" style="width: 300px;">Печать заранее заготовленного чека</button>
+    <button onclick="printFiscalOrder()" style="width: 300px;">Печать заранее заготовленного чека</button>
 </p>
 
 <table>
     <tr>
-        <td style="width:50%">
+        <td style="width:50%;vertical-align: top">
             <h2>Команда как аргумент</h2>
             <p>
-                <button onclick="KkmServer.Execute(KkmServer.commandOpenShift())" style="width: 300px;">Открытие смены</button>
+                <button onclick="KkmServer.execute(KkmServer.CommandOpenShift())" style="width: 300px;">Открытие смены
+                </button>
             </p>
             <p>
-                <button onclick="KkmServer.Execute(KkmServer.commandXReport())" style="width: 300px;">Печать Х отчета</button>
+                <button onclick="KkmServer.execute(KkmServer.CommandXReport())" style="width: 300px;">Печать Х отчета
+                </button>
             </p>
             <p>
-                <button onclick="KkmServer.Execute(KkmServer.commandZReport())" style="width: 300px;">Печать Z отчета</button>
+                <button onclick="KkmServer.execute(KkmServer.CommandZReport())" style="width: 300px;">Печать Z отчета
+                </button>
             </p>
             <p>
-                <button onclick="KkmServer.Execute(KkmServer.commandOfdReport())" style="width: 300px;">Печать состояния
+                <button onclick="KkmServer.execute(KkmServer.CommandOfdReport())" style="width: 300px;">Печать состояния
                     расчетов и связи с
                     ОФД
                 </button>
@@ -97,77 +105,81 @@
                 <label>Сумма : <input id="Amount" type="text" value="0.01"/></label>
             </p>
             <p>
-                <button onclick="KkmServer.Execute(KkmServer.commandPaymentCash(document.getElementById('Amount').value))"
+                <button onclick="KkmServer.execute(KkmServer.CommandPaymentCash(document.getElementById('Amount').value))"
                         style="width: 300px;">Инкассация денег из кассы
                 </button>
             </p>
             <p>
-                <button onclick="KkmServer.Execute(KkmServer.commandDepositingCash(document.getElementById('Amount').value))"
+                <button onclick="KkmServer.execute(KkmServer.CommandDepositingCash(document.getElementById('Amount').value))"
                         style="width: 300px;">Внесение денег в кассу
                 </button>
             </p>
             <p>
-                <button onclick="KkmServer.Execute(KkmServer.commandOpenCashDrawer())" style="width: 300px;">Открытие денежного
+                <button onclick="KkmServer.execute(KkmServer.CommandOpenCashDrawer())" style="width: 300px;">Открытие
+                    денежного
                     ящика
                 </button>
             </p>
             <hr>
             <p>
-                <button onclick="KkmServer.Execute(KkmServer.commandGetDataKKT())" style="width: 300px;">Получить текущее
+                <button onclick="KkmServer.execute(KkmServer.CommandGetDataKKT())" style="width: 300px;">Получить
+                    текущее
                     состояние ККТ.
                 </button>
             </p>
             <hr>
             <p>
-                <button onclick="KkmServer.Execute(KkmServer.commandList())" style="width: 300px;">Получение списка ККМ
+                <button onclick="KkmServer.execute(KkmServer.CommandList())" style="width: 300px;">Получение списка ККМ
                 </button>
             </p>
         </td>
         <td>
             <h2>Короткий вызов</h2>
             <p>
-                <button onclick="KkmServer.OpenShift().Execute()" style="width: 300px;">Открытие смены</button>
+                <button onclick="KkmServer.openShift()" style="width: 300px;">Открытие смены</button>
             </p>
             <p>
-                <button onclick="KkmServer.XReport().Execute()" style="width: 300px;">Печать Х отчета</button>
+                <button onclick="KkmServer.printXReport()" style="width: 300px;">Печать Х отчета</button>
             </p>
             <p>
                 <button onclick="KkmServer.printZReport()" style="width: 300px;">Печать Z отчета</button>
             </p>
             <p>
-                <button onclick="KkmServer.OfdReport().Execute()" style="width: 300px;">Печать состояния
-                    расчетов и связи с
+                <button onclick="KkmServer.printOfdReport()" style="width: 300px;">Печать состояния расчетов и связи с
                     ОФД
                 </button>
             </p>
             <hr>
             <p>
-                <label>Сумма : <input id="Amount2" type="text" value="0.01"/></label>
+                <label>Сумма : <input id="Amount2" type="text" value="10.0"/></label>
             </p>
             <p>
-                <button onclick="KkmServer.PaymentCash(document.getElementById('Amount').value).Execute()"
+                <button onclick="KkmServer.paymentCash(document.getElementById('Amount2').value)"
                         style="width: 300px;">Инкассация денег из кассы
                 </button>
             </p>
             <p>
-                <button onclick="KkmServer.DepositingCash(document.getElementById('Amount').value).Execute()"
+                <button onclick="KkmServer.depositingCash(document.getElementById('Amount2').value)"
                         style="width: 300px;">Внесение денег в кассу
                 </button>
             </p>
             <p>
-                <button onclick="KkmServer.OpenCashDrawer().Execute()" style="width: 300px;">Открытие денежного
-                    ящика
+                <button onclick="KkmServer.openCashDrawer()" style="width: 300px;">Открытие денежного ящика
                 </button>
             </p>
             <hr>
             <p>
-                <button onclick="KkmServer.GetDataKKT().Execute()" style="width: 300px;">Получить текущее
+                <button onclick="KkmServer.getDataKKT()" style="width: 300px;">Получить текущее
                     состояние ККТ.
                 </button>
             </p>
             <hr>
             <p>
-                <button onclick="KkmServer.List().Execute()" style="width: 300px;">Получение списка ККМ
+                <button onclick="KkmServer.getList()" style="width: 300px;">Получение списка ККМ
+                </button>
+            </p>
+            <p>
+                <button onclick="KkmServer.getRezult()" style="width: 300px;">Результат последней команды
                 </button>
             </p>
         </td>

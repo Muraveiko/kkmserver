@@ -50,13 +50,13 @@
         }
 
         function printFiscalOrder(){
-            var check = KkmServer.OpenCheck();
-            check.addRegisterString('Мыло',1,1,1);
-            check.addRegisterString('Шило',1,1,1,18,0,"1234567890123");
-            check.addTextString('может очень пригодиться',4);
-            check.addBarcodeString('EAN13',"1234567890123");
-            check.Data.Cash = 2;
-            KkmServer.execute(check.Data);
+            var c = new KkmServer.Check();
+            c.r('Мыло',1,1,1).r('Шило',1,1,1,18,0,"1234567890123");
+            var e =c.addRegisterString('Водка',1,100,100);
+            c.t('может очень пригодиться',4);
+            c.b('EAN13',"1234567890123");
+            c.data.Cash = 2;
+            c.fiscal();
         }
 
     </script>

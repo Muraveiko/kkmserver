@@ -2,6 +2,8 @@
  * @fileOverview Js-библиотека для взаимодействия со специальным сервером, посредством  Ajax запросов.
  * Дополнительные библиотеки не требуются.<br />
  *
+ * @module KkmServerJs
+ *
  * @author Oleg Muraveyko
  * @version 0.1.0
  *
@@ -30,11 +32,11 @@ if (!window.KkmServer) {
      *  @typedef  CommandKkm
      *  @type {object}
      *  @property {string} Command    Имя команды
-     *  @property {KkmServer.NumDevice} numDevice  Устройство
+     *  @property {{KkmServer.NumDevice}} numDevice  Устройство
      *  @property {string} IdCommand  Идентификатор команды для возможности последующего запроса о ее выполнении
      *
      */
-    
+
     /**
      *  Структура для передачи команды серверу API с фамилией кассира
      *
@@ -52,19 +54,17 @@ if (!window.KkmServer) {
      *  @type {KkmServer.CommandKkmWithCashier}
      *  @property  {number}  Amount   Сумма
      */
-    
+
     (function () {
         /**
          *  Синглетон для работы с фискальными регистраторами, подключенными к  KkmServer
          *  @global
-         *  @namespace
          */
         this.KkmServer = {
-
             default: {
                 numDevice: 0,
-                CashierName: '',
-                InnKkm: ''
+                cashierName: '',
+                innKkm: ''
             },
             funSuccess: null,
             funError: function (xhr, status) {
@@ -100,7 +100,7 @@ if (!window.KkmServer) {
             /**
              * Передача команды серверу .
              * @param  {CommandKkm|CommandKkmWithCashier|CommandKkmWithAmount} data Структура для передачи серверу
-             *
+             * @returns {CommandKkm|CommandKkmWithCashier|CommandKkmWithAmount}
              */
             execute: function (data) {
                 var json = $.toJSON(data);
@@ -116,6 +116,7 @@ if (!window.KkmServer) {
                 };
                 $.lastCommand = data;
                 r.send(json);
+                return data;
             },
 
             // -------------------------------------------------------
@@ -148,7 +149,7 @@ if (!window.KkmServer) {
 
             /**
              * Номер Устройства по умолчанию
-             * @param {KkmServer.NumDevice} numDevice целое 0-9
+             * @param {{KkmServer.NumDevice}} numDevice целое 0-9
              * @returns this
              *
              */
@@ -158,20 +159,20 @@ if (!window.KkmServer) {
             },
             /**
              * Кассир по умолчанию
-             * @param {string} CashierName ФИО
+             * @param {string} cashierName ФИО
              * @returns this
              */
-            setCashierName: function (CashierName) {
-                $.default.CashierName = CashierName;
+            setCashierName: function (cashierName) {
+                $.default.cashierName = cashierName;
                 return $;
             },
             /**
              * Инн кассы чтобы чек не ушел неправильно
-             * @param {string} InnKkm
+             * @param {string} innKkm
              * @return this
              */
-            setInnKkm: function (InnKkm) {
-                $.default.InnKkm = InnKkm;
+            setInnKkm: function (innKkm) {
+                $.default.innKkm = innKkm;
                 return $;
             },
             // --------------------------------------------------------------------------------------------
@@ -179,16 +180,16 @@ if (!window.KkmServer) {
             // --------------------------------------------------------------------------------------------
             /**
              * Подготовка структуры запроса к серверу
-             * @param {string} Command Имя команды
-             * @param {KkmServer.NumDevice} [numDevice] устройство
-             * @returns {KkmServer.CommandKkm}
+             * @param {string} command Имя команды
+             * @param {{KkmServer.NumDevice}} [numDevice] устройство
+             * @returns {{KkmServer.CommandKkm}}
              * @constructor
              */
-            CommandKkm: function (Command, numDevice) {
+            CommandKkm: function (command, numDevice) {
                 numDevice = numDevice || $.default.numDevice;
 
                 return {
-                    Command: Command,
+                    Command: command,
                     NumDevice: numDevice,
                     IdCommand: $._generateCommandId()
                 };
@@ -196,19 +197,19 @@ if (!window.KkmServer) {
             /**
              * Подготовка структуры запроса к серверу c ФИО кассира
              *
-             * @param {string} Command Имя команды
-             * @param {string} [CashierName] ФИО Кассира
-             * @param {KkmServer.NumDevice} [numDevice] устройство
-             * @returns {KkmServer.CommandKkmWithCashier}
+             * @param {string} command Имя команды
+             * @param {string} [cashierName] ФИО Кассира
+             * @param {{KkmServer.NumDevice}} [numDevice] устройство
+             * @returns {{KkmServer.CommandKkmWithCashier}}
              * @constructor
              */
-            CommandKkmWithCashier: function (Command, CashierName, numDevice) {
-                CashierName = CashierName || $.default.CashierName;
+            CommandKkmWithCashier: function (command, cashierName, numDevice) {
+                cashierName = cashierName || $.default.cashierName;
 
-                var Data = $.CommandKkm(Command, numDevice);
-                Data.CashierName = CashierName;
+                var data = $.CommandKkm(command, numDevice);
+                data.CashierName = cashierName;
 
-                return Data;
+                return data;
             },
             /**
              * Подготовка структуры запроса к серверу c суммой операции
@@ -216,7 +217,7 @@ if (!window.KkmServer) {
              * @param {string} Command Имя команды
              * @param {number} Amount Сумма
              * @param {string} [CashierName] ФИО Кассира
-             * @param {KkmServer.NumDevice} [numDevice] устройство
+             * @param {{KkmServer.NumDevice}} [numDevice] устройство
              * @returns {KkmServer.CommandKkmWithAmount}
              * @constructor
              */
@@ -236,7 +237,7 @@ if (!window.KkmServer) {
              * Команда Внесение денег в кассу
              * @param {number} Amount Сумма
              * @param {string} [CashierName] имя кассира
-             * @param {KkmServer.NumDevice} [numDevice] устройство
+             * @param {{KkmServer.NumDevice}} [numDevice] устройство
              * @returns {KkmServer.CommandKkmWithAmount}
              * @constructor
              */
@@ -245,7 +246,7 @@ if (!window.KkmServer) {
             },
             /**
              * Команда Получение данных KKT
-             * @param {KkmServer.NumDevice} [numDevice] устройство
+             * @param {{KkmServer.NumDevice}} [numDevice] устройство
              * @returns {KkmServer.CommandKkm}
              * @constructor
              */
@@ -255,7 +256,7 @@ if (!window.KkmServer) {
             /**
              * Команда Запрос результата выполнения команды
              * @param {string} [IdCommand]
-             * @param {KkmServer.NumDevice} [numDevice] устройство
+             * @param {{KkmServer.NumDevice}} [numDevice] устройство
              * @returns {KkmServer.CommandKkm}
              * @constructor
              */
@@ -308,7 +309,7 @@ if (!window.KkmServer) {
              * Команда Выемка наличных
              * @param {number} Amount Сумма
              * @param {string} [CashierName] имя кассира
-             * @param {KkmServer.NumDevice} [numDevice] устройство
+             * @param {{KkmServer.NumDevice}} [numDevice] устройство
              * @returns {KkmServer.CommandKkmWithAmount}
              * @constructor
              */
@@ -317,7 +318,7 @@ if (!window.KkmServer) {
             },
             /**
              * Команда Печать состояния обмена с ОФД
-             * @param {KkmServer.NumDevice} [numDevice] устройство
+             * @param {{KkmServer.NumDevice}} [numDevice] устройство
              * @returns {KkmServer.CommandKkm}
              * @constructor
              */
@@ -326,7 +327,7 @@ if (!window.KkmServer) {
             },
             /**
              * Команда Открыть денежный ящик
-             * @param {KkmServer.NumDevice} [numDevice] устройство
+             * @param {{KkmServer.NumDevice}} [numDevice] устройство
              * @returns {KkmServer.CommandKkm}
              * @constructor
              */
@@ -336,7 +337,7 @@ if (!window.KkmServer) {
             /**
              * Команда Окрыть смену
              * @param {string} [CashierName] имя кассира
-             * @param {KkmServer.NumDevice} [numDevice] устройство
+             * @param {{KkmServer.NumDevice}} [numDevice] устройство
              * @returns {KkmServer.CommandKkmWithCashier}
              * @constructor
              */
@@ -346,7 +347,7 @@ if (!window.KkmServer) {
             /**
              * Команда Печать Х-отчета
              * @param {string} [CashierName] имя кассира
-             * @param {KkmServer.NumDevice} [numDevice] устройство
+             * @param {{KkmServer.NumDevice}} [numDevice] устройство
              * @returns {KkmServer.CommandKkmWithCashier}
              * @constructor
              */
@@ -356,7 +357,7 @@ if (!window.KkmServer) {
             /**
              * Команда Закрытие смены
              * @param {string} [CashierName] имя кассира
-             * @param {KkmServer.NumDevice} [numDevice] устройство
+             * @param {{KkmServer.NumDevice}} [numDevice] устройство
              * @returns {KkmServer.CommandKkmWithCashier}
              * @constructor
              */
@@ -372,78 +373,88 @@ if (!window.KkmServer) {
              * Внесение денег в кассу
              * @param {number} Amount Сумма
              * @param {string} [CashierName] имя кассира
-             * @param {KkmServer.NumDevice} [numDevice] устройство
+             * @param {{KkmServer.NumDevice}} [numDevice] устройство
+             * @returns {KkmServer.CommandKkmWithAmount}
              */
             depositingCash: function (Amount, CashierName, numDevice) {
-                $.execute($.CommandDepositingCash(Amount, CashierName, numDevice));
+                return $.execute($.CommandDepositingCash(Amount, CashierName, numDevice));
             },
             /**
              * Получение данных KKT
-             * @param {KkmServer.NumDevice} [numDevice] устройство
+             * @param {{KkmServer.NumDevice}} [numDevice] устройство
+             * @returns {KkmServer.CommandKkm}
              */
             getDataKKT: function (numDevice) {
-                $.execute($.CommandGetDataKKT(numDevice));
+                return $.execute($.CommandGetDataKKT(numDevice));
             },
             /**
              * Список ККТ подключенных к серверу
+             * @returns {KkmServer.CommandKkm}
              */
             getList: function () {
-                $.execute($.CommandList());
+                return $.execute($.CommandList());
             },
             /**
              * Запрос результата выполнения команды
              * @param {string} [IdCommand]
-             * @param {KkmServer.NumDevice} [numDevice] устройство
+             * @param {{KkmServer.NumDevice}} [numDevice] устройство
+             * @returns {KkmServer.CommandKkm}
              */
             getRezult: function (IdCommand, numDevice) {
-                $.execute($.CommandGetRezult(IdCommand, numDevice));
+                return $.execute($.CommandGetRezult(IdCommand, numDevice));
             },
             /**
              * Выемка наличных
              * @param {number} Amount Сумма
              * @param {string} [CashierName] имя кассира
-             * @param {KkmServer.NumDevice} [numDevice] устройство
+             * @param {{KkmServer.NumDevice}} [numDevice] устройство
+             * @returns {KkmServer.CommandKkmWithAmount}
              */
             paymentCash: function (Amount, CashierName, numDevice) {
-                $.execute($.CommandPaymentCash(Amount, CashierName, numDevice));
+                return $.execute($.CommandPaymentCash(Amount, CashierName, numDevice));
             },
             /**
              * Печать состояния обмена с ОФД
-             * @param {KkmServer.NumDevice} [numDevice] устройство
+             * @param {{KkmServer.NumDevice}} [numDevice] устройство
+             * @returns {KkmServer.CommandKkm}
              */
             printOfdReport: function (numDevice) {
-                $.execute($.CommandOfdReport(numDevice));
+                return $.execute($.CommandOfdReport(numDevice));
             },
             /**
              * Печать Х-отчета
              * @param {string} [CashierName] имя кассира
-             * @param {KkmServer.NumDevice} [numDevice] устройство
+             * @param {{KkmServer.NumDevice}} [numDevice] устройство
+             * @returns {KkmServer.CommandKkm}
              */
             printXReport: function (CashierName, numDevice) {
-                $.execute($.CommandXReport(CashierName, numDevice));
+                return $.execute($.CommandXReport(CashierName, numDevice));
             },
             /**
              * Закрытие смены
              * @param {string} [CashierName] имя кассира
-             * @param {KkmServer.NumDevice} [numDevice] устройство
+             * @param {{KkmServer.NumDevice}} [numDevice] устройство
+             * @returns {KkmServer.CommandKkm}
              */
             printZReport: function (CashierName, numDevice) {
-                $.execute($.CommandZReport(CashierName, numDevice));
+                return $.execute($.CommandZReport(CashierName, numDevice));
             },
             /**
              * Открыть денежный ящик
-             * @param {KkmServer.NumDevice} [numDevice] устройство
+             * @param {{KkmServer.NumDevice}} [numDevice] устройство
+             * @returns {KkmServer.CommandKkm}
              */
             openCashDrawer: function (numDevice) {
-                $.execute($.CommandOpenCashDrawer(numDevice));
+                return $.execute($.CommandOpenCashDrawer(numDevice));
             },
             /**
              * Окрыть смену
              * @param {string} [CashierName] имя кассира
-             * @param {KkmServer.NumDevice} [numDevice] устройство
+             * @param {{KkmServer.NumDevice}} [numDevice] устройство
+             * @returns {KkmServer.CommandKkmWithCashier}
              */
             openShift: function (CashierName, numDevice) {
-                $.execute($.CommandOpenShift(CashierName, numDevice));
+                return $.execute($.CommandOpenShift(CashierName, numDevice));
             },
 
             // --------------------------------------------------------------------------------------------
@@ -469,20 +480,24 @@ if (!window.KkmServer) {
             // -------------------------------------------------------------------------------------
 
             /**
-             * Тип чека: <pre>
+             * Тип чека: <ul>
+             *       <li> fgjerklhklrh
+             *  </li><li> klefherjklhrg
+             *  </li></ul>
+             *  <pre>
              *  0 – продажа;                             10 – покупка;
              *  1 – возврат продажи;                     11 - возврат покупки;
              *  8 - продажа только по ЕГАИС (обычный чек ККМ не печатается)
              *  9 - возврат продажи только по ЕГАИС (обычный чек ККМ не печатается)
              * </pre>
-             *  @memberOf KkmServer
+             *  @memberOf KkmServer.Check
              *  @typedef  TypeCheck
              *  @type {number}
              */
 
             /**
              *  Данные для ЕГАИС системы
-             *  @memberOf KkmServer
+             *  @memberOf KkmServer.Check
              *  @typedef  EGAIS
              *  @type {object}
              *  @property  {string} Barcode
@@ -491,26 +506,28 @@ if (!window.KkmServer) {
              */
 
             /**
-             *  Класс для работы с чеком
-             * @param {KkmServer.TypeCheck} [typeCheck]
-             * @param {string} [CashierName]
-             * @param {string} [InnKkm]
+             * Конструктор Класса Чек
+             * (для работы с фискальным документом или слип-чеком)
+             *
+             * @param {KkmServer.Check.TypeCheck} [typeCheck]
+             * @param {string} [cashierName]
+             * @param {string} [innKkm]
              * @param {number} [numDevice]
-             * @class
+             * @constructors
              */
-            Check: function (typeCheck, CashierName, InnKkm, numDevice) {
+            Check: function (typeCheck, cashierName, innKkm, numDevice) {
 
                 typeCheck = typeCheck || 0; // продажа
                 numDevice = numDevice || $.default.numDevice;
-                InnKkm = InnKkm || $.default.InnKkm;
-                CashierName = CashierName || $.default.CashierName;
+                innKkm = innKkm || $.default.innKkm;
+                cashierName = cashierName || $.default.cashierName;
 
                 var self = this;
                 this.data = {
                     VerFFD: "1.0",
                     Command: "RegisterCheck",
                     numDevice: numDevice,
-                    InnKkm: InnKkm,
+                    InnKkm: innKkm,
                     KktNumber: "",
                     Timeout: 30,
                     IdCommand: $._generateCommandId(),
@@ -519,7 +536,7 @@ if (!window.KkmServer) {
                     CancelOpenedCheck: true,
                     NotPrint: false,
                     NumberCopies: 0,
-                    CashierName: CashierName,
+                    CashierName: cashierName,
                     ClientAddress: "",
                     TaxVariant: "",
                     CheckProps: [],
@@ -533,6 +550,78 @@ if (!window.KkmServer) {
                     CashLessType2: 0,
                     CashLessType3: 0
                 };
+
+                // --------------------------------------------------------------------------------------------
+                // Сетеры основных свойств
+                // --------------------------------------------------------------------------------------------
+
+                /**
+                 * Используется для  предотвращения ошибочных регистраций
+                 * чеков на ККТ зарегистрированных с другим
+                 * ИНН (сравнивается со значением в ФН).
+                 * Допустимое количество символов 10 или 12.
+                 * @param {string} innKkm  ИНН организации
+                 * @returns self
+                 */
+                this.setInn = function (innKkm) {
+                    self.data.innKkm = innKkm;
+                    return self;
+                };
+
+                /**
+                 *  Используется для предотвращения ошибочных регистраций
+                 *  чеков на ККТ зарегистрированных с другим адресом места
+                 *  расчёта (сравнивается со значением в ФН).
+                 *  Максимальная длина строки – 256 символов
+                 * @param paymentAddress Адрес места расчетов.
+                 * @returns self
+                 */
+                this.setPaymentAddress = function (paymentAddress) {
+
+                };
+                /**
+                 * Если чек выдается электронно, то в запросе обязательно должно быть заполнено
+                 * одно из полей: email или phone.
+                 * Максимальная длина строки – 64 символа.
+                 * @param {string} email Электронная почта покупателя
+                 * @returns self
+                 */
+                this.setEmail = function (email) {
+
+                };
+                /**
+                 * Если чек выдается электронно, то в запросе обязательно должно быть заполнено
+                 * одно из полей: email или phone.
+                 * Максимальная длина строки – 64 символа.
+                 * @param {string} phone Телефон покупателя. Передается без префикса «+7».
+                 * @returns self
+                 */
+                this.setPhone = function (phone) {
+
+                };
+                /**
+                 * Система налогообложения.
+                 * Перечисление со значениями: <ul>
+                 *      <li> «osn» – общая СН;
+                 * </li><li> «usn_income» – упрощенная СН(доходы);
+                 * </li><li> «usn_income_outcome» – упрощенная СН (доходы минус расходы);
+                 * </li><li> «envd» – единый налог на вмененный  доход;
+                 * </li><li> «esn» – единый сельскохозяйственный  налог;
+                 * </li><li> «patent» – патентная СН.
+                 * </li></ul>
+                 * @param {string} sno  Система налогообложения (см. допустимые значения)
+                 * @returns self
+                 */
+                this.setSno = function (sno) {
+
+                };
+                this.setTotal = function () {
+
+                };
+                this.setPayments = function () {
+
+                };
+
                 // --------------------------------------------------------------------------------------------
                 // Добавление строк к чеку
                 // --------------------------------------------------------------------------------------------
@@ -664,7 +753,7 @@ if (!window.KkmServer) {
                         }
                     };
 
-                    self.data.CheckStrings.push(Data);
+                    self.data.CheckStrings.push(imageString);
                     return imageString.PrintImage;
 
                 };
@@ -678,21 +767,21 @@ if (!window.KkmServer) {
                     return self;
                 };
                 /**
-                 *
+                 * @return self
                  */
                 this.print = function () {
                     self.data.IsFiscalCheck = false;
-                    $.execute(self.data);
+                    return $.execute(self.data);
                 };
                 /**
                  *
+                 * @return self
                  */
                 this.fiscal = function () {
                     self.data.IsFiscalCheck = true;
-                    $.execute(self.data);
+                    return $.execute(self.data);
                 };
             }
-
         };
         var $ = this.KkmServer;
 

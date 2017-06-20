@@ -2,65 +2,6 @@
 <head>
     <meta charset="utf-8">
     <script src="../src/kkmserver.js"></script>
-    <script>
-
-        /**
-         * Функция вызываемая после обработки команды - обработка возвращаемых данных
-         * @param {{Status,Error,URL,Command,IdCommand,NumDevice}} Rezult - ответ ККM
-         */
-        function ExecuteSuccess(Rezult) {
-            var Responce = "";
-
-            if (Rezult.Status === 0) {
-                Responce = Responce + "Статус: " + "Ok" + "\r\n";
-            } else if (Rezult.Status === 1) {
-                Responce = Responce + "Статус: " + "Выполняется" + "\r\n";
-            } else if (Rezult.Status === 2) {
-                Responce = Responce + "Статус: " + "Ошибка!" + "\r\n";
-            } else if (Rezult.Status === 3) {
-                Responce = Responce + "Статус: " + "Данные не найдены!" + "\r\n";
-            }
-
-
-            // Текст ошибки
-            if (Rezult.Error !== undefined && Rezult.Error !== "") {
-                Responce = Responce + "Ошибка: " + Rezult.Error + "\r\n";
-            }
-
-            if (Rezult !== undefined) {
-                var JSon = JSON.stringify(Rezult, null, 4);
-                Responce = Responce + "JSON ответа: \r\n" + JSon + "\r\n";
-            }
-
-            document.getElementById('Responce').textContent = Responce;
-        }
-
-        // Инитим
-        KkmServer.connect('Admin', '').setHookAjaxSuccess(ExecuteSuccess).setCashierName('Иванова О.П.').setInnKkm('7701237658').setNumDevice(0);
-
-        // свой обработчик ошибок запроса
-        function AjaxError(xhr, status) {
-            alert("Request failed: " + status);
-        }
-        KkmServer.setHookAjaxFail(AjaxError);
-
-        // примеры
-        function setDevice() {
-            KkmServer.setNumDevice(document.getElementById('SetDevice').value);
-        }
-
-        function printFiscalOrder(){
-            var c = new KkmServer.Check();
-
-            c.r('Мыло',1,1,1).r('Шило',1,1,1,18,0,"1234567890123");
-            var e =c.addRegisterString('Водка',1,100,100);
-            c.t('может очень пригодиться',4);
-            c.b('EAN13',"1234567890123");
-            c.data.Cash = 2;
-            c.fiscal();
-        }
-
-    </script>
 </head>
 <body>
 <label>Номер устройства:
@@ -84,19 +25,19 @@
         <td style="width:50%;vertical-align: top">
             <h2>Команда как аргумент</h2>
             <p>
-                <button onclick="KkmServer.execute(KkmServer.CommandOpenShift())" style="width: 300px;">Открытие смены
+                <button onclick="openShiftExtend()" style="width: 300px;">Открытие смены
                 </button>
             </p>
             <p>
-                <button onclick="KkmServer.execute(KkmServer.CommandXReport())" style="width: 300px;">Печать Х отчета
+                <button onclick="Kkm.execute(Kkm.CommandXReport())" style="width: 300px;">Печать Х отчета
                 </button>
             </p>
             <p>
-                <button onclick="KkmServer.execute(KkmServer.CommandZReport())" style="width: 300px;">Печать Z отчета
+                <button onclick="Kkm.execute(Kkm.CommandZReport())" style="width: 300px;">Печать Z отчета
                 </button>
             </p>
             <p>
-                <button onclick="KkmServer.execute(KkmServer.CommandOfdReport())" style="width: 300px;">Печать состояния
+                <button onclick="Kkm.execute(Kkm.CommandOfdReport())" style="width: 300px;">Печать состояния
                     расчетов и связи с
                     ОФД
                 </button>
@@ -106,47 +47,47 @@
                 <label>Сумма : <input id="Amount" type="text" value="0.01"/></label>
             </p>
             <p>
-                <button onclick="KkmServer.execute(KkmServer.CommandPaymentCash(document.getElementById('Amount').value))"
+                <button onclick="Kkm.execute(Kkm.CommandPaymentCash(document.getElementById('Amount').value))"
                         style="width: 300px;">Инкассация денег из кассы
                 </button>
             </p>
             <p>
-                <button onclick="KkmServer.execute(KkmServer.CommandDepositingCash(document.getElementById('Amount').value))"
+                <button onclick="Kkm.execute(Kkm.CommandDepositingCash(document.getElementById('Amount').value))"
                         style="width: 300px;">Внесение денег в кассу
                 </button>
             </p>
             <p>
-                <button onclick="KkmServer.execute(KkmServer.CommandOpenCashDrawer())" style="width: 300px;">Открытие
+                <button onclick="Kkm.execute(Kkm.CommandOpenCashDrawer())" style="width: 300px;">Открытие
                     денежного
                     ящика
                 </button>
             </p>
             <hr>
             <p>
-                <button onclick="KkmServer.execute(KkmServer.CommandGetDataKKT())" style="width: 300px;">Получить
+                <button onclick="Kkm.execute(Kkm.CommandGetDataKKT())" style="width: 300px;">Получить
                     текущее
                     состояние ККТ.
                 </button>
             </p>
             <hr>
             <p>
-                <button onclick="KkmServer.execute(KkmServer.CommandList())" style="width: 300px;">Получение списка ККМ
+                <button onclick="Kkm.execute(Kkm.CommandList())" style="width: 300px;">Получение списка ККМ
                 </button>
             </p>
         </td>
         <td>
             <h2>Короткий вызов</h2>
             <p>
-                <button onclick="KkmServer.openShift()" style="width: 300px;">Открытие смены</button>
+                <button onclick="Kkm.doOpenShift()" style="width: 300px;">Открытие смены</button>
             </p>
             <p>
-                <button onclick="KkmServer.printXReport()" style="width: 300px;">Печать Х отчета</button>
+                <button onclick="Kkm.doXReport()" style="width: 300px;">Печать Х отчета</button>
             </p>
             <p>
-                <button onclick="KkmServer.printZReport()" style="width: 300px;">Печать Z отчета</button>
+                <button onclick="Kkm.doZReport()" style="width: 300px;">Печать Z отчета</button>
             </p>
             <p>
-                <button onclick="KkmServer.printOfdReport()" style="width: 300px;">Печать состояния расчетов и связи с
+                <button onclick="Kkm.doOfdReport()" style="width: 300px;">Печать состояния расчетов и связи с
                     ОФД
                 </button>
             </p>
@@ -155,32 +96,32 @@
                 <label>Сумма : <input id="Amount2" type="text" value="10.0"/></label>
             </p>
             <p>
-                <button onclick="KkmServer.paymentCash(document.getElementById('Amount2').value)"
+                <button onclick="Kkm.doPaymentCash(document.getElementById('Amount2').value)"
                         style="width: 300px;">Инкассация денег из кассы
                 </button>
             </p>
             <p>
-                <button onclick="KkmServer.depositingCash(document.getElementById('Amount2').value)"
+                <button onclick="Kkm.doDepositingCash(document.getElementById('Amount2').value)"
                         style="width: 300px;">Внесение денег в кассу
                 </button>
             </p>
             <p>
-                <button onclick="KkmServer.openCashDrawer()" style="width: 300px;">Открытие денежного ящика
+                <button onclick="Kkm.doOpenCashDrawer()" style="width: 300px;">Открытие денежного ящика
                 </button>
             </p>
             <hr>
             <p>
-                <button onclick="KkmServer.getDataKKT()" style="width: 300px;">Получить текущее
+                <button onclick="Kkm.doGetDataKKT()" style="width: 300px;">Получить текущее
                     состояние ККТ.
                 </button>
             </p>
             <hr>
             <p>
-                <button onclick="KkmServer.getList()" style="width: 300px;">Получение списка ККМ
+                <button onclick="Kkm.doGetList()" style="width: 300px;">Получение списка ККМ
                 </button>
             </p>
             <p>
-                <button onclick="KkmServer.getRezult()" style="width: 300px;">Результат последней команды
+                <button onclick="Kkm.doGetRezult()" style="width: 300px;">Результат последней команды
                 </button>
             </p>
         </td>
@@ -189,6 +130,86 @@
 <p>Ответ сервера:</p>
 <p id="Responce" style="white-space:pre;"></p>
 
+<script>
+    /**
+     * Функция вызываемая после обработки команды - обработка возвращаемых данных
+     * @param {KkmResponse} Rezult
+     */
+    function ExecuteSuccess(Rezult) {
+        var Responce = "";
+        if (Rezult.Status === 0) {
+            Responce = Responce + "Статус: " + "Ok" + "\r\n";
+        } else if (Rezult.Status === 1) {
+            Responce = Responce + "Статус: " + "Выполняется" + "\r\n";
+        } else if (Rezult.Status === 2) {
+            Responce = Responce + "Статус: " + "Ошибка!" + "\r\n";
+        } else if (Rezult.Status === 3) {
+            Responce = Responce + "Статус: " + "Данные не найдены!" + "\r\n";
+        }
+
+
+        // Текст ошибки
+        if (Rezult.Error !== undefined && Rezult.Error !== "") {
+            Responce = Responce + "Ошибка: " + Rezult.Error + "\r\n";
+        }
+
+        if (Rezult !== undefined) {
+            var JSon = JSON.stringify(Rezult, null, 4);
+            Responce = Responce + "JSON ответа: \r\n" + JSon + "\r\n";
+        }
+
+        document.getElementById('Responce').textContent = Responce;
+    }
+
+    try {
+
+        // Инитим
+        Kkm = new KkmServer('Admin', '').setCashierName('Иванова О.П.').setInnKkm('7701237658').hookAjaxSuccess(ExecuteSuccess).setNumDevice(0);
+        // свой обработчик ошибок запроса
+        function AjaxError(xhr, status) {
+            alert("Request failed: " + status);
+        }
+
+        Kkm.hookAjaxFail(AjaxError);
+
+    } catch (err) {
+        ExecuteSuccess({Status: 2, Error: err.message});
+    }
+
+    // примеры
+    function setDevice() {
+        Kkm.setNumDevice(document.getElementById('SetDevice').value);
+    }
+
+    function printFiscalOrder() {
+        try {
+            var c = new KkmCheck(Kkm);
+
+            c.r('Мыло', 1, 1, 1).r('Шило', 1, 1, 1, 18, 0, "1234567890123");
+            c.addRegisterString('Водка', 1, 100, 100);
+            c.t('может очень пригодиться', 4);
+            c.b('EAN13', "1234567890123");
+            c.setPayments(200);
+            c.fiscal();
+        } catch (e) {
+            ExecuteSuccess({Status: 2, Error: 'JS Ошибка ' + e.name + ":" + e.message + "\n" + e.stack});
+        }
+    }
+
+    function openShiftExtend(){
+        var command = Kkm.CommandOpenShift('Петров');
+        command.CashierName = 'Иванов';
+        Kkm.execute(command);
+    }
+
+    function getListExtend(){
+        cList = Kkm.CommandList();
+        cList.InnKkm = '1234567890';
+        cList.Active = true;
+        cList.OnOff = true;
+        Kkm.execute(cList);
+    }
+</script>
 
 </body>
 </html>

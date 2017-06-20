@@ -31,23 +31,16 @@
 		<ul class="nav navbar-nav">
 			
 			<li class="dropdown">
-				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
-				<ul class="dropdown-menu ">
-					<li><a href="module-KkmServerJs.html">KkmServerJs</a></li>
-				</ul>
-			</li>
-			
-			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="KkmServer.CommandDepositingCash.html">KkmServer.CommandDepositingCash</a></li><li><a href="KkmServer.CommandGetDataKKT.html">KkmServer.CommandGetDataKKT</a></li><li><a href="KkmServer.CommandGetRezult.html">KkmServer.CommandGetRezult</a></li><li><a href="global.html#KkmServer#.CommandKkm">KkmServer.CommandKkm</a></li><li><a href="global.html#KkmServer#.CommandKkmWithAmount">KkmServer.CommandKkmWithAmount</a></li><li><a href="global.html#KkmServer#.CommandKkmWithCashier">KkmServer.CommandKkmWithCashier</a></li><li><a href="KkmServer.CommandList.html">KkmServer.CommandList</a></li><li><a href="KkmServer.CommandOfdReport.html">KkmServer.CommandOfdReport</a></li><li><a href="KkmServer.CommandOpenCashDrawer.html">KkmServer.CommandOpenCashDrawer</a></li><li><a href="KkmServer.CommandOpenShift.html">KkmServer.CommandOpenShift</a></li><li><a href="KkmServer.CommandPaymentCash.html">KkmServer.CommandPaymentCash</a></li><li><a href="KkmServer.CommandXReport.html">KkmServer.CommandXReport</a></li><li><a href="KkmServer.CommandZReport.html">KkmServer.CommandZReport</a></li>
+					<li><a href="KkmCheck.html">KkmCheck</a></li><li><a href="KkmCommand.html">KkmCommand</a></li><li><a href="KkmCommandList.html">KkmCommandList</a></li><li><a href="KkmCommandWithAmount.html">KkmCommandWithAmount</a></li><li><a href="KkmCommandWithCashier.html">KkmCommandWithCashier</a></li><li><a href="KkmResponse.html">KkmResponse</a></li><li><a href="KkmServer.html">KkmServer</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#KkmServer">KkmServer</a></li>
+					<li><a href="global.html">Global</a></li>
 				</ul>
 			</li>
 			
@@ -152,22 +145,74 @@
     
 
     
-        <h3 class="subsection-title">Members</h3>
+
+    
+
+    
+        <h3 class="subsection-title">Type Definitions</h3>
 
         <dl>
-            
+                
 <hr>
-<dt class="name" id="KkmServer">
-    <h4 id="KkmServer"><span class="type-signature"></span>KkmServer<span class="type-signature"></span></h4>
-
+<dt>
+    <h4 class="name" id="callbackKkmApi"><span class="type-signature"></span>callbackKkmApi()</h4>
+    
     
 </dt>
 <dd>
+
     
-    <div class="description">
-        Синглетон для работы с фискальными регистраторами, подключенными к  KkmServer
-    </div>
+
     
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="KkmResponse.html">KkmResponse</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
     
 
@@ -212,13 +257,193 @@
 
 
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 </dd>
 
-        </dl>
+            
+                
+<hr>
+<dt class="name" id="KkmEGAIS">
+    <h4 id="KkmEGAIS">KkmEGAIS</h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Данные для ЕГАИС системы
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">object</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>Barcode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>Ean</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>Volume</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
     
 
     
 
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+            </dl>
     
 
     

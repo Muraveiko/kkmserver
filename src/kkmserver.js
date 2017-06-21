@@ -3,7 +3,7 @@
  * Дополнительные библиотеки не требуются.<br />
  *
  * @author Oleg Muraveyko
- * @version 0.1.0
+ * @version 0.2.0
  *
  * @see Source code on Github  {@link https://github.com/Muraveiko/kkmserver}
  * @see Server API part by Dmitriy Garbuz  {@link https://kkmserver.ru/KkmServer}
@@ -42,6 +42,11 @@ function KkmCommand(command, numDevice) {
      *  @type {string}
      */
     this.IdCommand = '';
+    /**
+     * Kлюч суб-лицензии
+     * @type {string}
+     */
+    this.KeySubLicensing = '';
 }
 
 /**
@@ -144,27 +149,99 @@ function KkmCommandList() {
 
 /**
  *  Ответ API
- * @property {string} Command [Команда апи]{@link KkmCommand#Command}
  * @property {number} Status Статус исполнения
- * <ul><li>Ok = 0,</li><li>Run(Запущено на выполнение) = 1,</li><li>Error = 2,</li><li>NotFound(устройство не найдено) = 3,</li><li>NotRun = 4</ul>
+ * <ul><li>Ok = 0,</li><li>Run(Запущено на выполнение) = 1,</li><li>Error = 2,</li>
+ * <li>NotFound(устройство не найдено) = 3,</li><li>NotRun = 4</ul>
  * @property {string} Error Пустая строка или текст ошибки
- * @property {string} [URL]
+ * @property {string} Command [Команда апи]{@link KkmCommand#Command}
  * @property {string} IdCommand  Уникальный идентификатор комманды, назначенный вами или присвоенный сервером.
- * @property {number} [NumDevice]
+ * @property {number} [NumDevice] Номер устройства выполневшего команду
+ * @property {string} [URL] URL проверки чека <br />
+ *              t=20170115T154700&s=0.01&fn=99078900002287&i=118&fp=549164494&n=1  <br />где: <br />
+ *              t-дата-время, s-сумма документа, fn-номер ФН, i-номер документа, fp-фискальная подпись, n-тип документа
+ * @property {number} [CheckNumber] Номер документа
+ * @property {number} [SessionNumber] Номер смены
+ * @property  {object} [Info] состояние Ккт
+ * @property  Info.UrlServerOfd
+ * @property  Info.PortServerOfd
+ * @property  Info.NameOFD
+ * @property  Info.UrlOfd
+ * @property  Info.InnOfd
+ * @property  Info.NameOrganization
+ * @property  Info.TaxVariant
+ * @property  Info.AddressSettle
+ * @property  Info.EncryptionMode
+ * @property  Info.OfflineMode
+ * @property  Info.AutomaticMode
+ * @property  Info.InternetMode
+ * @property  Info.BSOMode
+ * @property  Info.ServiceMode
+ * @property  Info.InnOrganization
+ * @property  Info.KktNumber
+ * @property  Info.FnNumber
+ * @property  Info.RegNumber
+ * @property  Info.OnOff
+ * @property  Info.Active
+ * @property  Info.Command
+ * @property  Info.FN_IsFiscal
+ * @property  Info.FN_MemOverflowl
+ * @property  Info.OFD_Error
+ * @property  Info.OFD_NumErrorDoc
+ * @property  Info.OFD_DateErrorDoc
+ * @property  Info.FN_DateEnd
+ * @property  Info.SessionState
+ * @property  Info.FFDVersion
+ * @property  Info.FFDVersionFN
+ * @property  Info.FFDVersionKKT
+ * @property  Info.PaperOver
+ * @property  Info.BalanceCash
+ * @property  Info.LessType1
+ * @property  Info.LessType2
+ * @property  Info.LessType3
+ * @property  Info.LicenseExpirationDate
+ *
+ * @property {number}
  * @class
  */
 function KkmResponse() {
+    this.Status = 0;
+    this.Error = '';
+    this.Command = '';
+    this.IdCommand = '';
 }
+/**
+ * Эмуляция сообщение об ошибке от API
+ * @param errMessage
+ * @class
+ * @extends KkmResponse
+ */
+function KkmResponseError(errMessage) {
+    KkmResponse.call(this);
+    this.Status = 2;
+    this.Error = errMessage;
+}
+/**
+ * Описание интерфейса для функции обратного вызова
+ * @callback  KkmServer~KkmApiСallback
+ * @param {KkmResponse} ответ от АПИ
+ * @see [установка хука]{@link KkmServer#hookAjaxSuccess}
+ */
+
+
+
 
 /**
  * @summary Класс для взаимодействия с API
- * @description Методы класса можно разделить на группы <ul>
- *  <li><b>[CommandXxx]{@link KkmServer#CommandDepositingCash}</b> - возвращают структуру данных для передачи серверу, которую можно модифицировать</li>
- *  <li><b>doXxx</b> - выполняют сразу нужную операцию</li>
- *  <li><b>funXxx</b> - встроенные обработчики AJAX</li>
- *  <li><b>hookXxx</b> - установить свои обработчики для AJAX</li>
- *  <li><b>setXxx</b> - устанавливают параметры по умолчанию для команд</li>
- *  <li><b>execute</b> - посылает ajax запрос серверу с тонкой настройкой</li>
+ * @description Методы класса можно разделить на группы
+ *  <h6>Внутренние:</h6>
+ *  <ul><li><b>funXxx</b> - встроенные обработчики AJAX</li></ul>
+ *  <h6>Публичные:</h6>
+ *  <ul><li><b>[CommandXxx]{@link KkmServer#CommandDepositingCash}</b> - возвращают структуру данных для передачи серверу, которую можно модифицировать</li>
+ *  <li><b>[doXxx]{@link KkmServer#doDepositingCash}</b> - выполняют сразу нужную операцию</li>
+ *  <li><b>[hookXxx]{@link KkmServer#hookAjaxFail}</b> - установить свои обработчики для AJAX</li>
+ *  <li><b>[setXxx]{@link KkmServer#setCashierName}</b> - устанавливают параметры по умолчанию для команд</li>
+ *  <li><b>[execute]{@link KkmServer#execute}</b> - посылает ajax запрос серверу с тонкой настройкой</li>
+ *  </ul><h6>Через посредника:</h6><ul>
  *  <li><b>чеки</b> - отдельный класс {@link KkmCheck}</li>
  * </ul>
  *
@@ -175,7 +252,7 @@ function KkmResponse() {
  *
  * @class
  * @example
- * var kkm = new KkmServer('Admin', '').hookAjaxSuccess(ExecuteSuccess);
+ * var kkm = new KkmServer('Admin', '','http://localhost:5893/').hookAjaxSuccess(ExecuteSuccess);
  * kkm.doOpenShift();
  */
 function KkmServer(user, password, urlServer) {
@@ -187,7 +264,8 @@ function KkmServer(user, password, urlServer) {
     var defaults = {
         numDevice: 0,
         cashierName: '',
-        innKkm: ''
+        innKkm: '',
+        keySubLicensing: ''
     };
 
 
@@ -215,13 +293,16 @@ function KkmServer(user, password, urlServer) {
         return (s4() + s4() + "-" + s4() + "-" + s4() + "-" + s4() + "-" + s4() + s4() + s4());
     };
 
-    // Предыдущая выполненная команда
-    var lastCommand = null;
+    /**
+     * Последняя посланная серверу команда. Только для отладки.
+     * @type {*}
+     */
+    this.lastCommand = null;
 
     /**
      * Передача команды серверу .
-     * @param  {KkmCommand|KkmCommandWithCashier|KkmCommandWithAmount|KkmCommandList} command Структура для передачи серверу
-     * @returns {KkmCommand|KkmCommandWithCashier|KkmCommandWithAmount|KkmCommandList}
+     * @param  {KkmCommand|KkmCommandWithCashier|KkmCommandWithAmount|KkmCommandList|KkmCommandCheck} command Структура для передачи серверу
+     * @returns {KkmCommand|KkmCommandWithCashier|KkmCommandWithAmount|KkmCommandList|KkmCommandCheck}
      */
     this.execute = function (command) {
 
@@ -239,6 +320,8 @@ function KkmServer(user, password, urlServer) {
         } else {
             throw Error('Апи передана неправильная структура');
         }
+        // сохраняем
+        self.lastCommand = command;
 
         var json = JSON.stringify(command);
 
@@ -248,7 +331,12 @@ function KkmServer(user, password, urlServer) {
         r.responseType = 'json';
         r.setRequestHeader("Authorization", connection.auth);
         r.onload = function () {
-            funSuccess(r.response);
+            var json = r.response;
+            // костыль для IE11
+            if('string' === typeof(json)){
+                json = JSON.parse(json);
+            }
+            funSuccess(json);
         };
         r.onerror = function () {
             funError(r, 'ajax error');
@@ -264,7 +352,7 @@ function KkmServer(user, password, urlServer) {
     /**
      * Встроенный обработчик успешного запроса к серверу
      * @param {KkmResponse|object} result
-     * @see назначить свой {@link KkmServer#hookAjaxSuccess}
+     * @see назначить свой {@link hookAjaxSuccess}
      */
     var funSuccess = function (result) {
         var message = '';
@@ -288,17 +376,13 @@ function KkmServer(user, password, urlServer) {
      * Встроенный обработчик ошибки сети при запросе к серверу
      * @param xhr
      * @param status
-     * @see назначить свой {@link KkmServer#hookAjaxFail}
+     * @see назначить свой {@link hookAjaxFail}
      */
     var funError = function (xhr, status) {
 
-
-        var response = /** @type KkmResponse */{
-            Status: 2,
-            Error: "Request failed: " + status,
-            Command: lastCommand.Command,
-            IdCommand: lastCommand.IdCommand
-        };
+        var response = new KkmResponseError("Request failed: " + status);
+        response.Command = self.lastCommand.Command;
+        response.IdCommand = self.lastCommand.IdCommand;
 
         funSuccess(response);
     };
@@ -307,11 +391,13 @@ function KkmServer(user, password, urlServer) {
     // -------------------------------------------------------
     //  Хуки на обработку результата ajax запроса
     // -------------------------------------------------------
+
     /**
-     *  Обработчик успешного запроса к серверу
+     *  Назначить обработчик успешного запроса к серверу по умолчанию
      *
-     * @param {callbackKkmApi} successHook
+     * @param {KkmServer~KkmApiСallback} successHook функция обработчик
      * @returns {KkmServer}
+     * @see [встроенный обработчик]{@link funSuccess}
      */
     this.hookAjaxSuccess = function (successHook) {
         funSuccess = successHook;
@@ -319,15 +405,11 @@ function KkmServer(user, password, urlServer) {
     };
 
     /**
-     * @callback  callbackKkmApi
-     * @param {KkmResponse}
-     */
-
-    /**
-     *  Обработчик ошибки запроса
+     *  Назначить обработчик ошибки запроса
      *
      * @param {funError} errorHook callback
      * @returns {KkmServer}
+     * @see [встроенный обработчик]{@link funError}
      */
     this.hookAjaxFail = function (errorHook) {
         funError = errorHook;
@@ -369,6 +451,15 @@ function KkmServer(user, password, urlServer) {
         return self;
     };
 
+    /**
+     * Установка ключа суб-лицензии
+     * @param licensing
+     * @returns {KkmServer}
+     */
+    this.setLicensing = function (licensing) {
+        defaults.keySubLicensing = licensing;
+        return self
+    };
     // -------------------------------------------------------
     //  Конструкторы команд
     // -------------------------------------------------------
@@ -402,10 +493,10 @@ function KkmServer(user, password, urlServer) {
      */
     this.CommandGetRezult = function (idCommand, numDevice) {
         if (undefined === IdCommand) {
-            idCommand = lastCommand.IdCommand;
+            idCommand = self.lastCommand.IdCommand;
         }
         if (undefined === numDevice) {
-            numDevice = lastCommand.NumDevice;
+            numDevice = self.lastCommand.NumDevice;
         }
         var data = new KkmCommand("GetRezult", numDevice);
         data.IdCommand = idCommand;
@@ -582,26 +673,8 @@ function KkmServer(user, password, urlServer) {
         return self.execute(c);
     };
 
-
-    // --------------------------------------------------------------------------------------------
-    // Служебное
-    // --------------------------------------------------------------------------------------------
-
-    /**
-     * Внутрений метод.
-     * Советую для регистрации чеков формировать idCommand самостоятельно
-     * @returns {string}
-     * @private
-     */
-    this._generateCommandId = function () {
-        function s4() {
-            return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-        }
-
-        return (s4() + s4() + "-" + s4() + "-" + s4() + "-" + s4() + "-" + s4() + s4() + s4());
-    };
-
 }
+
 
 // ------------------------------------------------------------------------------------
 //  Работа с чеком
@@ -609,40 +682,159 @@ function KkmServer(user, password, urlServer) {
 /**
  * Структура запроса к апи для работы с чеком
  * @param {number} [typeCheck=0] Тип чека
- *  <pre>
- *  0 – продажа;                             10 – покупка;
- *  1 – возврат продажи;                     11 - возврат покупки;
- *  8 - продажа только по ЕГАИС (обычный чек ККМ не печатается)
- *  9 - возврат продажи только по ЕГАИС (обычный чек ККМ не печатается)
- * </pre>
  * @class
+ * @extends {KkmCommand}
  */
 function KkmCommandCheck(typeCheck) {
 
     this.VerFFD = "1.0";
+    /**
+     * Команда серверу
+     * @type {string}
+     */
     this.Command = "RegisterCheck";
+    /**
+     * Номер устройства. Если 0, то первое не блокированное на сервере.
+     * null - использовать значение из js-класса KkmServer
+     * @type {number|null}
+     */
     this.NumDevice = null;
+    /**
+     * ИНН ККМ. Если "" то ККМ ищется только по NumDevice, <br />
+     * Если NumDevice = 0 а InnKkm заполнено то ККМ ищется только по InnKkm
+     * @type {string}
+     */
     this.InnKkm = '';
+    /**
+     * Заводской номер ККМ для поиска. Если "" то ККМ ищется только по NumDevice
+     * @type {string}
+     */
     this.KktNumber = '';
+    /**
+     * Если За это время команда не выполнилась в статусе вернется результат "NotRun" или "Run" <br />
+     * Проверить результат еще не выполненной команды можно командой "GetRezult" <br />
+     * Если не указано или 0 - то значение по умолчанию 60 сек.<br />
+     * Это поле можно указвать во всех командах
+     * @summary Время (сек) ожидания выполнения команды.
+     * @type {number}
+     */
     this.Timeout = 30;
+    /**
+     * Уникальный идентификатор команды. Любая строока из 40 символов - должна быть уникальна для каждой подаваемой команды
+     *  По этому идентификатору можно запросить результат выполнения команды
+     * @type {string}
+     */
     this.IdCommand = '';
+    /**
+     *  Это фискальный или не фискальный чек
+     * @type {boolean}
+     */
     this.IsFiscalCheck = true;
+    /**
+     * Тип чека :
+     * <pre>
+     *  0 – продажа;                             10 – покупка;
+     *  1 – возврат продажи;                     11 - возврат покупки;
+     *  Для новых ККМ:
+     *  2 – корректировка продажи;               12 - корректировка покупки
+     *  3 – корректировка возврата продажи;      13 - корректировка возврата покупки
+     * </pre>
+     *  @summary Тип чека;
+     * @type {number}
+     */
     this.TypeCheck = typeCheck || 0;
+    /**
+     * Аннулировать открытый чек если ранее чек небыл  завершен до конца
+     * @type {boolean}
+     */
     this.CancelOpenedCheck = true;
+    /**
+     * Не печатать чек на бумагу
+     * @type {boolean}
+     */
     this.NotPrint = false;
+    /**
+     * Количество копий документа
+     * @type {number}
+     */
     this.NumberCopies = 0;
+    /**
+     * Продавец, тег ОФД 1021
+     * @type {string}
+     */
     this.CashierName = '';
+    /**
+     * Телефон или е-Майл покупателя, тег ОФД 1008 <br />
+     * Если чек не печатается (NotPrint = true) то указывать обязательно
+     * @type {string}
+     */
     this.ClientAddress = '';
-    this.TaxVariant = '';
+    /**
+     * <pre>
+     *       Если не указанно - система СНО настроенная в ККМ по умолчанию
+     *       0: Общая СНО - ОСН
+     *       1: Упрощенная СНО (Доход)
+     *       2: Упрощенная СНО(Доход минус Расход)
+     *       3: Единый налог на вмененный доход
+     *       4: Единый сельскохозяйственный налог
+     *       5: Патентная система налогообложения
+     *       Комбинация разных СНО не возможна
+     * </pre>
+     *       Надо указываеть если ККМ настроена на несколько систем СНО
+     *
+     * @summary Система налогообложения (СНО) применяемая для чека.
+     * @type {number}
+     */
+    this.TaxVariant = 0;
+    /**
+     * Дополниельные реквизиты чека (не обязательно)
+     * @type {Array}
+     */
     this.CheckProps = [];
+    /**
+     * Дополнительные произвольные реквизиты (не обязательно) пока только 1 строка
+     * @type {Array}
+     */
     this.AdditionalProps = [];
-    this.KPP = '';
+    /**
+     * Это только для тестов
+     * @type {string}
+     */
     this.ClientId = '';
+    /**
+     * КПП организации, нужно только для ЕГАИС
+     * @type {string}
+     */
+    this.KPP = '';
+    /**
+     * Установка ключа суб-лицензии по умолчанию: ВНИМАНИЕ: ключ суб-лицензии вы должны генерить у себя на сервере!!!!
+     * @type {string}
+     */
     this.KeySubLicensing = '';
+    /**
+     * Строки чека
+     * @type {Array}
+     */
     this.CheckStrings = [];
+    /**
+     * Наличная оплата
+     * @type {number}
+     */
     this.Cash = 0;
+    /**
+     * Безналичная оплата типа 1 (по умолчанию - Оплата картой)
+     * @type {number}
+     */
     this.CashLessType1 = 0;
+    /**
+     * Безналичная оплата типа 2 (по умолчанию - Оплата кредитом)
+     * @type {number}
+     */
     this.CashLessType2 = 0;
+    /**
+     * Безналичная оплата типа 3 (по умолчанию - Оплата сертификатом)
+     * @type {number}
+     */
     this.CashLessType3 = 0;
 
 }
@@ -663,7 +855,9 @@ function KkmCommandCheck(typeCheck) {
  * @class
  */
 function KkmCheck(kkm, typeCheck) {
+
     var self = this;
+
     /**
      * Внедрение зависимости
      * @type {KkmServer}
@@ -687,10 +881,10 @@ function KkmCheck(kkm, typeCheck) {
      * ИНН (сравнивается со значением в ФН).
      * Допустимое количество символов 10 или 12.
      * @param {string} innKkm  ИНН организации
-     * @returns self
+     * @returns {KkmCheck}
      */
     this.setInn = function (innKkm) {
-        data.innKkm = innKkm;
+        data.InnKkm = innKkm;
         return self;
     };
 
@@ -700,49 +894,63 @@ function KkmCheck(kkm, typeCheck) {
      *  расчёта (сравнивается со значением в ФН).
      *  Максимальная длина строки – 256 символов
      * @param paymentAddress Адрес места расчетов.
-     * @returns self
+     * @returns {KkmCheck}
+     * @todo попросить реализовать в апи
      */
     this.setPaymentAddress = function (paymentAddress) {
-
+        throw new Error('Метод не реализован');
     };
     /**
      * Если чек выдается электронно, то в запросе обязательно должно быть заполнено
      * одно из полей: email или phone.
      * Максимальная длина строки – 64 символа.
      * @param {string} email Электронная почта покупателя
-     * @returns self
+     * @returns {KkmCheck}
      */
     this.setEmail = function (email) {
-
+        data.ClientAddress = email;
+        return self;
     };
     /**
      * Если чек выдается электронно, то в запросе обязательно должно быть заполнено
      * одно из полей: email или phone.
      * Максимальная длина строки – 64 символа.
      * @param {string} phone Телефон покупателя. Передается без префикса «+7».
-     * @returns self
+     * @returns {KkmCheck}
      */
     this.setPhone = function (phone) {
-
+        data.ClientAddress = phone;
+        return self;
     };
     /**
      * Система налогообложения.
      * Перечисление со значениями: <ul>
-     *      <li> «osn» – общая СН;
-     * </li><li> «usn_income» – упрощенная СН(доходы);
-     * </li><li> «usn_income_outcome» – упрощенная СН (доходы минус расходы);
-     * </li><li> «envd» – единый налог на вмененный  доход;
-     * </li><li> «esn» – единый сельскохозяйственный  налог;
-     * </li><li> «patent» – патентная СН.
+     *      <li> «osn» | 0– общая СН;
+     * </li><li> «usn_income»  | 1– упрощенная СН(доходы);
+     * </li><li> «usn_income_outcome» | 2  – упрощенная СН (доходы минус расходы);
+     * </li><li> «envd» | 3 – единый налог на вмененный  доход;
+     * </li><li> «esn»  | 4– единый сельскохозяйственный  налог;
+     * </li><li> «patent» | 5 – патентная СН.
      * </li></ul>
-     * @param {string} sno  Система налогообложения (см. допустимые значения)
-     * @returns self
+     * @param {string|number} sno  Система налогообложения (см. {@link KkmCommandCheck~TaxVariant})
+     * @returns {KkmCheck}
      */
     this.setSno = function (sno) {
-
+        if('string' === typeof(sno) ){
+              data.TaxVariant = ['osn','usn_income','usn_income_outcome','envd','esn','patent'].indexOf(sno);
+        }else if('number' === typeof(sno)) {
+            data.TaxVariant = sno;
+        }
+        return self;
     };
+
+    /**
+     *
+     * @returns {KkmCheck}
+     */
     this.setTotal = function () {
 
+        return self;
     };
 
     /**
@@ -757,6 +965,7 @@ function KkmCheck(kkm, typeCheck) {
         data.CashLessType1 = less1 || 0;
         data.CashLessType2 = less2 || 0;
         data.CashLessType3 = less3 || 0;
+        return self;
     };
 
     // --------------------------------------------------------------------------------------------
@@ -794,7 +1003,7 @@ function KkmCheck(kkm, typeCheck) {
 
     };
     /**
-     *
+     * Шоркат к addRegisterString
      *
      * @param Name
      * @param Quantity
@@ -803,10 +1012,11 @@ function KkmCheck(kkm, typeCheck) {
      * @param Tax
      * @param Department
      * @param EAN13
-     * @param EGAIS
+     *
+     * @returns {KkmCheck}
      */
-    this.r = function (Name, Quantity, Price, Amount, Tax, Department, EAN13, EGAIS) {
-        self.addRegisterString(Name, Quantity, Price, Amount, Tax, Department, EAN13, EGAIS);
+    this.r = function (Name, Quantity, Price, Amount, Tax, Department, EAN13) {
+        self.addRegisterString(Name, Quantity, Price, Amount, Tax, Department, EAN13);
         return self;
     };
     /**
@@ -832,11 +1042,11 @@ function KkmCheck(kkm, typeCheck) {
 
     };
     /**
-     *
+     * Шорткат к addTextString
      * @param Text
      * @param Font
      * @param Intensity
-     * @return {{data: {VerFFD: string, Command: string, numDevice: number, InnKkm: string, KktNumber: string, Timeout: number, IdCommand: (*|string), IsFiscalCheck: boolean, TypeCheck: number, CancelOpenedCheck: boolean, NotPrint: boolean, NumberCopies: number, CashierName: string, ClientAddress: string, TaxVariant: string, CheckProps: Array, AdditionalProps: Array, KPP: string, ClientId: string, KeySubLicensing: string, CheckStrings: Array, Cash: number, CashLessType1: number, CashLessType2: number, CashLessType3: number}, addRegisterString: KkmServer.Check.addRegisterString, r: KkmServer.Check.r, addTextString: KkmServer.Check.addTextString, t: t, addBarcodeString: addBarcodeString, b: b, addImageString: addImageString, i: i, print: print, fiscal: fiscal}}
+     * @returns {KkmCheck}
      */
     this.t = function (Text, Font, Intensity) {
         self.addTextString(Text, Font, Intensity);
@@ -865,18 +1075,19 @@ function KkmCheck(kkm, typeCheck) {
         return barcodeString.BarCode;
     };
     /**
-     *
+     * Шорткат к addBarcodeString
      * @param BarcodeType
      * @param Barcode
-     * @return {{data: {VerFFD: string, Command: string, numDevice: number, InnKkm: string, KktNumber: string, Timeout: number, IdCommand: (*|string), IsFiscalCheck: boolean, TypeCheck: number, CancelOpenedCheck: boolean, NotPrint: boolean, NumberCopies: number, CashierName: string, ClientAddress: string, TaxVariant: string, CheckProps: Array, AdditionalProps: Array, KPP: string, ClientId: string, KeySubLicensing: string, CheckStrings: Array, Cash: number, CashLessType1: number, CashLessType2: number, CashLessType3: number}, addRegisterString: KkmServer.Check.addRegisterString, r: KkmServer.Check.r, addTextString: KkmServer.Check.addTextString, t: KkmServer.Check.t, addBarcodeString: KkmServer.Check.addBarcodeString, b: b, addImageString: addImageString, i: i, print: print, fiscal: fiscal}}
+     * @returns {KkmCheck}
      */
     this.b = function (BarcodeType, Barcode) {
         self.addBarcodeString(BarcodeType, Barcode);
         return self;
     };
     /**
-     *
-     * @param Image
+     * Строка с печатью картинки
+     * @param {string} Image Картинка в Base64. Картинка будет преобразована в 2-х цветное изображение<br/>
+     *  -поэтому лучше посылать 2-х цветный bmp
      * @return {{Image}}
      */
     this.addImageString = function (Image) {
@@ -893,28 +1104,29 @@ function KkmCheck(kkm, typeCheck) {
 
     };
     /**
-     *
+     * Шорткат к addImageString
      * @param Image
-     * @return {{data: {VerFFD: string, Command: string, numDevice: number, InnKkm: string, KktNumber: string, Timeout: number, IdCommand: (*|string), IsFiscalCheck: boolean, TypeCheck: number, CancelOpenedCheck: boolean, NotPrint: boolean, NumberCopies: number, CashierName: string, ClientAddress: string, TaxVariant: string, CheckProps: Array, AdditionalProps: Array, KPP: string, ClientId: string, KeySubLicensing: string, CheckStrings: Array, Cash: number, CashLessType1: number, CashLessType2: number, CashLessType3: number}, addRegisterString: KkmServer.Check.addRegisterString, r: KkmServer.Check.r, addTextString: KkmServer.Check.addTextString, t: KkmServer.Check.t, addBarcodeString: KkmServer.Check.addBarcodeString, b: KkmServer.Check.b, addImageString: KkmServer.Check.addImageString, i: i, print: print, fiscal: fiscal}}
+     * @returns {KkmCheck}
      */
     this.i = function (Image) {
         self.addImageString(Image);
         return self;
     };
     /**
-     * @return self
+     * Печать слип-чека (произвольного документа)
+     * @returns {KkmCommandCheck}
      */
     this.print = function () {
         data.IsFiscalCheck = false;
-        return kkm.execute(data);
+        return self.kkm.execute(data);
     };
     /**
      *
-     * @return self
+     * @returns {KkmCommandCheck}
      */
     this.fiscal = function () {
         data.IsFiscalCheck = true;
-        return kkm.execute(data);
+        return self.kkm.execute(data);
     };
 }
 

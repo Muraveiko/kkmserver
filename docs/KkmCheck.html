@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="KkmCheck.html">KkmCheck</a></li><li><a href="KkmCommand.html">KkmCommand</a></li><li><a href="KkmCommandCheck.html">KkmCommandCheck</a></li><li><a href="KkmCommandList.html">KkmCommandList</a></li><li><a href="KkmCommandWithAmount.html">KkmCommandWithAmount</a></li><li><a href="KkmCommandWithCashier.html">KkmCommandWithCashier</a></li><li><a href="KkmResponse.html">KkmResponse</a></li><li><a href="KkmResponseError.html">KkmResponseError</a></li><li><a href="KkmServer.html">KkmServer</a></li>
+					<li><a href="KkmCheck.html">KkmCheck</a></li><li><a href="KkmCheckProperty.html">KkmCheckProperty</a></li><li><a href="KkmCommand.html">KkmCommand</a></li><li><a href="KkmCommandCheck.html">KkmCommandCheck</a></li><li><a href="KkmCommandList.html">KkmCommandList</a></li><li><a href="KkmCommandWithAmount.html">KkmCommandWithAmount</a></li><li><a href="KkmCommandWithCashier.html">KkmCommandWithCashier</a></li><li><a href="KkmResponse.html">KkmResponse</a></li><li><a href="KkmResponseError.html">KkmResponseError</a></li><li><a href="KkmServer.html">KkmServer</a></li>
 				</ul>
 			</li>
 			
@@ -262,6 +262,12 @@
     
 
     
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">// ранее у Вас должен быть определен// var kkm = new KkmServer(...);var check = new KkmCheck(kkm,0); // 0 - здесь явно указал тип продажа// дальше формируем егоcheck.r(...).t(...).b(...).i(...) // рекомендую использовать шорткаты// или полные варианты addXxxString(), если нужно модифицировать сформированную строку var goodsWithEgais = check.addRegisterString(...); goodsWithEgais.EGAIS = {      Barcode: &quot;22N0000154NUCPRZ3R8381461004001003499NKAQ0ZBUVDNV62JQAR69PEV878RO93V&quot;,      Ean: &quot;3423290167937&quot;,      Volume: 0.7500,  };// и в конце вызываемcheck.fiscal(); // или .print()</pre>
+
+
+    
 </dd>
 
     
@@ -291,7 +297,7 @@
 <dd>
     
     <div class="description">
-        Внедрение зависимости
+        ккм - сервер
     </div>
     
 
@@ -360,6 +366,10 @@
     
 </dt>
 <dd>
+    
+    <div class="description">
+        Данные для передачи апи
+    </div>
     
 
     
@@ -436,7 +446,7 @@
 
     
     <div class="description">
-        Добавление печати штрихкода
+        Добавление печати штрихкода.
     </div>
     
 
@@ -512,7 +522,7 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Значение</td>
         </tr>
 
     
@@ -556,6 +566,13 @@
 	
 
 	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#b">шорткат b()</a></li>
+			</ul>
+	</dd>
+	
 
 	
 </dl>
@@ -596,7 +613,7 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">check.addBarcodeString(&quot;EAN13&quot;, &quot;1254789547853&quot;);</pre>
+    <pre class="sunlight-highlight-javascript">var barString = check.addBarcodeString(&quot;EAN13&quot;, &quot;1254789547853&quot;);// можно модифицировать сформированную строкуbarString.BarcodeType = &#x27;&#x27;;barString.Barcode = &#x27;&#x27;;</pre>
 
 
     
@@ -666,7 +683,7 @@
 
             
 
-            <td class="description last">Картинка в Base64. Картинка будет преобразована в 2-х цветное изображение<br/> -поэтому лучше посылать 2-х цветный bmp</td>
+            <td class="description last">Картинка в Base64. <br/> Картинка будет преобразована в 2-х цветное изображение - поэтому лучше посылать 2-х цветный bmp</td>
         </tr>
 
     
@@ -710,6 +727,13 @@
 	
 
 	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#i">шорткат i()</a></li>
+			</ul>
+	</dd>
+	
 
 	
 </dl>
@@ -746,6 +770,12 @@
 
 
         
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">check.addImageString(&#x27;&#x27;).Image = demoImage; // можно модифицировать</pre>
+
 
     
 </dd>
@@ -932,6 +962,12 @@
 
             <td class="type">
             
+                
+<span class="param-type">number</span>
+
+
+
+            
             </td>
 
             
@@ -1070,6 +1106,26 @@
     
 
     
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
 
     
 </dd>
@@ -1078,12 +1134,16 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="addTextString"><span class="type-signature"></span>addTextString(Text, Font, Intensity)</h4>
+    <h4 class="name" id="addTextString"><span class="type-signature"></span>addTextString(Text [, Font] [, Intensity])</h4>
     
     
 </dt>
 <dd>
 
+    
+    <div class="description">
+        Добавляем текстовую строку
+    </div>
     
 
     
@@ -1105,6 +1165,8 @@
         <th>Type</th>
 
         
+        <th>Argument</th>
+        
 
         
 
@@ -1122,13 +1184,27 @@
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+
+
+
+            
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"></td>
+            <td class="description last">текст для вывода с управляющими кодами</td>
         </tr>
 
     
@@ -1140,13 +1216,29 @@
 
             <td class="type">
             
+                
+<span class="param-type">number</span>
+
+
+
+            
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Шрифт 1-4</td>
         </tr>
 
     
@@ -1158,13 +1250,29 @@
 
             <td class="type">
             
+                
+<span class="param-type">number</span>
+
+
+
+            
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Интесивность</td>
         </tr>
 
     
@@ -1260,7 +1368,7 @@
 
     
     <div class="description">
-        Шорткат к addBarcodeString
+        Шорткат к addBarcodeString. Поддерживает цепочку вызовов.
     </div>
     
 
@@ -1300,6 +1408,12 @@
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+
+
+
+            
             </td>
 
             
@@ -1317,6 +1431,12 @@
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -1368,6 +1488,13 @@
 	
 
 	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#addBarcodeString">addBarcodeString</a></li>
+			</ul>
+	</dd>
+	
 
 	
 </dl>
@@ -1418,6 +1545,10 @@
 </dt>
 <dd>
 
+    
+    <div class="description">
+        Фискализация чека
+    </div>
     
 
     
@@ -1506,6 +1637,214 @@
             
 <hr>
 <dt>
+    <h4 class="name" id="fiscalCard"><span class="type-signature"></span>fiscalCard()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Фискализация оплаты картой
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCommandCheck.html">KkmCommandCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">check.setTotal(100).fiscalCard();// эквивалентоcheck.setPayments(0,100).fiscal();</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="fiscalCash"><span class="type-signature"></span>fiscalCash()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Фискализация наличкой
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCommandCheck.html">KkmCommandCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">// это удобнее, так как можно заготовить чек и просто повесить на две кнопки выбор способа оплатыcheck.r(...).r(...).r(...).setTotal(100); // заранееcheck.fiscalCash(); // на клик// чем еще разбираться с параметрами setPaymentscheck.setPayments(100,0).fiscal(); // эквивалент</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
     <h4 class="name" id="i"><span class="type-signature"></span>i(Image)</h4>
     
     
@@ -1514,7 +1853,7 @@
 
     
     <div class="description">
-        Шорткат к addImageString
+        Шорткат к addImageString . Поддерживает цепочку вызовов.
     </div>
     
 
@@ -1553,6 +1892,12 @@
             
 
             <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
             
             </td>
 
@@ -1603,6 +1948,13 @@
 
 	
 
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#addImageString">addImageString</a></li>
+			</ul>
+	</dd>
 	
 
 	
@@ -1754,7 +2106,7 @@
 
     
     <div class="description">
-        Шоркат к addRegisterString
+        Шоркат к addRegisterString. Поддерживает цепочку вызовов.
     </div>
     
 
@@ -1794,6 +2146,12 @@
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+
+
+
+            
             </td>
 
             
@@ -1811,6 +2169,12 @@
             
 
             <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
             
             </td>
 
@@ -1830,6 +2194,12 @@
 
             <td class="type">
             
+                
+<span class="param-type">number</span>
+
+
+
+            
             </td>
 
             
@@ -1847,6 +2217,12 @@
             
 
             <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
             
             </td>
 
@@ -1866,6 +2242,12 @@
 
             <td class="type">
             
+                
+<span class="param-type">number</span>
+
+
+
+            
             </td>
 
             
@@ -1883,6 +2265,12 @@
             
 
             <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
             
             </td>
 
@@ -1902,6 +2290,12 @@
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+
+
+
+            
             </td>
 
             
@@ -1909,6 +2303,233 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#addRegisterString">addRegisterString</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCheck.html">KkmCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setCheckProps"><span class="type-signature"></span>setCheckProps(print, printInHeader, teg, value)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Добаляет данные по дополнительным тегам <ul><li>1005 Адрес оператора по переводу денежных средств (Строка 100)</li><li>1016 ИНН оператора по переводу денежных средств (Строка 12)</li><li>1026 Наименование оператора по переводу денежных средств (Строка 64)</li><li>1044 Операция банковского агента (Строка 24)</li><li>1045 Операция банковского субагента (Строка 24)</li><li>1073 Телефон банковского агента (Строка 19)</li><li>1074 Телефон платежного агента (Строка 19)</li><li>1075 Телефона оператора по переводу денежных средств (Строка 19)</li><li>1082 Телефон банковского субагента (Строка 19)</li><li>1083 Телефон платежного субагента (Строка 19)</li><li>1119 Телефон оператора по приему платежей (Строка 19)</li><li>1117 адрес электронной почты отправителя чека</li></ul>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>print</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">печатать</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>printInHeader</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">печатать в шапке</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>teg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">номер тега</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">значение тега</td>
         </tr>
 
     
@@ -1979,7 +2600,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="KkmCheck.html">KkmCheck</a></span>
+<span class="param-type"><a href="KkmCheckProperty.html">KkmCheckProperty</a></span>
 
 
 
@@ -2517,7 +3138,7 @@
                 </td>
             
 
-            <td class="description last"></td>
+            <td class="description last">Наличными</td>
         </tr>
 
     
@@ -2557,7 +3178,7 @@
                 </td>
             
 
-            <td class="description last"></td>
+            <td class="description last">Безналичный тип 1 (по умаолчанию карта)</td>
         </tr>
 
     
@@ -2597,7 +3218,7 @@
                 </td>
             
 
-            <td class="description last"></td>
+            <td class="description last">Безналичный тип 2</td>
         </tr>
 
     
@@ -2637,7 +3258,7 @@
                 </td>
             
 
-            <td class="description last"></td>
+            <td class="description last">Безналичный тип 3</td>
         </tr>
 
     
@@ -2680,6 +3301,13 @@
 
 	
 
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCommandCheck.html#CashLessType1">KkmCommandCheck#CashLessType1</a></li>
+			</ul>
+	</dd>
 	
 
 	
@@ -2861,7 +3489,7 @@
 
     
     <div class="description">
-        Система налогообложения.Перечисление со значениями: <ul>     <li> «osn» | 0– общая СН;</li><li> «usn_income»  | 1– упрощенная СН(доходы);</li><li> «usn_income_outcome» | 2  – упрощенная СН (доходы минус расходы);</li><li> «envd» | 3 – единый налог на вмененный  доход;</li><li> «esn»  | 4– единый сельскохозяйственный  налог;</li><li> «patent» | 5 – патентная СН.</li></ul>
+        Система налогообложения.где sno<ul>     <li> «osn» | 0– общая СН;</li><li> «usn_income»  | 1– упрощенная СН(доходы);</li><li> «usn_income_outcome» | 2  – упрощенная СН (доходы минус расходы);</li><li> «envd» | 3 – единый налог на вмененный  доход;</li><li> «esn»  | 4– единый сельскохозяйственный  налог;</li><li> «patent» | 5 – патентная СН.</li></ul>
     </div>
     
 
@@ -2916,7 +3544,7 @@
 
             
 
-            <td class="description last">Система налогообложения (см. KkmCommandCheck~TaxVariant)</td>
+            <td class="description last">Система налогообложения (см. <a href="KkmCommandCheck.html#TaxVariant">KkmCommandCheck#TaxVariant</a>)</td>
         </tr>
 
     
@@ -2998,25 +3626,170 @@
         
 
     
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">check.setSno(0);// check.setSno(&#x27;osn&#x27;)</pre>
+
+
+    
 </dd>
 
         
             
 <hr>
 <dt>
-    <h4 class="name" id="setTotal"><span class="type-signature"></span>setTotal()</h4>
+    <h4 class="name" id="setTaxVariant"><span class="type-signature"></span>setTaxVariant()</h4>
     
     
 </dt>
 <dd>
 
     
+    <div class="description">
+        Синоним к setSno
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
 
     
 
     
 
     
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#setSno">KkmCheck#setSno</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setTotal"><span class="type-signature"></span>setTotal(amount)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Сумма продажи
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>amount</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -3106,7 +3879,7 @@
 
     
     <div class="description">
-        Шорткат к addTextString
+        Шорткат к addTextString. Поддерживает цепочку вызовов.
     </div>
     
 
@@ -3146,6 +3919,12 @@
 
             <td class="type">
             
+                
+<span class="param-type">string</span>
+
+
+
+            
             </td>
 
             
@@ -3164,6 +3943,12 @@
 
             <td class="type">
             
+                
+<span class="param-type">number</span>
+
+
+
+            
             </td>
 
             
@@ -3181,6 +3966,12 @@
             
 
             <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
             
             </td>
 
@@ -3231,6 +4022,13 @@
 
 	
 
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#addTextString">addTextString</a></li>
+			</ul>
+	</dd>
 	
 
 	

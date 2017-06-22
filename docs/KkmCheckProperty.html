@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>KkmServer API Class: KkmCommandWithCashier</title>
+	<title>KkmServer API Class: KkmCheckProperty</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -65,13 +65,13 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: KkmCommandWithCashier</h1>
+	<h1 class="page-title">Class: KkmCheckProperty</h1>
 <section>
 
 <header>
     
         <h2>
-        KkmCommandWithCashier
+        KkmCheckProperty
         </h2>
         
     
@@ -84,7 +84,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="KkmCommandWithCashier"><span class="type-signature"></span>new KkmCommandWithCashier(command [, cashierName] [, numDevice])</h4>
+    <h4 class="name" id="KkmCheckProperty"><span class="type-signature"></span>new KkmCheckProperty(print, printInHeader, teg, value)</h4>
     
     
 </dt>
@@ -92,7 +92,7 @@
 
     
     <div class="description">
-        Структура запроса к серверу c ФИО кассира
+        Дополнительное свойство чека
     </div>
     
 
@@ -115,8 +115,6 @@
         <th>Type</th>
 
         
-        <th>Argument</th>
-        
 
         
 
@@ -129,13 +127,13 @@
 
         <tr>
             
-                <td class="name"><code>command</code></td>
+                <td class="name"><code>print</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">boolean</span>
 
 
 
@@ -143,31 +141,23 @@
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last">Имя команды</td>
+            <td class="description last">печатать</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>cashierName</code></td>
+                <td class="name"><code>printInHeader</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">boolean</span>
 
 
 
@@ -175,27 +165,17 @@
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last">ФИО Кассира</td>
+            <td class="description last">печатать в шапке</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>numDevice</code></td>
+                <td class="name"><code>teg</code></td>
             
 
             <td class="type">
@@ -209,20 +189,34 @@
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
 
-                
+            
 
+            <td class="description last">номер тега</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
                 
-                </td>
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
             
 
             
 
-            <td class="description last">устройство</td>
+            <td class="description last">значение тега</td>
         </tr>
 
     
@@ -266,6 +260,13 @@
 	
 
 	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#setCheckProps">KkmCheck#setCheckProps</a></li>
+			</ul>
+	</dd>
+	
 
 	
 </dl>
@@ -288,17 +289,6 @@
 
     
     </div>
-
-    
-        <h3 class="subsection-title">Extends</h3>
-
-        
-
-
-    <ul>
-        <li><a href="KkmCommand.html">KkmCommand</a></li>
-    </ul>
-
 
     
 
@@ -316,15 +306,15 @@
         <dl>
             
 <hr>
-<dt class="name" id="CashierName">
-    <h4 id="CashierName"><span class="type-signature"></span>CashierName<span class="type-signature"> :string|null</span></h4>
+<dt class="name" id="Print">
+    <h4 id="Print"><span class="type-signature"></span>Print<span class="type-signature"> :boolean</span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        ФИО Кассира
+        печатать
     </div>
     
 
@@ -333,10 +323,7 @@
         <ul>
             <li>
                 
-<span class="param-type">string</span>
-|
-
-<span class="param-type">null</span>
+<span class="param-type">boolean</span>
 
 
 
@@ -390,15 +377,15 @@
         
             
 <hr>
-<dt class="name" id="Command">
-    <h4 id="Command"><span class="type-signature"></span>Command<span class="type-signature"> :string</span></h4>
+<dt class="name" id="PrintInHeader">
+    <h4 id="PrintInHeader"><span class="type-signature"></span>PrintInHeader<span class="type-signature"> :boolean</span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        Название команды, одно из зарегистрированных слов api KkmServer.ru. <br/>необходимые реализованы как методы CommandXXX <a href="KkmServer.html">KkmServer</a>
+        печатать в шапке
     </div>
     
 
@@ -407,7 +394,7 @@
         <ul>
             <li>
                 
-<span class="param-type">string</span>
+<span class="param-type">boolean</span>
 
 
 
@@ -423,15 +410,6 @@
 
 	
 
-	
-	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
-	<dd class="inherited-from">
-		<ul class="dummy">
-			<li>
-				<a href="KkmCommand.html#Command">KkmCommand#Command</a>
-			</li>
-		</ul>
-	</dd>
 	
 
     
@@ -470,17 +448,15 @@
         
             
 <hr>
-<dt class="name" id="IdCommand">
-    <h4 id="IdCommand"><span class="type-signature"></span>IdCommand<span class="type-signature"> :string</span></h4>
+<dt class="name" id="Prop">
+    <h4 id="Prop"><span class="type-signature"></span>Prop<span class="type-signature"> :string</span></h4>
 
-    
-    <p class="summary">Уникальный идентификатор команды</p>
     
 </dt>
 <dd>
     
     <div class="description">
-        Любая строока из 40 символов По этому идентификатору можно запросить результат выполнения команды. Поле не обязательно
+        Значение тега
     </div>
     
 
@@ -505,15 +481,6 @@
 
 	
 
-	
-	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
-	<dd class="inherited-from">
-		<ul class="dummy">
-			<li>
-				<a href="KkmCommand.html#IdCommand">KkmCommand#IdCommand</a>
-			</li>
-		</ul>
-	</dd>
 	
 
     
@@ -552,95 +519,15 @@
         
             
 <hr>
-<dt class="name" id="KeySubLicensing">
-    <h4 id="KeySubLicensing"><span class="type-signature"></span>KeySubLicensing<span class="type-signature"> :string</span></h4>
+<dt class="name" id="Teg">
+    <h4 id="Teg"><span class="type-signature"></span>Teg<span class="type-signature"> :number</span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        Kлюч суб-лицензии
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">string</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
-	<dd class="inherited-from">
-		<ul class="dummy">
-			<li>
-				<a href="KkmCommand.html#KeySubLicensing">KkmCommand#KeySubLicensing</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="NumDevice">
-    <h4 id="NumDevice"><span class="type-signature"></span>NumDevice<span class="type-signature"> :number|null</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Номер устройства 0-9 по умолчанию 0 - первое свободное
+        Номер тега<ul><li>1005 Адрес оператора по переводу денежных средств (Строка 100)</li><li>1016 ИНН оператора по переводу денежных средств (Строка 12)</li><li>1026 Наименование оператора по переводу денежных средств (Строка 64)</li><li>1044 Операция банковского агента (Строка 24)</li><li>1045 Операция банковского субагента (Строка 24)</li><li>1073 Телефон банковского агента (Строка 19)</li><li>1074 Телефон платежного агента (Строка 19)</li><li>1075 Телефона оператора по переводу денежных средств (Строка 19)</li><li>1082 Телефон банковского субагента (Строка 19)</li><li>1083 Телефон платежного субагента (Строка 19)</li><li>1119 Телефон оператора по приему платежей (Строка 19)</li><li>1117 адрес электронной почты отправителя чека</li></ul>
     </div>
     
 
@@ -650,9 +537,6 @@
             <li>
                 
 <span class="param-type">number</span>
-|
-
-<span class="param-type">null</span>
 
 
 
@@ -668,15 +552,6 @@
 
 	
 
-	
-	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
-	<dd class="inherited-from">
-		<ul class="dummy">
-			<li>
-				<a href="KkmCommand.html#NumDevice">KkmCommand#NumDevice</a>
-			</li>
-		</ul>
-	</dd>
 	
 
     

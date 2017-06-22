@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Основные команды</title>
+    <script src="../src/kkmserver.js"></script>
+</head>
+<body>
+<h1>Основные команды</h1>
+<label>Номер устройства:
+    <select id="SetDevice" onchange="setDevice()">
+        <option value="0">Первое активное: 0</option>
+        <option value="1">Устройство №: 1</option>
+        <option value="2">Устройство №: 2</option>
+        <option value="3">Устройство №: 3</option>
+        <option value="4">Устройство №: 4</option>
+        <option value="5">Устройство №: 5</option>
+        <option value="6">Устройство №: 6</option>
+        <option value="7">Устройство №: 7</option>
+        <option value="8">Устройство №: 8</option>
+    </select></label>
+<table width="100%"><tr><td width="50%" valign="top">
+<h2>Короткий вызов</h2>
+<p>
+    <button onclick="Kkm.doOpenShift()" style="width: 300px;">Открытие смены</button>
+</p>
+<p>
+    <button onclick="Kkm.doXReport()" style="width: 300px;">Печать Х отчета</button>
+</p>
+<p>
+    <button onclick="Kkm.doZReport()" style="width: 300px;">Печать Z отчета</button>
+</p>
+<p>
+    <button onclick="Kkm.doOfdReport()" style="width: 300px;">Печать состояния расчетов и связи с
+        ОФД
+    </button>
+</p>
+<hr>
+<p>
+    <label>Сумма : <input id="Amount2" type="text" value="10.0"/></label>
+</p>
+<p>
+    <button onclick="Kkm.doPaymentCash(document.getElementById('Amount2').value)"
+            style="width: 300px;">Инкассация денег из кассы
+    </button>
+</p>
+<p>
+    <button onclick="Kkm.doDepositingCash(document.getElementById('Amount2').value)"
+            style="width: 300px;">Внесение денег в кассу
+    </button>
+</p>
+<p>
+    <button onclick="Kkm.doOpenCashDrawer()" style="width: 300px;">Открытие денежного ящика
+    </button>
+</p>
+<hr>
+<p>
+    <button onclick="Kkm.doGetRezult()" style="width: 300px;">Результат последней команды
+    </button>
+</p>
+</td><td width="50%" valign="top">
+    <h2>Статус:</h2>
+    <p id="Status"></p>
+    <h2>Ошибка:</h2>
+    <p id="Error"></p>
+    <h2>Запрос к АПИ:</h2>
+    <p id="Request" style="white-space:pre;"></p>
+
+    <h2>Ответ сервера:</h2>
+    <p id="Responce" style="white-space:pre;"></p>
+
+</td></tr>
+</table>
+<script>
+    /**
+     * Функция вызываемая после обработки команды - обработка возвращаемых данных
+     * @param {KkmResponse} Rezult
+     */
+    function ExecuteSuccess(Rezult) {
+        document.getElementById('Error').textContent = '';
+        document.getElementById('Responce').textContent = '';
+        document.getElementById('Request').textContent = '';
+        document.getElementById('Status').textContent = '';
+
+        var Responce = "";
+        if (Rezult.Status === 0) {
+            document.getElementById('Status').textContent = "Ok";
+        } else if (Rezult.Status === 1) {
+            document.getElementById('Status').textContent = "Выполняется";
+        } else if (Rezult.Status === 2) {
+            document.getElementById('Status').textContent = "Ошибка";
+        } else if (Rezult.Status === 3) {
+            document.getElementById('Status').textContent = "Данные не найдены!";
+        }
+
+
+        // Текст ошибки
+        if (Rezult.Error !== undefined && Rezult.Error !== "") {
+            document.getElementById('Error').textContent = Rezult.Error;
+        }
+
+        if (Rezult !== undefined) {
+            var JSon = JSON.stringify(Rezult, null, 4);
+            Responce = JSon;
+        }
+
+        document.getElementById('Responce').textContent = Responce;
+        document.getElementById('Request').textContent = JSON.stringify(Kkm.lastCommand, null, 4);
+
+    }
+   // Инитим
+    Kkm = new KkmServer('Admin', '').hookAjaxSuccess(ExecuteSuccess);
+
+    // примеры
+    function setDevice() {
+        Kkm.setNumDevice(document.getElementById('SetDevice').value);
+    }
+
+
+
+</script>
+</body>
+</html>

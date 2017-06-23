@@ -11,7 +11,7 @@
 	<![endif]-->
 	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
 
-	<link type="text/css" rel="stylesheet" href="styles/site.Cerulean.css">
+	<link type="text/css" rel="stylesheet" href="styles/site.cerulean.css">
 
 </head>
 
@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="KkmCheck.html">KkmCheck</a></li><li><a href="KkmCheckProperty.html">KkmCheckProperty</a></li><li><a href="KkmCommand.html">KkmCommand</a></li><li><a href="KkmCommandCheck.html">KkmCommandCheck</a></li><li><a href="KkmCommandList.html">KkmCommandList</a></li><li><a href="KkmCommandWithAmount.html">KkmCommandWithAmount</a></li><li><a href="KkmCommandWithCashier.html">KkmCommandWithCashier</a></li><li><a href="KkmResponse.html">KkmResponse</a></li><li><a href="KkmResponseError.html">KkmResponseError</a></li><li><a href="KkmServer.html">KkmServer</a></li>
+					<li><a href="KkmCommand.html">KkmCommand</a></li><li><a href="KkmCommandWithCashier.html">KkmCommandWithCashier</a></li><li><a href="KkmCommandWithAmount.html">KkmCommandWithAmount</a></li><li><a href="KkmCommandList.html">KkmCommandList</a></li><li><a href="KkmResponse.html">KkmResponse</a></li><li><a href="KkmResponseError.html">KkmResponseError</a></li><li><a href="KkmServer.html">KkmServer</a></li><li><a href="KkmCommandCheck.html">KkmCommandCheck</a></li><li><a href="KkmCheckProperty.html">KkmCheckProperty</a></li><li><a href="KkmCheck.html">KkmCheck</a></li>
 				</ul>
 			</li>
 			
@@ -92,7 +92,7 @@
 
     
     <div class="description">
-        Эмуляция сообщение об ошибке от API
+        Эмуляция сообщение об ошибке от API <br />используется во встроенном обработчике ошибки ajax запроса
     </div>
     
 
@@ -182,6 +182,13 @@
 	
 
 	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmServer.html#hookAjaxFail">KkmServer#hookAjaxFail</a></li>
+			</ul>
+	</dd>
+	
 
 	
 </dl>
@@ -226,6 +233,410 @@
 
     
 
+    
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<hr>
+<dt class="name" id="Status">
+    <h4 id="Status"><span class="type-signature"></span>Status<span class="type-signature"> :number</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Status Статус исполнения<ul><li>Ok = 0,</li><li>Run(Запущено на выполнение) = 1,</li><li>Error = 2,</li><li>NotFound(устройство не найдено) = 3,</li><li>NotRun = 4</ul>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmResponse.html#Status">KkmResponse#Status</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="Error">
+    <h4 id="Error"><span class="type-signature"></span>Error<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Пустая строка или текст ошибки
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmResponse.html#Error">KkmResponse#Error</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="Command">
+    <h4 id="Command"><span class="type-signature"></span>Command<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Команда апи <a href="KkmCommand.html#Command">KkmCommand#Command</a>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmResponse.html#Command">KkmResponse#Command</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="IdCommand">
+    <h4 id="IdCommand"><span class="type-signature"></span>IdCommand<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Уникальный идентификатор комманды, назначенный вами или присвоенный сервером.
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmResponse.html#IdCommand">KkmResponse#IdCommand</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="NumDevice">
+    <h4 id="NumDevice"><span class="type-signature"></span>NumDevice<span class="type-signature"> :number</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Номер устройства выполневшего команду
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmResponse.html#NumDevice">KkmResponse#NumDevice</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        </dl>
     
 
     

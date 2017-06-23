@@ -1,0 +1,28 @@
+{
+  "author": "Oleg Muraveyko <oleg@muraveyko.ru>",
+  "name": "kkmserver",
+  "description": "JS library for KkmServer API",
+  "version": "0.2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Muraveiko/kkmserver.git"
+  },
+  "engines": {
+    "node": "0.12.x"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "bugs": {
+    "url": "https://github.com/Muraveiko/kkmserver/issues"
+  },
+  "private": true,
+  "devDependencies": {
+    "backbone": "^1.1.2",
+    "browser-sync": "^2.8.2",
+    "gulp": "^3.9.1",
+    "gulp-jsdoc3": "^1.0.1",
+    "gulp-watch": "^4.3.11",
+    "ink-docstrap": "^1.3.0"
+  }
+}

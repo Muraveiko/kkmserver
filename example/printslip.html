@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Печать произвольного документа</title>
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="../docs/styles/sunlight.default.css">
+    <link type="text/css" rel="stylesheet" href="../docs/styles/site.Cerulean.css">
+
+    <script src="../src/kkmserver.js"></script>
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top ">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">Примеры KkmServer API</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="col-md-12">
+        <div id="main">
+            <h1>Печать произвольного документа</h1>
+            <p>Так называемого слип-чеком основана на работе с объектом класса KkmCheck</p>
+            <p>Шорт-каты методов для добавления строк:</p>
+            <ul>
+                <li>t() - addTextString()</li>
+                <li>b() - addBarcodeString()</li>
+                <li>i() - addImageString()</li>
+            </ul>
+            <div class="row">
+                <div class="col-md-7">
+            <pre>
+    var slip = new KkmCheck(Kkm); // связали чек с ккм сервером
+    // картинка короткий вызов
+    slip.i("{base64_encode_string}");
+    // при полном вызове функций добавления строк возращается структура,
+    // позволяюшая потом отредактировать
+    // вот пример добавляем пустую строку, а после ее заменяем
+    slip.addImageString('').Image = demoImage;
+    // текстовые строки
+    slip.t('>#2#<ООО "Рога и копыта', 1);
+    // вызов цепочкой
+    slip.t('Пример №1 печати поля:<#16#>154,41').t('2-рое поле:<#16#>4,00');
+    slip.t('Пример №2 печати поля:<#8#>>4,00').t('2-рое поле:<#8#>>1544,00');
+    // номер шрифта и интенсивость печати
+    slip.t('Шрифт № 1', 1, 15);
+    slip.t('Шрифт № 2', 2, 10);
+    slip.t('Шрифт № 3', 3, 5);
+    slip.t('Шрифт № 4', 4, 0);
+    // установка оформления после
+    var string4edit =  slip.addTextString('Штрих-коды');
+    string4edit.Text = '>#0#<' + string4edit.Text; // Добавляем центрирование
+    string4edit.Font=1; // Самый крупный шрифт
+    string4edit.Intensity = 10;
+    // Строка с печатью штрих-кода
+    slip.b('EAN13', '1254789547853');
+    // баркод теперь QR
+    slip.b('QR', '12345DFG');
+
+            </pre>
+
+                    <p>
+                        <button onclick="slip.print()" >Печатать
+                        </button> <b>slip.print()</b>
+                    </p>
+                    <p><a href="printcheck.html">фискальный чек</a></p>
+
+                </div>
+                <div class="col offset-md-1 col-md-4">
+                    <h4>Статус:</h4>
+                    <p id="Status"></p>
+                    <h4>Ошибка:</h4>
+                    <p id="Error"></p>
+                    <h4>Запрос к АПИ:</h4>
+                    <pre id="Request" ></pre>
+
+                    <h4>Ответ сервера:</h4>
+                    <pre id="Responce" ></pre>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<footer>
+
+
+	<span class="copyright">
+	&copy; 2017 Oleg Muraveyko
+	</span>
+
+</footer>
+
+<script>
+    /**
+     * Функция вызываемая после обработки команды - обработка возвращаемых данных
+     * @param {KkmResponse} Rezult
+     */
+    function ExecuteSuccess(Rezult) {
+        document.getElementById('Error').textContent = '';
+        document.getElementById('Responce').textContent = '';
+        document.getElementById('Request').textContent = '';
+        document.getElementById('Status').textContent = '';
+
+        var Responce = "";
+        if (Rezult.Status === 0) {
+            document.getElementById('Status').textContent = "Ok";
+        } else if (Rezult.Status === 1) {
+            document.getElementById('Status').textContent = "Выполняется";
+        } else if (Rezult.Status === 2) {
+            document.getElementById('Status').textContent = "Ошибка";
+        } else if (Rezult.Status === 3) {
+            document.getElementById('Status').textContent = "Данные не найдены!";
+        }
+
+
+        // Текст ошибки
+        if (Rezult.Error !== undefined && Rezult.Error !== "") {
+            document.getElementById('Error').textContent = Rezult.Error;
+        }
+
+        if (Rezult !== undefined) {
+            Responce = JSON.stringify(Rezult, null, 4);
+        }
+
+        document.getElementById('Responce').textContent = Responce;
+        document.getElementById('Request').textContent = JSON.stringify(Kkm.lastCommand, null, 4);
+
+    }
+    // Инитим
+    Kkm = new KkmServer('Admin', '').hookAjaxSuccess(ExecuteSuccess);
+
+    // примеры
+    var slip = new KkmCheck(Kkm);
+    // картинка короткий вызов
+    slip.i("iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAA90lEQVRYR+2Xuw3CMBRFTwZAooIWtmANGACJJWAFWAIpC8AajEFLhUQGAL0oRpblJHZ+duG0iX3P+79kBH6ywPq4AHx7QjZqJIDkgWg8sADOwBaYV1mv4IaqAnVPAdyBI/ASERF/AGuj3MYCUDJPYCMiV+BgqfWxAUQyF5G35nadYwqAQkTqYuySoD5N0qoTNYCPdZ2/bfJA50t9DiaA5IGoy3CyRvQBZoFmQdmKc2AfCKAcRstqHK9axrFvSFTvrxtq/3EsugJxAXZaOMyDQwHIQnIDTmohaeucQ21EVh0Xq6IBcIHVrTRzoLcHggO05Urd+7j/DX+4pUFp5INPvQAAAABJRU5ErkJggg==");
+    // при полном вызове функций добавления строк возращается структура, позволяюшая потом отредактировать
+    // вот пример добавляем пустую строку, а после ее заменяем
+    var demoImage = "Qk3+EwAAAAAAAD4AAAAoAAAA5AAAAJ4AAAABAAEAAAAAAMATAACHHQAAhx0AAAAAAAAAAAAAAAAAAP///wD/////////////////////////////////////8AAAAP/////////////////////////////////////wAAAA//////////////////////////////////////AAAAD/////////////////////////////////////8AAAAP/////////////////////////////////////wAAAA//////////////////////////////////////AAAAD/////////////////////////////////////8AAAAP////+f//////////+P///////////////////wAAAA/////5///////////4////////////////////AAAAD/////n///////////H///////////////////8AAAAP////+f//////////8f///////////////////wAAAA/////5///////////x////////////////////AAAAD/////j//////////+P///////////////////8AAAAP////+PwAj///////w////////////////////wAAAA/////48PgP///////H////////////////////AAAAD/////zH/B///////4f///////////////////8AAAAP/////J/8H///////j////////////////////wAAAA/////+P/4///////8P////////////////////AAAAD///gAx//z///////h////////////////////8AAAAP//4fgP//P//////+P////////////////////wAAAA///H/z//8B//////x///////gP////////////AAAAD//5/8f//gD/////+P//////4AH///////////8AAAAP//P/3//8/B/////x///////AAMf///////+A/wAAAA//8/////H+H////+H//////4/+AH///////AB/AAAAD//n////5/w/8f//yP//////n/w4P//////4fP8AAAAP/+////+f+D/8AH/8f/////8/+f+P/////+H8/wAAAA//7////z//P//g//x//////3/3/+f/////j/5/AAAAD//P///+//8//////H/////8f///8////wB//n8AAAAP/8////z//j/////8/////wB////5//+AH//8PwAAAA//z///+v/+f/P///D////wAH////z/8A////0fAAAAD//P///7//w/+AA/4f///8Aef////n+A////+R8AAAAP/9//////4ID+Tv/7////A/5//8//vA/////znwAAAA//3/P////H4f7Of/v///4//n//n//Q/////8efAAAAD//f+P///x/B/Mc/+f///H//P/+f/+P/////Dz8AAAAP/9/8f//+P4P9x7/5///5//8//wA/z////4A/PwAAAA//3/Mf//z/+/nD3/n///P//z//GAAf////P/8PAAAAD/+f/A//+f/7+evP/f//8///H/8f/x////9//g8AAAAP/5//A//y//Pz6ef8///n//+f/x//P////3/+HwAAAA//n/+Q//7/8/Ps8/z//+///5//n/9///////yfAAAAD/+YABx////n4+z7/v//z///z/+P/n//////8Z8AAAAP/4B/gh///8/n5n3+//+f///P/8/+f/////8DvwAAAA/+D//xh///n+fnfP5//7///+f/z/5///9/+A+/AAAAD/h///jh//4/x+c+f3//P///4//n/n///v/z/z8AAAAP8P///Hg/+H/P578/f/AD///z//f+f//+//f/fwAAAA/D///+fAAB/8/nn58/wfD/wAH/8/9///n/9/7/AAAAD4f///5+AA//z/ffz7+P/n/4AP/5////8////P8AAAAPn////z5///+f9+/nnz//P/j8f/z////H///x/wAAAA8/////Pz///5/z5/uef/++Af4/vD///4///8f/AAAADn////8/P///n/P3/N7/B58//x/eD//8P//8D/8AAAAOf////D8f//+f8/v+QP553n//h88D/4D///B//wAAAAz////+P5///x/7+f8E/P3c///j54D/////h///AAAADf////8fj///P/v9/x35/dz///Dz4h////8P//8AAAAN/////5/P//8/+fj/PfL8Gf///BH57////H///wAAAA3/////z8f//z/58n5993wT////AH/v///4////AAAACf///z/Px///P/nmfn3nPMP////AP+f//+P///8AAAAN///gB+/n//8/+f8+f+e99/////8P5///z////wAAAA3//wAD7+P//3/9/w5/57z3/////4PH//8/////AAAADd/8H+Hv8///f/z/Hn/APAf/////8AP//n////8AAAAMv/D/z8/x//9//PxPf8/8T///////8//+/////wAAAA6/4//P3/n//3/8/+c/z/0f///////5//7/////AAAADj+P/8+f+P/+f/7/9z/P/D////////x//3////8AAAAPfx//zz/8//4//n/zn8/8P////////h//n////wAAAA9+X//Of/5//4f+f4Gf3/x/////////g//P////AAAADn6f/8z//n//4f5//cff/H/////////B/8////8AAAAOf5//yf//O//8fz/879+8A/////////D/5////wAAAA5/n//j//8H//8fP/5v3zw4////////+H/n////AAAADn+f/8H//4///8c//y/fPH8////////8f/f///8AAAAOf5//AH//H///4x//r988f4///h////5/9////wAAAA9/n/58P/8wH/+Hn//P37x/5//4B////n/n////AAAAD3+f//8/8AD//B+f/+/fvD/7//vj///+f+f///8AAAAPP5///AAA///x/4//79+8P+Af8/n///9/x////wAAAA+Pn/////////v/z//vz7weAAH7/P///z+P////AAAAD8AP////////+f/H/+/Pvfg/4Dn/P///Pw////8AAAAP+I/////////9/+f9788B4//+Df+A//+IH////wAAAA//z/////////z/5/zvz3OP///A/AQ//4D/////AAAAD//P/////////v/j/k/O/x////CA/x//h/////8AAAAP/8/////////+f/P/D85+P////g//n//f/////wAAAA//5/////////8/8f8Px3z/////wf/P////////AAAAD//n/////////5/5/4/gef///////8////////8AAAAP/+f/////////n/n/L+Az////////z////////wAAAA//9//////////P/P9v4Cf//h/////P////////AAAAD//z/////////+f8/v/gD//+7////5////////8AAAAP//P/////////4/58//Af//53////z////////wAAAA//+f/////////z/33/8D///zP////H////////AAAAD//5//////////n/Pf/wP///x////+P///////8AAAAP//j//////////P+Z/3B/////////8f///////wAAAA///P/////////+fpr/uP/////////4////////AAAAD//+f/////////48yP+I//////////x///////8AAAAP//8P//////A//xzp/8H//5///////j///////wAAAA///4AAAAAAAH//iPH/8P//N//////+P///////AAAAD////AAAAAf8P/gA4f////93//////8f//////8AAAAP////4AA///4PAADh/////7v//////4///////wAAAA///////////4AAAMH/////x///////z///////AAAAD///////////+AAAwP///f/////////H//////8AAAAP////////////wADA9//7/////////+f//////wAAAA/////////////gAABn//A/////////5///////AAAAD//////////8AHAAAAf/wf///x/////j//////8AAAAP//////////8AAAAAB/8P///+b/////P//////wAAAA///////////8AAAAAH/Bf/9/73////8///////AAAAD///////////8AAAAAAAE//z/3f////z//////8AAAAP///////////8AAAAAAAJ//n/h//v//P//////wAAAA//////////8AAAAAAD4Az//P///8D/8///////AAAAD//////////AAAAAAAPADAAAf///gD/z//////8AAAAP//////////AAAAAAA/gGAAAf//+AD/P//////wAAAA///////////gAAAAAB+AYDn8///wAH9///////AAAAD///////////gAAAAAH4BwHf4///AAPn//////8AAAAP///////////gAAAAAfgHAd/w//8AAc///////wAAAA////////////gAAAAA/AcBz/w//wAAn///////AAAAD////////////AAAAAD8h5Hv/w//AAA///////8AAAAP///////////+AAAAAPzHke//wf8AAD///////wAAAA///////////+AAAAAA7A+D7//4HwAAP///////AAAAD///////////AAAAAAD0H5/n//8AAAAf//////8AAAAP//////////4AAAAAAPb/n+f///AAAB///////wAAAA//////////+AAAAAAA9v+f5////4AAD///////AAAAD//////////wAAAAAAB2/5/3////wAAP//////8AAAAP////////////AAAAAHN/j/f//7/gDg///////wAAAA/////////////4AAAA+3+P5///P/AfH///////AAAAD/////////////wAAAD9v5fn//x/+A8f//////8AAAAP////////////+OAAAP+ft+//8H/8AB///////wAAAA/////////////54AAA/884j//A//8AP///////AAAAD/////////////nuAAD/AHwD/4H//4D///////8AAAAP////////////+8/AAH9P/4v8Af///////////wAAAA/////////////7n/gAP3P/GfAD////////////AAAAD/////////////Of/AAPPP55wAf///////////8AAAAP////////////+z/8wAGffvAAD/z//////////wAAAA/////////////7P/ngAAc+wAAf4f//////////AAAAD/////////////t/8fAAADwAAD8D//////////8AAAAP////////////+H/z+AAAAAAAeAf//////////wAAAA/////////////4f+f8AAAAAADAD///////////AAAAD/////////////z/x/4AAAAAAAAf//////////8AAAAP/////////////P/P/wAAAAAAAD/+/////////wAAAA/////////////8/5/+AAAAAAAA//H/////////AAAAD/////////////3/n/wgAAAAAAH/g/////////8AAAAP/////////////f8/8PAAAAAAB/gH/////////wAAAA/////////////9/3/h+AAAAAAfgB//////////AAAAD/////////////3+f8P+AAAAAAAAP/////////8AAAAP/////////////f7/j/8AAAAAAAD//////////wAAAA/////////////9/P8f/4AAAAAAA///////////AAAAD/////////////n9/j//4AAAAAAf//////////8AAAAP////////////+fn8f//4AAAAAP///////////wAAAA/////////////5+fj//vwAAAAH/4//////////AAAAD/////////////n78f//PwAAAB/AH/////////8AAAAP////////////+fPg///PwAAAAAB//////////wAAAA/////////////598A///HwAAAAAf//////////AAAAD/////////////3nzgf//H4AAAAP//////////8AAAAP/////////////eefgD/wAAAAAD///////////wAAAA/////////////97z+kAAfAcAAH////////////AAAAD/////////////3OP7f///////////////////8AAAAP/////////////Mx/s////////////////////wAAAA/////////////83P+Z////////////////////AAAAD/////////////zZ/4H///////////////////8AAAAP/////////////tH//////////////////////wAAAA/////////////+c///////////////////////AAAAD/////////////4n//////////////////////8AAAAP/////////////w///////////////////////wAAAA//////////////H///////////////////////AAAAD/////////////////////////////////////8AAAAP/////////////////////////////////////wAAAA";
+    slip.addImageString('').Image = demoImage;
+    // текстовые строки
+    slip.t('>#2#<ООО "Рога и копыта', 1);
+    // вызов цепочкой
+    slip.t('Пример №1 печати поля:<#16#>154,41').t('2-рое поле:<#16#>4,00');
+    slip.t('Пример №2 печати поля:<#8#>>4,00').t('2-рое поле:<#8#>>1544,00');
+    // номер шрифта и интенсивость печати
+    slip.t('Шрифт № 1', 1, 15);
+    slip.t('Шрифт № 2', 2, 10);
+    slip.t('Шрифт № 3', 3, 5);
+    slip.t('Шрифт № 4', 4, 0);
+    // установка оформления после
+    var string4edit =  slip.addTextString('Штрих-коды');
+    string4edit.Text = '>#0#<' + string4edit.Text; // Добавляем центрирование
+    string4edit.Font=1; // Самый крупный шрифт
+    string4edit.Intensity = 10;
+    // Строка с печатью штрих-кода
+    slip.b('EAN13', '1254789547853');
+    // баркод теперь QR
+    slip.b('QR', '12345DFG');
+
+
+
+</script>
+</body>
+</html>

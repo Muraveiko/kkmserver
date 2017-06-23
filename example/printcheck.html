@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Печать фискального документа</title>
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="../docs/styles/sunlight.default.css">
+    <link type="text/css" rel="stylesheet" href="../docs/styles/site.Cerulean.css">
+
+    <script src="../src/kkmserver.js"></script>
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top ">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">Примеры KkmServer API</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="col-md-12">
+        <div id="main">
+            <h1>Печать фискального документа</h1>
+            <p class="text-danger">Важно</p>
+            <p>Осуществляйте привязку по ИНН организации</p>
+
+            <div class="row">
+                <div class="col-md-7">
+            <pre>
+    Kkm = new KkmServer('Admin', '').hookAjaxSuccess(ExecuteSuccess);
+    // Kkm.setInnKkm('7701237658'); // на уровне всех команд
+
+    var check = new KkmCheck(Kkm, 0);
+    //check.setInn('7701237658'); // Для конкретного чека
+
+    // формируем используем шорткат
+    check.r('Мыло', 1, 58.50, 58.50).r('Шило', 2, 25, 50, 18, 0, "1234567890123");
+    // или если нужен расширенный доступ
+    check.addRegisterString('водка', 1, 128, 128, 10).EGAIS = {
+        Barcode: "22N0000154NUCPRZ3R8381461004001003499NKAQ0ZBUVDNV62JQAR69PEV878RO93V",
+        Ean: "3423290167937",
+        Volume: 0.7500
+    };
+    // просто для демонстрации взятие суммы авторасчитанной
+    document.getElementById('itogo').textContent = 'Итого:' + check.getTotal();
+            </pre>
+                    <h3 id="itogo"></h3>
+                    <p>
+                        <button onclick="check.fiscalCash()">За наличку
+                        </button>
+                        <b>check.fiscalCash()</b>
+                    </p>
+                    <p>
+                        <button onclick="check.fiscalCard()">По карте
+                        </button>
+                        <b>check.fiscalCard()</b>
+                    </p>
+                    <p><a href="fiscalonly.html">Выдача электронного чека</a></p>
+
+                </div>
+                <div class="col offset-md-1 col-md-4">
+                    <h4>Статус:</h4>
+                    <p id="Status"></p>
+                    <h4>Ошибка:</h4>
+                    <p id="Error"></p>
+                    <h4>Запрос к АПИ:</h4>
+                    <pre id="Request"></pre>
+
+                    <h4>Ответ сервера:</h4>
+                    <pre id="Responce"></pre>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<footer>
+
+
+	<span class="copyright">
+	&copy; 2017 Oleg Muraveyko
+	</span>
+
+</footer>
+
+<script>
+    /**
+     * Функция вызываемая после обработки команды - обработка возвращаемых данных
+     * @param {KkmResponse} Rezult
+     */
+    function ExecuteSuccess(Rezult) {
+        document.getElementById('Error').textContent = '';
+        document.getElementById('Responce').textContent = '';
+        document.getElementById('Request').textContent = '';
+        document.getElementById('Status').textContent = '';
+
+        var Responce = "";
+        if (Rezult.Status === 0) {
+            document.getElementById('Status').textContent = "Ok";
+        } else if (Rezult.Status === 1) {
+            document.getElementById('Status').textContent = "Выполняется";
+        } else if (Rezult.Status === 2) {
+            document.getElementById('Status').textContent = "Ошибка";
+        } else if (Rezult.Status === 3) {
+            document.getElementById('Status').textContent = "Данные не найдены!";
+        }
+
+
+        // Текст ошибки
+        if (Rezult.Error !== undefined && Rezult.Error !== "") {
+            document.getElementById('Error').textContent = Rezult.Error;
+        }
+
+        if (Rezult !== undefined) {
+            Responce = JSON.stringify(Rezult, null, 4);
+        }
+
+        document.getElementById('Responce').textContent = Responce;
+        document.getElementById('Request').textContent = JSON.stringify(Kkm.lastCommand, null, 4);
+
+    }
+    // Инитим
+    Kkm = new KkmServer('Admin', '').hookAjaxSuccess(ExecuteSuccess);
+    // Kkm.setInnKkm('7701237658'); // на уровне всех команд
+
+    // примеры
+
+    var check = new KkmCheck(Kkm, 0);
+    //check.setInn('7701237658'); // Для конкретного чека
+    // используем шорткат
+    check.r('Мыло', 1, 58.50, 58.50).r('Шило', 2, 25, 50, 18, 0, "1234567890123");
+    // нужен расширенный доступ
+    check.addRegisterString('водка', 1, 128, 128, 10).EGAIS = {
+        Barcode: "22N0000154NUCPRZ3R8381461004001003499NKAQ0ZBUVDNV62JQAR69PEV878RO93V",
+        Ean: "3423290167937",
+        Volume: 0.7500
+    };
+    document.getElementById('itogo').textContent = 'Итого:' + check.getTotal();
+</script>
+</body>
+</html>

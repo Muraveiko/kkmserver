@@ -1,0 +1,2 @@
+open a browser and visit http://{{host}}:{{port}}.
+

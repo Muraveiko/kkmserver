@@ -3,74 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <title>Основные команды</title>
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="../docs/styles/sunlight.default.css">
+    <link type="text/css" rel="stylesheet" href="../docs/styles/site.Cerulean.css">
+
     <script src="../src/kkmserver.js"></script>
 </head>
 <body>
-<h1>Основные команды</h1>
-<label>Номер устройства:
-    <select id="SetDevice" onchange="setDevice()">
-        <option value="0">Первое активное: 0</option>
-        <option value="1">Устройство №: 1</option>
-        <option value="2">Устройство №: 2</option>
-        <option value="3">Устройство №: 3</option>
-        <option value="4">Устройство №: 4</option>
-        <option value="5">Устройство №: 5</option>
-        <option value="6">Устройство №: 6</option>
-        <option value="7">Устройство №: 7</option>
-        <option value="8">Устройство №: 8</option>
-    </select></label>
-<table width="100%"><tr><td width="50%" valign="top">
-<h2>Короткий вызов</h2>
-<p>
-    <button onclick="Kkm.doOpenShift()" style="width: 300px;">Открытие смены</button>
-</p>
-<p>
-    <button onclick="Kkm.doXReport()" style="width: 300px;">Печать Х отчета</button>
-</p>
-<p>
-    <button onclick="Kkm.doZReport()" style="width: 300px;">Печать Z отчета</button>
-</p>
-<p>
-    <button onclick="Kkm.doOfdReport()" style="width: 300px;">Печать состояния расчетов и связи с
-        ОФД
-    </button>
-</p>
-<hr>
-<p>
-    <label>Сумма : <input id="Amount2" type="text" value="10.0"/></label>
-</p>
-<p>
-    <button onclick="Kkm.doPaymentCash(document.getElementById('Amount2').value)"
-            style="width: 300px;">Инкассация денег из кассы
-    </button>
-</p>
-<p>
-    <button onclick="Kkm.doDepositingCash(document.getElementById('Amount2').value)"
-            style="width: 300px;">Внесение денег в кассу
-    </button>
-</p>
-<p>
-    <button onclick="Kkm.doOpenCashDrawer()" style="width: 300px;">Открытие денежного ящика
-    </button>
-</p>
-<hr>
-<p>
-    <button onclick="Kkm.doGetRezult()" style="width: 300px;">Результат последней команды
-    </button>
-</p>
-</td><td width="50%" valign="top">
-    <h2>Статус:</h2>
-    <p id="Status"></p>
-    <h2>Ошибка:</h2>
-    <p id="Error"></p>
-    <h2>Запрос к АПИ:</h2>
-    <p id="Request" style="white-space:pre;"></p>
+<div class="navbar navbar-default navbar-fixed-top ">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">Примеры KkmServer API</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
 
-    <h2>Ответ сервера:</h2>
-    <p id="Responce" style="white-space:pre;"></p>
+    </div>
+</div>
 
-</td></tr>
-</table>
+
+<div class="container">
+    <div class="col-md-12">
+        <div id="main">
+            <h1>Основные команды</h1>
+            <fieldset style="padding:10px;border:1px solid #888;border-radius: 8px;margin-bottom: 24px">
+              <legend>Значения по умолчанию</legend>
+            <label>Номер устройства:
+                <select id="SetDevice" onchange="setDevice()">
+                    <option value="0">Первое активное: 0</option>
+                    <option value="1">Устройство №: 1</option>
+                    <option value="2">Устройство №: 2</option>
+                    <option value="3">Устройство №: 3</option>
+                    <option value="4">Устройство №: 4</option>
+                    <option value="5">Устройство №: 5</option>
+                    <option value="6">Устройство №: 6</option>
+                    <option value="7">Устройство №: 7</option>
+                    <option value="8">Устройство №: 8</option>
+                </select></label> <i>Kkm.setNumDevice(значение выбора);</i><br /><br />
+                <label>Фио Кассира:
+                    <input id="fioCachier" type="text" value="" onchange="Kkm.setCashierName(document.getElementById('fioCachier').value)" />
+                </label> <i>Kkm.setCashierName(фио);</i>
+
+            </fieldset>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <p>
+                        <button onclick="Kkm.doOpenShift()" >Открытие смены</button> <i>Kkm.doOpenShift()</i>
+                    </p>
+                    <p>
+                        <button onclick="Kkm.doXReport()" >Печать Х отчета</button> <i>Kkm.doZReport()</i>
+                    </p>
+                    <p>
+                        <button onclick="Kkm.doZReport()" >Печать Z отчета</button> <i>Kkm.doZReport()</i>
+                    </p>
+                    <p>
+                        <button onclick="Kkm.doOfdReport()" >Печать состояния расчетов и
+                            связи с ОФД
+                        </button> <i>Kkm.doZReport()</i>
+                    </p>
+                    <hr>
+                    <p>
+                        <label>Сумма : <input id="Amount2" type="text" value="10.0"/></label>
+                    </p>
+                    <p>
+                        <button onclick="Kkm.doPaymentCash(document.getElementById('Amount2').value)"
+                                >Инкассация денег из кассы
+                        </button> <i>Kkm.doPaymentCash(Сумма)</i>
+                    </p>
+                    <p>
+                        <button onclick="Kkm.doDepositingCash(document.getElementById('Amount2').value)"
+                                >Внесение денег в кассу
+                        </button> <i>Kkm.doDepositingCash(Сумма)</i>
+                    </p>
+                    <p>
+                        <button onclick="Kkm.doOpenCashDrawer()">Открытие денежного ящика
+                        </button> <i>Kkm.doOpenCashDrawer()</i>
+                    </p>
+                    <hr>
+                    <p>
+                        <button onclick="Kkm.doGetRezult()" >Результат последней команды
+                        </button> <i>Kkm.doGetRezult()</i>
+                    </p>
+                </div>
+                <div class="col offset-md-1 col-md-5">
+                    <h4>Статус:</h4>
+                    <p id="Status"></p>
+                    <h4>Ошибка:</h4>
+                    <p id="Error"></p>
+                    <h4>Запрос к АПИ:</h4>
+                    <p id="Request" style="white-space:pre;"></p>
+
+                    <h4>Ответ сервера:</h4>
+                    <p id="Responce" style="white-space:pre;"></p>
+
+                </div>
+
+
+            </div>
+            <p>Здесь показан короткий способ сделать нужную операцию через методы класса
+                KkmServer.doXxx()</p>
+            <pre>
+// возращает сформированную структуру, которая послана серверу
+doXxx(...){ // команде можно явно указать номер устройства и т.д.
+  // создается структура запроса, иницилизируемая данными по умолчанию
+  // и посылается запрос
+  return  execute(CommandXxx(...));
+}
+            </pre>
+
+            <p><a href="printslip.html">печать произвольного документа</a></p>
+        </div>
+    </div>
+</div>
+<footer>
+
+
+	<span class="copyright">
+	&copy; 2017 Oleg Muraveyko
+	</span>
+
+</footer>
+
 <script>
     /**
      * Функция вызываемая после обработки команды - обработка возвращаемых данных
@@ -100,22 +161,20 @@
         }
 
         if (Rezult !== undefined) {
-            var JSon = JSON.stringify(Rezult, null, 4);
-            Responce = JSon;
+            Responce = JSON.stringify(Rezult, null, 4);
         }
 
         document.getElementById('Responce').textContent = Responce;
         document.getElementById('Request').textContent = JSON.stringify(Kkm.lastCommand, null, 4);
 
     }
-   // Инитим
+    // Инитим
     Kkm = new KkmServer('Admin', '').hookAjaxSuccess(ExecuteSuccess);
 
     // примеры
     function setDevice() {
         Kkm.setNumDevice(document.getElementById('SetDevice').value);
     }
-
 
 
 </script>

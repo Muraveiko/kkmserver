@@ -149,13 +149,9 @@ function KkmCommandList() {
 
 /**
  *  Ответ API
- * @property {number} Status Статус исполнения
- * <ul><li>Ok = 0,</li><li>Run(Запущено на выполнение) = 1,</li><li>Error = 2,</li>
- * <li>NotFound(устройство не найдено) = 3,</li><li>NotRun = 4</ul>
- * @property {string} Error Пустая строка или текст ошибки
- * @property {string} Command [Команда апи]{@link KkmCommand#Command}
- * @property {string} IdCommand  Уникальный идентификатор комманды, назначенный вами или присвоенный сервером.
- * @property {number} [NumDevice] Номер устройства выполневшего команду
+ * <p> Здесь перечислены все возможные свойства, которые могут присутствувать в ответе. Командно-зависимые описаны как property </p>
+ * @class
+ *
  * @property {string} [URL] URL проверки чека <br />
  *              t=20170115T154700&s=0.01&fn=99078900002287&i=118&fp=549164494&n=1  <br />где: <br />
  *              t-дата-время, s-сумма документа, fn-номер ФН, i-номер документа, fp-фискальная подпись, n-тип документа
@@ -199,26 +195,50 @@ function KkmCommandList() {
  * @property  {string} Info.LessType2 - Название 2 типа безналичных расчетов
  * @property  {string} Info.LessType3 - Название 3 типа безналичных расчетов
  * @property  {string} Info.LicenseExpirationDate
- *
- * @property {number}
- * @class
+ * @property {KkmResponse} Rezult - ответ на запрос о выполнении команды
  */
-function KkmResponse() {
-    this.Status = 0;
-    this.Error = '';
-    this.Command = '';
-    this.IdCommand = '';
+function KkmResponse(Command,IdCommand,Status,Error) {
+    /**
+     * Status Статус исполнения
+     * <ul><li>Ok = 0,</li><li>Run(Запущено на выполнение) = 1,</li><li>Error = 2,</li>
+     * <li>NotFound(устройство не найдено) = 3,</li><li>NotRun = 4</ul>
+     * @type {number}
+     */
+    this.Status = Status || 0;
+    /**
+     * Пустая строка или текст ошибки
+     * @type {string}
+     */
+    this.Error = Error || '';
+    /**
+     * Команда апи {@link KkmCommand#Command}
+     * @type {string}
+     */
+    this.Command = Command || '';
+    /**
+     * Уникальный идентификатор комманды, назначенный вами или присвоенный сервером.
+     * @type {string}
+     */
+    this.IdCommand = IdCommand|| '';
+
+    /**
+     *  Номер устройства выполневшего команду
+     * @type {number}
+     */
+    this.NumDevice = 0;
+
 }
+
 /**
- * Эмуляция сообщение об ошибке от API
+ * Эмуляция сообщение об ошибке от API <br />
+ * используется во встроенном обработчике ошибки ajax запроса
  * @param errMessage
  * @class
  * @extends KkmResponse
+ * @see {@link KkmServer#hookAjaxFail}
  */
 function KkmResponseError(errMessage) {
-    KkmResponse.call(this);
-    this.Status = 2;
-    this.Error = errMessage;
+    KkmResponse.call(this,'','',2,errMessage);
 }
 /**
  * Описание интерфейса для функции обратного вызова
@@ -315,6 +335,7 @@ function KkmServer(user, password, urlServer) {
 
         // внедряем значения по умолчанию
         if (undefined !== command && command.Command) { // If it looks like a duck (KkmCommand)
+            command.KeySubLicensing = defaults.keySubLicensing;
             if (null === command.NumDevice) {
                 command.NumDevice = defaults.numDevice;
             }
@@ -323,6 +344,9 @@ function KkmServer(user, password, urlServer) {
             }
             if (null === command.CashierName) { // If it looks like a duck (KkmCommandWithCashier)
                 command.CashierName = defaults.cashierName;
+            }
+            if ('' === command.InnKkm) {
+                command.InnKkm = defaults.innKkm;
             }
         } else {
             throw Error('Апи передана неправильная структура');
@@ -341,7 +365,7 @@ function KkmServer(user, password, urlServer) {
             var json = r.response;
             // костыль для IE11
             if ('string' === typeof(json)) {
-                json = JSON.parse(json);
+                json = JSON.parse(/** @type string */json);
             }
             successHook(json);
         };
@@ -404,7 +428,7 @@ function KkmServer(user, password, urlServer) {
      *
      * @param {KkmServer~KkmApiСallback} successHook функция обработчик
      * @returns {KkmServer}
-     * @see [встроенный обработчик]{@link funSuccess}
+     * @see исходный код funSuccess
      */
     this.hookAjaxSuccess = function (successHook) {
         funSuccess = successHook;
@@ -416,7 +440,7 @@ function KkmServer(user, password, urlServer) {
      *
      * @param {funError} errorHook callback
      * @returns {KkmServer}
-     * @see [встроенный обработчик]{@link funError}
+     * @see  исходный код  funError
      */
     this.hookAjaxFail = function (errorHook) {
         funError = errorHook;
@@ -427,6 +451,15 @@ function KkmServer(user, password, urlServer) {
     // -------------------------------------------------------
     //  Сеттеры
     // -------------------------------------------------------
+    /**
+     * СубЛицензия
+     * @param {string} key
+     * @returns {KkmServer}
+     */
+    this.setKeySubLicensing = function (key) {
+        defaults.keySubLicensing = key;
+        return self;
+    };
 
     /**
      * Номер Устройства по умолчанию
@@ -454,20 +487,10 @@ function KkmServer(user, password, urlServer) {
      * @returns {KkmServer}
      */
     this.setInnKkm = function (innKkm) {
-        1
         defaults.innKkm = innKkm;
         return self;
     };
 
-    /**
-     * Установка ключа суб-лицензии
-     * @param licensing
-     * @returns {KkmServer}
-     */
-    this.setLicensing = function (licensing) {
-        defaults.keySubLicensing = licensing;
-        return self
-    };
     // -------------------------------------------------------
     //  Конструкторы команд
     // -------------------------------------------------------
@@ -999,15 +1022,15 @@ function KkmCheck(kkm, typeCheck) {
      * Система налогообложения.
      * где sno
      * <ul>
-     *      <li> «osn» | 0– общая СН;
-     * </li><li> «usn_income»  | 1– упрощенная СН(доходы);
-     * </li><li> «usn_income_outcome» | 2  – упрощенная СН (доходы минус расходы);
-     * </li><li> «envd» | 3 – единый налог на вмененный  доход;
-     * </li><li> «esn»  | 4– единый сельскохозяйственный  налог;
-     * </li><li> «patent» | 5 – патентная СН.
+     *      <li> 0 | «osn» – общая СН;
+     * </li><li> 1 | «usn_income»  – упрощенная СН(доходы);
+     * </li><li> 2 | «usn_income_outcome»   – упрощенная СН (доходы минус расходы);
+     * </li><li> 3 | «envd»  – единый налог на вмененный  доход;
+     * </li><li> 4 | «esn»  – единый сельскохозяйственный  налог;
+     * </li><li> 5 | «patent»  – патентная СН.
      * </li></ul>
      *
-     * @param {string|number} sno  Система налогообложения (см. {@link KkmCommandCheck#TaxVariant})
+     * @param {number|string} sno  Система налогообложения (см. {@link KkmCommandCheck#TaxVariant})
      * @returns {KkmCheck}
      *
      * @example
@@ -1030,23 +1053,43 @@ function KkmCheck(kkm, typeCheck) {
 
     var totalCheck = 0;
     /**
-     * Сумма продажи
-     * @param {number} amount
+     * Данный метод для явного указания общей суммы товаров в чеке перед вызовом
+     * фискализации методами [fiscalCash]{@link KkmCheck#fiscalCash} или [fiscalCard]{@link KkmCheck#fiscalCard}<br/>
+     * также сумма накапливается при добавлении строк методом r().<br/>
+     * Если оплата наличными, то полученные от покупателя деньги - в чеке будет строка сдача.
+     *
+     * @summary Сумма продажи
+     * @param {number} amount При оплате наличными не менее стоимости товаров
      * @returns {KkmCheck}
+     * @see {@link KkmCheck#getTotal}
      */
     this.setTotal = function (amount) {
-        self.totalCheck = amount;
+        totalCheck = amount;
         return self;
+    };
+    /**
+     * Стоимость товаров в чеке, добавленных через метод r() или указанная явно
+     * @returns {number}
+     * @see {@link KkmCheck#setTotal}
+     */
+    this.getTotal = function () {
+        return totalCheck ;
     };
 
     /**
-     * Как будет оплачен
+     * Как будет оплачен . <br>
+     * Позволяет оперировать до 3х видов настроенных у кассы безналичных расчетов. <br>
+     * см методы фискализации и альтернативное указание суммы
      * @param {number} cash Наличными
      * @param {number} [less1=0] Безналичный тип 1 (по умаолчанию карта)
      * @param {number} [less2=0] Безналичный тип 2
      * @param {number} [less3=0] Безналичный тип 3
      *
-     * @see {@link KkmCommandCheck#CashLessType1}
+     * @see [описание методов оплаты в API]{@link KkmCommandCheck#Cash}
+     * @see {@link KkmCheck#fiscal}
+     * @see {@link KkmCheck#fiscalCash}
+     * @see {@link KkmCheck#fiscalCard}
+     * @see {@link KkmCheck#setTotal}
      */
     this.setPayments = function (cash, less1, less2, less3) {
         data.Cash = cash || 0;
@@ -1080,7 +1123,7 @@ function KkmCheck(kkm, typeCheck) {
      */
     this.setCheckProps = function (print, printInHeader, teg, value) {
 
-        var newProp = new KkmCheckProperty();
+        var newProp = new KkmCheckProperty(print, printInHeader, teg, value);
 
         data.CheckProps.push(newProp);
         return newProp;
@@ -1096,8 +1139,8 @@ function KkmCheck(kkm, typeCheck) {
      * @param {number} quantity Количество
      * @param {number} price  цена
      * @param {number} amount сумма
-     * @param {number} [tax]  Налогообложение
-     * @param [department]  отдел магазина
+     * @param {number} tax  Налогообложение
+     * @param {number} [department]  отдел магазина
      * @param {string} [ean13]  штрих код
      *
      * @returns {{Name : string, Quantity : number, Price: number, Amount: number , Department: number, Tax: number, EAN13: string,EGAIS}}
@@ -1117,6 +1160,7 @@ function KkmCheck(kkm, typeCheck) {
             }
         };
         data.CheckStrings.push(registerString);
+        totalCheck = totalCheck + amount;
 
         return registerString.Register;
 
@@ -1124,28 +1168,40 @@ function KkmCheck(kkm, typeCheck) {
     /**
      * Шоркат к addRegisterString. Поддерживает цепочку вызовов.
      *
-     * @param {string} Name
-     * @param {number} Quantity
-     * @param {number} Price
-     * @param {number} Amount
-     * @param {number} Tax
-     * @param {number} Department
-     * @param {string} EAN13
+     * @param {string} name
+     * @param {number} quantity
+     * @param {number} price
+     * @param {number} amount
+     * @param {number} tax
+     * @param {number} [department]
+     * @param {string} [ean13]
      *
      * @returns {KkmCheck}
      * @see [addRegisterString]{@link KkmCheck#addRegisterString}
      */
-    this.r = function (Name, Quantity, Price, Amount, Tax, Department, EAN13) {
-        self.addRegisterString(Name, Quantity, Price, Amount, Tax, Department, EAN13);
+    this.r = function (name, quantity, price, amount, tax, department, ean13) {
+        self.addRegisterString(name, quantity, price, amount, tax, department, ean13);
         return self;
     };
 
     /**
      *  Добавляем текстовую строку
+     *  <ul><li>
+     *    <#10#> -  При вставке в текст в середину строки символов "<#10#>" Левая часть строки будет выравнена по левому краю, правая по правому, где 10 - это на сколько меньше станет строка ККТ</li><li>
+     *    <#10#>> - При вставке в текст в середину строки символов "<#10#>>" Левая часть строки будет выравнена по правому краю, правая по правому, где 10 - отступ от правого края</li><li>
+     *    >#10#<текст - сделать строку на 10 символов уже и отцентрировать текст</li><li>
+     *  </li></ul>
      * @param {string} Text текст для вывода с управляющими кодами
-     * @param {number} [Font] Шрифт 1-4
-     * @param {number} [Intensity] Интесивность
+     * @param {number} [Font] Шрифт 1-4 , 0 - по настройкам ККМ
+     * @param {number} [Intensity] Интесивность 1-15 , 0 - по настройкам ККМ
      * @return {{Text, Font, Intensity}}
+     *
+     * @example
+     * var string4edit =  check.addTextString('ЗАГОЛОВОК');
+     * string4edit.Text = '>#0#<' + string4edit.Text; // Добавляем центрирование
+     * string4edit.Font=1; // Самый крупный шрифт
+     * string4edit.Intensity = 15;
+
      */
     this.addTextString = function (Text, Font, Intensity) {
         var textString;
@@ -1274,7 +1330,7 @@ function KkmCheck(kkm, typeCheck) {
      * check.setPayments(100,0).fiscal(); // эквивалент
      */
     this.fiscalCash = function () {
-        self.setPayments(self.totalCheck);
+        self.setPayments(totalCheck);
         return self.fiscal();
     };
     /**
@@ -1287,7 +1343,7 @@ function KkmCheck(kkm, typeCheck) {
      * check.setPayments(0,100).fiscal();
      */
     this.fiscalCard = function () {
-        self.setPayments(0, self.totalCheck);
+        self.setPayments(0, totalCheck);
         return self.fiscal();
     };
 

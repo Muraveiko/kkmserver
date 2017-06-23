@@ -3,13 +3,9 @@
     "allowUnknownTags": true,
     "dictionaries": ["jsdoc"]
   },
-  "source": {
-    "include": ["./src","./README.md"],
-    "includePattern": ".+\\.js$",
-    "excludePattern": "(docs)"
-  },
   "plugins": [],
   "templates": {
+    "sort"                  : false,
     "systemName"            : "KkmServer API",
     "copyright"             : "&copy; 2017 Oleg Muraveyko",
     "includeDate"           : false,

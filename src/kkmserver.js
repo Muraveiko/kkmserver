@@ -47,6 +47,28 @@ function KkmCommand(command, numDevice) {
      * @type {string}
      */
     this.KeySubLicensing = '';
+
+    /**
+     * ИНН ККМ. Если "" то ККМ ищется только по NumDevice, <br />
+     * Если NumDevice = 0 а InnKkm заполнено то ККМ ищется только по InnKkm
+     * @type {string}
+     */
+    this.InnKkm = '';
+    /**
+     * Заводской номер ККМ для поиска. Если "" то ККМ ищется только по NumDevice
+     * @type {string}
+     */
+    this.KktNumber = '';
+    /**
+     * Если За это время команда не выполнилась в статусе вернется результат "NotRun" или "Run" <br />
+     * Проверить результат еще не выполненной команды можно командой "GetRezult" <br />
+     * Если не указано или 0 - то значение по умолчанию 60 сек.<br />
+     * Это поле можно указвать во всех командах
+     * @summary Время (сек) ожидания выполнения команды.
+     * @type {number}
+     */
+    this.Timeout = 30;
+
 }
 
 /**
@@ -197,7 +219,7 @@ function KkmCommandList() {
  * @property  {string} Info.LicenseExpirationDate
  * @property {KkmResponse} Rezult - ответ на запрос о выполнении команды
  */
-function KkmResponse(Command,IdCommand,Status,Error) {
+function KkmResponse(Command, IdCommand, Status, Error) {
     /**
      * Status Статус исполнения
      * <ul><li>Ok = 0,</li><li>Run(Запущено на выполнение) = 1,</li><li>Error = 2,</li>
@@ -219,7 +241,7 @@ function KkmResponse(Command,IdCommand,Status,Error) {
      * Уникальный идентификатор комманды, назначенный вами или присвоенный сервером.
      * @type {string}
      */
-    this.IdCommand = IdCommand|| '';
+    this.IdCommand = IdCommand || '';
 
     /**
      *  Номер устройства выполневшего команду
@@ -238,7 +260,7 @@ function KkmResponse(Command,IdCommand,Status,Error) {
  * @see {@link KkmServer#hookAjaxFail}
  */
 function KkmResponseError(errMessage) {
-    KkmResponse.call(this,'','',2,errMessage);
+    KkmResponse.call(this, '', '', 2, errMessage);
 }
 /**
  * Описание интерфейса для функции обратного вызова
@@ -324,12 +346,12 @@ function KkmServer(user, password, urlServer) {
      * @param [errorHook]  по умолчанию обработчик объявленый через hookAjaxFail
      * @returns {KkmCommand|KkmCommandWithCashier|KkmCommandWithAmount|KkmCommandList|KkmCommandCheck}
      */
-    this.execute = function (command,successHook,errorHook) {
+    this.execute = function (command, successHook, errorHook) {
 
-        if (undefined === successHook){
+        if (undefined === successHook) {
             successHook = funSuccess;
         }
-        if (undefined === errorHook){
+        if (undefined === errorHook) {
             errorHook = funError;
         }
 
@@ -719,45 +741,8 @@ function KkmServer(user, password, urlServer) {
  * @see {@link KkmCheck}
  */
 function KkmCommandCheck(typeCheck) {
-
+    KkmCommand.call(this, 'RegisterCheck');
     this.VerFFD = "1.0";
-    /**
-     * Команда серверу
-     * @type {string}
-     */
-    this.Command = "RegisterCheck";
-    /**
-     * Номер устройства. Если 0, то первое не блокированное на сервере.
-     * null - использовать значение из js-класса KkmServer
-     * @type {number|null}
-     */
-    this.NumDevice = null;
-    /**
-     * ИНН ККМ. Если "" то ККМ ищется только по NumDevice, <br />
-     * Если NumDevice = 0 а InnKkm заполнено то ККМ ищется только по InnKkm
-     * @type {string}
-     */
-    this.InnKkm = '';
-    /**
-     * Заводской номер ККМ для поиска. Если "" то ККМ ищется только по NumDevice
-     * @type {string}
-     */
-    this.KktNumber = '';
-    /**
-     * Если За это время команда не выполнилась в статусе вернется результат "NotRun" или "Run" <br />
-     * Проверить результат еще не выполненной команды можно командой "GetRezult" <br />
-     * Если не указано или 0 - то значение по умолчанию 60 сек.<br />
-     * Это поле можно указвать во всех командах
-     * @summary Время (сек) ожидания выполнения команды.
-     * @type {number}
-     */
-    this.Timeout = 30;
-    /**
-     * Уникальный идентификатор команды. Любая строока из 40 символов - должна быть уникальна для каждой подаваемой команды
-     *  По этому идентификатору можно запросить результат выполнения команды
-     * @type {string}
-     */
-    this.IdCommand = '';
     /**
      *  Это фискальный или не фискальный чек
      * @type {boolean}
@@ -777,8 +762,9 @@ function KkmCommandCheck(typeCheck) {
      */
     this.TypeCheck = typeCheck || 0;
     /**
-     * Аннулировать открытый чек если ранее чек небыл  завершен до конца
+     * Аннулировать открытый чек если ранее чек небыл  завершен до конца (устарело)
      * @type {boolean}
+     * @deprecated
      */
     this.CancelOpenedCheck = true;
     /**
@@ -840,13 +826,8 @@ function KkmCommandCheck(typeCheck) {
      */
     this.KPP = '';
     /**
-     * Установка ключа суб-лицензии по умолчанию: ВНИМАНИЕ: ключ суб-лицензии вы должны генерить у себя на сервере!!!!
-     * @type {string}
-     */
-    this.KeySubLicensing = '';
-    /**
      * Строки чека
-     * @type {Array}
+     * @type {Array.<KkmCheckString>}
      */
     this.CheckStrings = [];
     /**
@@ -919,6 +900,54 @@ function KkmCheckProperty(print, printInHeader, teg, value) {
 
 }
 
+/**
+ * Общая структура для описания строк чека
+ * @constructor
+ */
+function KkmCheckString() {
+    /**
+     * текстовая строка
+     * @type {{Text: string, Font: number, Intensity: number}}
+     */
+    this.PrintText = {
+        Text: '',
+        Font: 0,
+        Intensity: 0
+    };
+    /**
+     * регистрация продажи
+     * @type {{Name: string, Quantity: number, Price: number, Amount: number, Department: number, Tax: number, EAN13: string, EGAIS: {Barcode: string, Ean: string, Volume: number}}}
+     */
+    this.Register = {
+        Name: '',
+        Quantity: 0,
+        Price: 0,
+        Amount: 0,
+        Department: 0,
+        Tax: 0,
+        EAN13: '',
+        EGAIS : {
+            Barcode: "",
+            Ean: "",
+            Volume: 0
+        }
+    };
+    /**
+     * штрихкод
+     * @type {{BarcodeType: string, Barcode: string}}
+     */
+    this.BarCode = {
+        BarcodeType: '',
+        Barcode: ''
+    };
+    /**
+     * Картинка
+     * @type {{Image: string}}
+     */
+    this.PrintImage = {
+        Image: ''
+    };
+}
 
 /**
  * Конструктор Класса Чек
@@ -1073,7 +1102,7 @@ function KkmCheck(kkm, typeCheck) {
      * @see {@link KkmCheck#setTotal}
      */
     this.getTotal = function () {
-        return totalCheck ;
+        return totalCheck;
     };
 
     /**
@@ -1129,6 +1158,60 @@ function KkmCheck(kkm, typeCheck) {
         return newProp;
     };
 
+    /**
+     * Уникальный идентификатор команды
+     * @param {string} idCommand
+     * @returns {KkmCheck}
+     */
+    this.setIdCommand = function (idCommand) {
+        data.IdCommand = idCommand;
+        return self;
+    };
+    /**
+     * Это фискальный или не фискальный чек
+     * @param {boolean} isFiscal
+     * @returns {KkmCheck}
+     */
+    this.setIsFiscalCheck = function (isFiscal) {
+        data.IsFiscalCheck = isFiscal;
+        return self;
+    };
+    /**
+     * Не печатать чек на бумагу
+     * @param {boolean} notPrint
+     * @returns {KkmCheck}
+     */
+    this.setNotPrint = function (notPrint) {
+        data.NotPrint = notPrint;
+        return self;
+    };
+    /**
+     * Время (сек) ожидания выполнения команды.
+     * @param {number} timeout
+     * @returns {KkmCheck}
+     */
+    this.setTimeout = function (timeout) {
+        data.Timeout = timeout;
+        return self;
+    };
+    /**
+     * Заводской номер ККМ для поиска. Если "" то ККМ ищется только по NumDevice
+     * @param {string} kktNumber
+     * @returns {KkmCheck}
+     */
+    this.setKktNumber = function (kktNumber) {
+        data.KktNumber = kktNumber;
+        return self;
+    };
+    /**
+     * Количество копий документа
+     * @param {number} numberCopies
+     * @returns {KkmCheck}
+     */
+    this.setNumberCopies = function (numberCopies) {
+        data.NumberCopies = numberCopies;
+        return self;
+    };
 
     // --------------------------------------------------------------------------------------------
     // Добавление строк к чеку
@@ -1345,6 +1428,16 @@ function KkmCheck(kkm, typeCheck) {
     this.fiscalCard = function () {
         self.setPayments(0, totalCheck);
         return self.fiscal();
+    };
+    /**
+     * Фискализация чека без печати бумажного
+     * <p>требует явного указания типа безналичной оплаты через .setPayments
+     * @returns {KkmCommandCheck}
+     */
+    this.fiscalOnly = function () {
+        data.IsFiscalCheck = true;
+        data.NotPrint = true;
+        return self.kkm.execute(data);
     };
 
 }

@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="KkmCommand.html">KkmCommand</a></li><li><a href="KkmCommandWithCashier.html">KkmCommandWithCashier</a></li><li><a href="KkmCommandWithAmount.html">KkmCommandWithAmount</a></li><li><a href="KkmCommandList.html">KkmCommandList</a></li><li><a href="KkmResponse.html">KkmResponse</a></li><li><a href="KkmResponseError.html">KkmResponseError</a></li><li><a href="KkmServer.html">KkmServer</a></li><li><a href="KkmCommandCheck.html">KkmCommandCheck</a></li><li><a href="KkmCheckProperty.html">KkmCheckProperty</a></li><li><a href="KkmCheck.html">KkmCheck</a></li>
+					<li><a href="KkmCheck.html">KkmCheck</a></li><li><a href="KkmCheckProperty.html">KkmCheckProperty</a></li><li><a href="KkmCheckString.html">KkmCheckString</a></li><li><a href="KkmCommand.html">KkmCommand</a></li><li><a href="KkmCommandCheck.html">KkmCommandCheck</a></li><li><a href="KkmCommandList.html">KkmCommandList</a></li><li><a href="KkmCommandWithAmount.html">KkmCommandWithAmount</a></li><li><a href="KkmCommandWithCashier.html">KkmCommandWithCashier</a></li><li><a href="KkmResponse.html">KkmResponse</a></li><li><a href="KkmResponseError.html">KkmResponseError</a></li><li><a href="KkmServer.html">KkmServer</a></li>
 				</ul>
 			</li>
 			
@@ -544,6 +544,328 @@
         
             
 <hr>
+<dt class="name" id="IdCommand">
+    <h4 id="IdCommand"><span class="type-signature"></span>IdCommand<span class="type-signature"> :string</span></h4>
+
+    
+    <p class="summary">Уникальный идентификатор команды</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Любая строока из 40 символов По этому идентификатору можно запросить результат выполнения команды. Поле не обязательно
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommand.html#IdCommand">KkmCommand#IdCommand</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="InnKkm">
+    <h4 id="InnKkm"><span class="type-signature"></span>InnKkm<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        ИНН ККМ. Если "" то ККМ ищется только по NumDevice, <br />Если NumDevice = 0 а InnKkm заполнено то ККМ ищется только по InnKkm
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommand.html#InnKkm">KkmCommand#InnKkm</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="KeySubLicensing">
+    <h4 id="KeySubLicensing"><span class="type-signature"></span>KeySubLicensing<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Kлюч суб-лицензии
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommand.html#KeySubLicensing">KkmCommand#KeySubLicensing</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="KktNumber">
+    <h4 id="KktNumber"><span class="type-signature"></span>KktNumber<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Заводской номер ККМ для поиска. Если "" то ККМ ищется только по NumDevice
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommand.html#KktNumber">KkmCommand#KktNumber</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
 <dt class="name" id="NumDevice">
     <h4 id="NumDevice"><span class="type-signature"></span>NumDevice<span class="type-signature"> :number|null</span></h4>
 
@@ -627,17 +949,17 @@
         
             
 <hr>
-<dt class="name" id="IdCommand">
-    <h4 id="IdCommand"><span class="type-signature"></span>IdCommand<span class="type-signature"> :string</span></h4>
+<dt class="name" id="Timeout">
+    <h4 id="Timeout"><span class="type-signature"></span>Timeout<span class="type-signature"> :number</span></h4>
 
     
-    <p class="summary">Уникальный идентификатор команды</p>
+    <p class="summary">Время (сек) ожидания выполнения команды.</p>
     
 </dt>
 <dd>
     
     <div class="description">
-        Любая строока из 40 символов По этому идентификатору можно запросить результат выполнения команды. Поле не обязательно
+        Если За это время команда не выполнилась в статусе вернется результат "NotRun" или "Run" <br />Проверить результат еще не выполненной команды можно командой "GetRezult" <br />Если не указано или 0 - то значение по умолчанию 60 сек.<br />Это поле можно указвать во всех командах
     </div>
     
 
@@ -646,7 +968,7 @@
         <ul>
             <li>
                 
-<span class="param-type">string</span>
+<span class="param-type">number</span>
 
 
 
@@ -667,87 +989,7 @@
 	<dd class="inherited-from">
 		<ul class="dummy">
 			<li>
-				<a href="KkmCommand.html#IdCommand">KkmCommand#IdCommand</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="KeySubLicensing">
-    <h4 id="KeySubLicensing"><span class="type-signature"></span>KeySubLicensing<span class="type-signature"> :string</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Kлюч суб-лицензии
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">string</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
-	<dd class="inherited-from">
-		<ul class="dummy">
-			<li>
-				<a href="KkmCommand.html#KeySubLicensing">KkmCommand#KeySubLicensing</a>
+				<a href="KkmCommand.html#Timeout">KkmCommand#Timeout</a>
 			</li>
 		</ul>
 	</dd>

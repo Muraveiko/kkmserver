@@ -180,6 +180,35 @@ function KkmCommandList() {
     this.FN_IsFiscal = null;
 }
 
+/**
+ * Информация об одном устройстве в списке подключенных
+ * @class
+ *
+ * @property  {number} NumDevice
+ * @property  {string} IdDevice
+ * @property  {boolean} OnOff
+ * @property  {boolean} Active
+ * @property  {string} TypeDevice
+ * @property  {string} IdTypeDevice
+ * @property  {string} IP
+ * @property  {string} NameDevice
+ * @property  {string} UnitName
+ * @property {string} KktNumber - Заводской номер кассового аппарата
+ * @property {string} INN - ИНН организации
+ * @property {string} NameOrganization - Наименование организации
+ * @property {number} TaxVariant
+ * @property {string} AddDate
+ * @property {string} OFD_Error
+ * @property {number} OFD_NumErrorDoc
+ * @property {string} OFD_DateErrorDoc
+ * @property {string} FN_DateEnd
+ * @property {boolean} FN_MemOverflowl
+ * @property {boolean} FN_IsFiscal
+ * @property {boolean} PaperOver
+ */
+function KkmUnit(){
+
+}
 
 /**
  *  Ответ API
@@ -230,6 +259,7 @@ function KkmCommandList() {
  * @property  {string} Info.LessType3 - Название 3 типа безналичных расчетов
  * @property  {string} Info.LicenseExpirationDate
  * @property {KkmResponse} Rezult - ответ на запрос о выполнении команды
+ * @property {KkmUnit[]} ListUnit Список подключенных устройств
  */
 function KkmResponse(Command, IdCommand, Status, Error) {
     /**
@@ -531,7 +561,7 @@ function KkmServer(user, password, urlServer) {
     };
 
     /**
-     * Для исполнения команды будет использована ккт с этим регистрационным номером
+     * Для исполнения команды будет использована ккт с этим заводским номером
      * @param {string} kktNumber
      * @returns {KkmServer}
      */

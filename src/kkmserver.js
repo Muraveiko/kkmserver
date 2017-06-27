@@ -24,13 +24,19 @@
 function KkmCommand(command, numDevice) {
     /**
      * Название команды, одно из зарегистрированных слов api KkmServer.ru. <br/>
-     * необходимые реализованы как методы CommandXXX {@link KkmServer}
+     * необходимые реализованы как методы CommandXXX {@link KkmServer}.<br/>
+     * Если Вам потребуется не реализованная команда апи LineLength, то ее можно
+     * объявить явно.
      * @type {string}
+     *
+     * @example
+     * kkm.execute(new KkmCommand('LineLength'));
      */
     this.Command = command;
     /**
      * Номер устройства 0-9 по умолчанию 0 - первое свободное
      * @type {number|null}
+     * @see {@link KkmServer#setNumDevice}
      */
     this.NumDevice = numDevice || null;
     /**
@@ -40,11 +46,13 @@ function KkmCommand(command, numDevice) {
      *
      *  @summary Уникальный идентификатор команды
      *  @type {string}
+     *  @see {@link KkmServer#setIdCommand}
      */
     this.IdCommand = '';
     /**
      * Kлюч суб-лицензии
      * @type {string}
+     * @see {@link KkmServer#setKeySubLicensing}
      */
     this.KeySubLicensing = '';
 
@@ -52,11 +60,15 @@ function KkmCommand(command, numDevice) {
      * ИНН ККМ. Если "" то ККМ ищется только по NumDevice, <br />
      * Если NumDevice = 0 а InnKkm заполнено то ККМ ищется только по InnKkm
      * @type {string}
+     * @see {@link KkmServer#setInnKkm}
+     * @see {@link KkmCheck#setInnKkm}
      */
     this.InnKkm = '';
     /**
      * Заводской номер ККМ для поиска. Если "" то ККМ ищется только по NumDevice
      * @type {string}
+     *
+     * @see {@link KkmServer.setKktNumber}
      */
     this.KktNumber = '';
     /**
@@ -67,7 +79,7 @@ function KkmCommand(command, numDevice) {
      * @summary Время (сек) ожидания выполнения команды.
      * @type {number}
      */
-    this.Timeout = 30;
+    this.Timeout = 60;
 
 }
 
@@ -305,6 +317,7 @@ function KkmServer(user, password, urlServer) {
         numDevice: 0,
         cashierName: '',
         innKkm: '',
+        kktNumber: '',
         keySubLicensing: ''
     };
 
@@ -369,6 +382,9 @@ function KkmServer(user, password, urlServer) {
             }
             if ('' === command.InnKkm) {
                 command.InnKkm = defaults.innKkm;
+            }
+            if ('' === command.KktNumber) {
+                command.KktNumber = defaults.kktNumber;
             }
         } else {
             throw Error('Апи передана неправильная структура');
@@ -504,12 +520,23 @@ function KkmServer(user, password, urlServer) {
     };
 
     /**
-     * Инн кассы чтобы чек не ушел неправильно
+     * Инн кассы по умолчанию (для исполнения команды ищется ккт,
+     * зарегистрированная на этот инн)
      * @param {string} innKkm
      * @returns {KkmServer}
      */
     this.setInnKkm = function (innKkm) {
         defaults.innKkm = innKkm;
+        return self;
+    };
+
+    /**
+     * Для исполнения команды будет использована ккт с этим регистрационным номером
+     * @param {string} kktNumber
+     * @returns {KkmServer}
+     */
+    this.setKktNumber = function(kktNumber) {
+        defaults.kktNumber = kktNumber;
         return self;
     };
 
@@ -1008,7 +1035,7 @@ function KkmCheck(kkm, typeCheck) {
      * @param {string} innKkm  ИНН организации
      * @returns {KkmCheck}
      */
-    this.setInn = function (innKkm) {
+    this.setInnKkm = function (innKkm) {
         data.InnKkm = innKkm;
         return self;
     };

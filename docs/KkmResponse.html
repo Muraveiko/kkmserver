@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="KkmCheck.html">KkmCheck</a></li><li><a href="KkmCheckProperty.html">KkmCheckProperty</a></li><li><a href="KkmCheckString.html">KkmCheckString</a></li><li><a href="KkmCommand.html">KkmCommand</a></li><li><a href="KkmCommandCheck.html">KkmCommandCheck</a></li><li><a href="KkmCommandList.html">KkmCommandList</a></li><li><a href="KkmCommandWithAmount.html">KkmCommandWithAmount</a></li><li><a href="KkmCommandWithCashier.html">KkmCommandWithCashier</a></li><li><a href="KkmResponse.html">KkmResponse</a></li><li><a href="KkmResponseError.html">KkmResponseError</a></li><li><a href="KkmServer.html">KkmServer</a></li>
+					<li><a href="KkmCommand.html">KkmCommand</a></li><li><a href="KkmCommandWithCashier.html">KkmCommandWithCashier</a></li><li><a href="KkmCommandWithAmount.html">KkmCommandWithAmount</a></li><li><a href="KkmCommandList.html">KkmCommandList</a></li><li><a href="KkmUnit.html">KkmUnit</a></li><li><a href="KkmResponse.html">KkmResponse</a></li><li><a href="KkmResponseError.html">KkmResponseError</a></li><li><a href="KkmServer.html">KkmServer</a></li><li><a href="KkmCommandCheck.html">KkmCommandCheck</a></li><li><a href="KkmCheckProperty.html">KkmCheckProperty</a></li><li><a href="KkmAdditionalCheckProperty.html">KkmAdditionalCheckProperty</a></li><li><a href="KkmCheckString.html">KkmCheckString</a></li><li><a href="KkmCheck.html">KkmCheck</a></li>
 				</ul>
 			</li>
 			
@@ -829,7 +829,7 @@
 
             
 
-            <td class="description last">Переполнен фискальный накопитель</td>
+            <td class="description last">Приближается переполнение фискального накопителя</td>
         </tr>
 
     
@@ -877,7 +877,7 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Если не пусто, то сообщение об ошибке обмена с ОФД</td>
         </tr>
 
     
@@ -1195,6 +1195,8 @@
             
                 <td class="attributes">
                 
+                    &lt;optional><br>
+                
 
                 
                 </td>
@@ -1203,6 +1205,38 @@
             
 
             <td class="description last">ответ на запрос о выполнении команды</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>ListUnit</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="KkmUnit.html">KkmUnit</a>></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Список подключенных устройств</td>
         </tr>
 
     
@@ -1282,15 +1316,15 @@
         <dl>
             
 <hr>
-<dt class="name" id="Command">
-    <h4 id="Command"><span class="type-signature"></span>Command<span class="type-signature"> :string</span></h4>
+<dt class="name" id="Status">
+    <h4 id="Status"><span class="type-signature"></span>Status<span class="type-signature"> :number</span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        Команда апи <a href="KkmCommand.html#Command">KkmCommand#Command</a>
+        Status Статус исполнения<ul><li>Ok = 0,</li><li>Run(Запущено на выполнение) = 1,</li><li>Error = 2,</li><li>NotFound(устройство не найдено) = 3,</li><li>NotRun = 4</ul>
     </div>
     
 
@@ -1299,7 +1333,7 @@
         <ul>
             <li>
                 
-<span class="param-type">string</span>
+<span class="param-type">number</span>
 
 
 
@@ -1362,6 +1396,77 @@
     
     <div class="description">
         Пустая строка или текст ошибки
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="Command">
+    <h4 id="Command"><span class="type-signature"></span>Command<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Команда апи <a href="KkmCommand.html#Command">KkmCommand#Command</a>
     </div>
     
 
@@ -1566,15 +1671,15 @@
         
             
 <hr>
-<dt class="name" id="Status">
-    <h4 id="Status"><span class="type-signature"></span>Status<span class="type-signature"> :number</span></h4>
+<dt class="name" id="UnitName">
+    <h4 id="UnitName"><span class="type-signature"></span>UnitName<span class="type-signature"> :string</span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        Status Статус исполнения<ul><li>Ok = 0,</li><li>Run(Запущено на выполнение) = 1,</li><li>Error = 2,</li><li>NotFound(устройство не найдено) = 3,</li><li>NotRun = 4</ul>
+        Название устройства
     </div>
     
 
@@ -1583,7 +1688,7 @@
         <ul>
             <li>
                 
-<span class="param-type">number</span>
+<span class="param-type">string</span>
 
 
 

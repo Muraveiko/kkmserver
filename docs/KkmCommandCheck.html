@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="KkmCheck.html">KkmCheck</a></li><li><a href="KkmCheckProperty.html">KkmCheckProperty</a></li><li><a href="KkmCheckString.html">KkmCheckString</a></li><li><a href="KkmCommand.html">KkmCommand</a></li><li><a href="KkmCommandCheck.html">KkmCommandCheck</a></li><li><a href="KkmCommandList.html">KkmCommandList</a></li><li><a href="KkmCommandWithAmount.html">KkmCommandWithAmount</a></li><li><a href="KkmCommandWithCashier.html">KkmCommandWithCashier</a></li><li><a href="KkmResponse.html">KkmResponse</a></li><li><a href="KkmResponseError.html">KkmResponseError</a></li><li><a href="KkmServer.html">KkmServer</a></li>
+					<li><a href="KkmCommand.html">KkmCommand</a></li><li><a href="KkmCommandWithCashier.html">KkmCommandWithCashier</a></li><li><a href="KkmCommandWithAmount.html">KkmCommandWithAmount</a></li><li><a href="KkmCommandList.html">KkmCommandList</a></li><li><a href="KkmUnit.html">KkmUnit</a></li><li><a href="KkmResponse.html">KkmResponse</a></li><li><a href="KkmResponseError.html">KkmResponseError</a></li><li><a href="KkmServer.html">KkmServer</a></li><li><a href="KkmCommandCheck.html">KkmCommandCheck</a></li><li><a href="KkmCheckProperty.html">KkmCheckProperty</a></li><li><a href="KkmAdditionalCheckProperty.html">KkmAdditionalCheckProperty</a></li><li><a href="KkmCheckString.html">KkmCheckString</a></li><li><a href="KkmCheck.html">KkmCheck</a></li>
 				</ul>
 			</li>
 			
@@ -265,15 +265,15 @@
         <dl>
             
 <hr>
-<dt class="name" id="AdditionalProps">
-    <h4 id="AdditionalProps"><span class="type-signature"></span>AdditionalProps<span class="type-signature"> :Array</span></h4>
+<dt class="name" id="IsFiscalCheck">
+    <h4 id="IsFiscalCheck"><span class="type-signature"></span>IsFiscalCheck<span class="type-signature"> :boolean</span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        Дополнительные произвольные реквизиты (не обязательно) пока только 1 строка
+        Это фискальный или не фискальный чек <br/> При работе через KkmCheck устанавливается автоматически при вызове методов fiscalXxx(), print() в нужное значение
     </div>
     
 
@@ -282,7 +282,7 @@
         <ul>
             <li>
                 
-<span class="param-type">Array</span>
+<span class="param-type">boolean</span>
 
 
 
@@ -316,6 +316,86 @@
 
 	
 
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="TypeCheck">
+    <h4 id="TypeCheck"><span class="type-signature"></span>TypeCheck<span class="type-signature"> :number</span></h4>
+
+    
+    <p class="summary">Тип чека;</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Тип чека :<pre> 0 – продажа;                             10 – покупка; 1 – возврат продажи;                     11 - возврат покупки; Для новых ККМ: 2 – корректировка продажи;               12 - корректировка покупки 3 – корректировка возврата продажи;      13 - корректировка возврата покупки</pre>Значение передается в конструктор класса KkmCheck
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+	<dt class="tag-default method-doc-label method-doc-details-label">Default Value:</dt>
+	<dd class="tag-default">
+		<ul class="dummy">
+			<li>0</li>
+		</ul>
+	</dd>
 	
 
 
@@ -416,15 +496,95 @@
         
             
 <hr>
-<dt class="name" id="Cash">
-    <h4 id="Cash"><span class="type-signature"></span>Cash<span class="type-signature"> :number</span></h4>
+<dt class="name" id="NotPrint">
+    <h4 id="NotPrint"><span class="type-signature"></span>NotPrint<span class="type-signature"> :boolean</span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        Наличная оплата
+        Не печатать чек на бумагу
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#fiscalOnly">KkmCheck#fiscalOnly</a></li>
+			
+			<li><a href="KkmCheck.html#setNotPrint">KkmCheck#setNotPrint</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="NumberCopies">
+    <h4 id="NumberCopies"><span class="type-signature"></span>NumberCopies<span class="type-signature"> :number</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Количество копий документа
     </div>
     
 
@@ -475,6 +635,13 @@
 
 	
 
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#setNumberCopies">KkmCheck#setNumberCopies</a></li>
+			</ul>
+	</dd>
 	
 
 	
@@ -547,360 +714,14 @@
 	
 
 	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="CashLessType1">
-    <h4 id="CashLessType1"><span class="type-signature"></span>CashLessType1<span class="type-signature"> :number</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Безналичная оплата типа 1 (по умолчанию - Оплата картой)
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">number</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="CashLessType2">
-    <h4 id="CashLessType2"><span class="type-signature"></span>CashLessType2<span class="type-signature"> :number</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Безналичная оплата типа 2 (по умолчанию - Оплата кредитом)
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">number</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="CashLessType3">
-    <h4 id="CashLessType3"><span class="type-signature"></span>CashLessType3<span class="type-signature"> :number</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Безналичная оплата типа 3 (по умолчанию - Оплата сертификатом)
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">number</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="CheckProps">
-    <h4 id="CheckProps"><span class="type-signature"></span>CheckProps<span class="type-signature"> :Array.&lt;<a href="KkmCheckProperty.html">KkmCheckProperty</a>></span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Дополниельные реквизиты чека (не обязательно)
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">Array.&lt;<a href="KkmCheckProperty.html">KkmCheckProperty</a>></span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="CheckStrings">
-    <h4 id="CheckStrings"><span class="type-signature"></span>CheckStrings<span class="type-signature"> :Array.&lt;<a href="KkmCheckString.html">KkmCheckString</a>></span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Строки чека
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">Array.&lt;<a href="KkmCheckString.html">KkmCheckString</a>></span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li>KkmCheck#setCashierName</li>
+			
+			<li><a href="KkmServer.html#setCashierName">KkmServer#setCashierName</a></li>
+			</ul>
+	</dd>
 	
 
 	
@@ -973,6 +794,253 @@
 	
 
 	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#setEmail">KkmCheck#setEmail</a></li>
+			
+			<li><a href="KkmCheck.html#setPhone">KkmCheck#setPhone</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="TaxVariant">
+    <h4 id="TaxVariant"><span class="type-signature"></span>TaxVariant<span class="type-signature"> :number</span></h4>
+
+    
+    <p class="summary">Система налогообложения (СНО) применяемая для чека.</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <pre>      Если не указанно - система СНО настроенная в ККМ по умолчанию      0: Общая СНО - ОСН      1: Упрощенная СНО (Доход)      2: Упрощенная СНО(Доход минус Расход)      3: Единый налог на вмененный доход      4: Единый сельскохозяйственный налог      5: Патентная система налогообложения      Комбинация разных СНО не возможна</pre>      Надо указываеть если ККМ настроена на несколько систем СНО
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#setSno">KkmCheck#setSno</a></li>
+			
+			<li><a href="KkmCheck.html#setTaxVariant">KkmCheck#setTaxVariant</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="CheckProps">
+    <h4 id="CheckProps"><span class="type-signature"></span>CheckProps<span class="type-signature"> :Array.&lt;<a href="KkmCheckProperty.html">KkmCheckProperty</a>></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Дополниельные реквизиты чека (не обязательно)
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="KkmCheckProperty.html">KkmCheckProperty</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#addCheckProps">KkmCheck#addCheckProps</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="AdditionalProps">
+    <h4 id="AdditionalProps"><span class="type-signature"></span>AdditionalProps<span class="type-signature"> :Array.&lt;<a href="KkmAdditionalCheckProperty.html">KkmAdditionalCheckProperty</a>></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Дополнительные произвольные реквизиты (не обязательно) пока только 1 строка
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="KkmAdditionalCheckProperty.html">KkmAdditionalCheckProperty</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#addAdditionalProps">KkmCheck#addAdditionalProps</a></li>
+			</ul>
+	</dd>
+	
 
 	
 </dl>
@@ -1043,6 +1111,484 @@
 
 	
 
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="KPP">
+    <h4 id="KPP"><span class="type-signature"></span>KPP<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        КПП организации, нужно только для ЕГАИС
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#setKpp">KkmCheck#setKpp</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="CheckStrings">
+    <h4 id="CheckStrings"><span class="type-signature"></span>CheckStrings<span class="type-signature"> :Array.&lt;<a href="KkmCheckString.html">KkmCheckString</a>></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Строки чека
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="KkmCheckString.html">KkmCheckString</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#addRegisterString">KkmCheck#addRegisterString</a></li>
+			
+			<li><a href="KkmCheck.html#addTextString">KkmCheck#addTextString</a></li>
+			
+			<li><a href="KkmCheck.html#addBarcodeString">KkmCheck#addBarcodeString</a></li>
+			
+			<li><a href="KkmCheck.html#addImageString">KkmCheck#addImageString</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="Cash">
+    <h4 id="Cash"><span class="type-signature"></span>Cash<span class="type-signature"> :number</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Наличная оплата
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#setTotal">KkmCheck#setTotal</a></li>
+			
+			<li><a href="KkmCheck.html#setPayments">KkmCheck#setPayments</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="CashLessType1">
+    <h4 id="CashLessType1"><span class="type-signature"></span>CashLessType1<span class="type-signature"> :number</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Безналичная оплата типа 1 (по умолчанию - Оплата картой)
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#setTotal">KkmCheck#setTotal</a></li>
+			
+			<li><a href="KkmCheck.html#setPayments">KkmCheck#setPayments</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="CashLessType2">
+    <h4 id="CashLessType2"><span class="type-signature"></span>CashLessType2<span class="type-signature"> :number</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Безналичная оплата типа 2 (по умолчанию - Оплата кредитом)
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#setPayments">KkmCheck#setPayments</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="CashLessType3">
+    <h4 id="CashLessType3"><span class="type-signature"></span>CashLessType3<span class="type-signature"> :number</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Безналичная оплата типа 3 (по умолчанию - Оплата сертификатом)
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#setPayments">KkmCheck#setPayments</a></li>
+			</ul>
+	</dd>
 	
 
 	
@@ -1141,6 +1687,96 @@
         
             
 <hr>
+<dt class="name" id="NumDevice">
+    <h4 id="NumDevice"><span class="type-signature"></span>NumDevice<span class="type-signature"> :number|null</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Номер устройства 0-9 по умолчанию 0 - первое свободное
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+|
+
+<span class="param-type">null</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommand.html#NumDevice">KkmCommand#NumDevice</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmServer.html#setNumDevice">KkmServer#setNumDevice</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
 <dt class="name" id="IdCommand">
     <h4 id="IdCommand"><span class="type-signature"></span>IdCommand<span class="type-signature"> :string</span></h4>
 
@@ -1230,164 +1866,6 @@
         
             
 <hr>
-<dt class="name" id="InnKkm">
-    <h4 id="InnKkm"><span class="type-signature"></span>InnKkm<span class="type-signature"> :string</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        ИНН ККМ. Если "" то ККМ ищется только по NumDevice, <br />Если NumDevice = 0 а InnKkm заполнено то ККМ ищется только по InnKkm
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">string</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
-	<dd class="inherited-from">
-		<ul class="dummy">
-			<li>
-				<a href="KkmCommand.html#InnKkm">KkmCommand#InnKkm</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li><a href="KkmServer.html#setInnKkm">KkmServer#setInnKkm</a></li>
-			</ul>
-	</dd>
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="IsFiscalCheck">
-    <h4 id="IsFiscalCheck"><span class="type-signature"></span>IsFiscalCheck<span class="type-signature"> :boolean</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Это фискальный или не фискальный чек
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">boolean</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
 <dt class="name" id="KeySubLicensing">
     <h4 id="KeySubLicensing"><span class="type-signature"></span>KeySubLicensing<span class="type-signature"> :string</span></h4>
 
@@ -1461,6 +1939,95 @@
 	<dd class="tag-see">
 		<ul>
 			<li><a href="KkmServer.html#setKeySubLicensing">KkmServer#setKeySubLicensing</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="InnKkm">
+    <h4 id="InnKkm"><span class="type-signature"></span>InnKkm<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        ИНН ККМ. Если "" то ККМ ищется только по NumDevice, <br />Если NumDevice = 0 а InnKkm заполнено то ККМ ищется только по InnKkm
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommand.html#InnKkm">KkmCommand#InnKkm</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmServer.html#setInnKkm">KkmServer#setInnKkm</a></li>
+			
+			<li><a href="KkmCheck.html#setInnKkm">KkmCheck#setInnKkm</a></li>
 			</ul>
 	</dd>
 	
@@ -1562,382 +2129,6 @@
         
             
 <hr>
-<dt class="name" id="KPP">
-    <h4 id="KPP"><span class="type-signature"></span>KPP<span class="type-signature"> :string</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        КПП организации, нужно только для ЕГАИС
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">string</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="NotPrint">
-    <h4 id="NotPrint"><span class="type-signature"></span>NotPrint<span class="type-signature"> :boolean</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Не печатать чек на бумагу
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">boolean</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="NumberCopies">
-    <h4 id="NumberCopies"><span class="type-signature"></span>NumberCopies<span class="type-signature"> :number</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Количество копий документа
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">number</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="NumDevice">
-    <h4 id="NumDevice"><span class="type-signature"></span>NumDevice<span class="type-signature"> :number|null</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Номер устройства 0-9 по умолчанию 0 - первое свободное
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">number</span>
-|
-
-<span class="param-type">null</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
-	<dd class="inherited-from">
-		<ul class="dummy">
-			<li>
-				<a href="KkmCommand.html#NumDevice">KkmCommand#NumDevice</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li><a href="KkmServer.html#setNumDevice">KkmServer#setNumDevice</a></li>
-			</ul>
-	</dd>
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="TaxVariant">
-    <h4 id="TaxVariant"><span class="type-signature"></span>TaxVariant<span class="type-signature"> :number</span></h4>
-
-    
-    <p class="summary">Система налогообложения (СНО) применяемая для чека.</p>
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <pre>      Если не указанно - система СНО настроенная в ККМ по умолчанию      0: Общая СНО - ОСН      1: Упрощенная СНО (Доход)      2: Упрощенная СНО(Доход минус Расход)      3: Единый налог на вмененный доход      4: Единый сельскохозяйственный налог      5: Патентная система налогообложения      Комбинация разных СНО не возможна</pre>      Надо указываеть если ККМ настроена на несколько систем СНО
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">number</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
 <dt class="name" id="Timeout">
     <h4 id="Timeout"><span class="type-signature"></span>Timeout<span class="type-signature"> :number</span></h4>
 
@@ -1982,79 +2173,6 @@
 			</li>
 		</ul>
 	</dd>
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="TypeCheck">
-    <h4 id="TypeCheck"><span class="type-signature"></span>TypeCheck<span class="type-signature"> :number</span></h4>
-
-    
-    <p class="summary">Тип чека;</p>
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Тип чека :<pre> 0 – продажа;                             10 – покупка; 1 – возврат продажи;                     11 - возврат покупки; Для новых ККМ: 2 – корректировка продажи;               12 - корректировка покупки 3 – корректировка возврата продажи;      13 - корректировка возврата покупки</pre>
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">number</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
 	
 
     

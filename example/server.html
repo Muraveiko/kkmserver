@@ -32,13 +32,39 @@
     <div class="col-md-12">
         <div id="main">
             <h1>Взаимодействие с сервером</h1>
-
-
             <div class="row">
                 <div class="col-md-6">
-                    <p>
-                        <button onclick="Kkm.doOpenShift()" >Открытие смены</button> <i>Kkm.doOpenShift()</i>
-                    </p>
+                    <p>Получение списка подключенных устройств</p>
+                    <pre>
+// навесить персональный обработчик можно через KkmServer.execute()
+  Kkm.execute(Kkm.CommandList(),ExecuteGetList);</pre>
+                    <table id="unitList" border="1" width=100%">
+                    </table>
+                    <br /><br />
+<p>Указываем @param {KkmResponse} Rezult, чтобы подключилось автозавершение кода.</p>
+<pre>
+     /**
+     * Получаем информацию о подключенных устройствах
+     * @param {KkmResponse} Rezult
+     */
+    function ExecuteGetList(Rezult){
+        Rezult.ListUnit.forEach(function (unit) {
+            var tr = document.createElement('tr');
+            var td1 = document.createElement('td');
+            td1.innerText = unit.NameOrganization;
+            tr.appendChild(td1);
+            var td2 = document.createElement('td');
+            td2.innerText = unit.INN;
+            tr.appendChild(td2);
+            var td3 = document.createElement('td');
+            var btn1 = document.createElement('button');
+            btn1.textContent = 'Инфо '+unit.NumDevice;
+            btn1.onclick = function(){Kkm.doGetDataKKT(unit.NumDevice);};
+            td3.appendChild(btn1);
+            tr.appendChild(td3);
+            document.getElementById('unitList').appendChild(tr);
+        });
+    }</pre>
                 </div>
                 <div class="col offset-md-1 col-md-5">
                     <h4>Статус:</h4>
@@ -56,9 +82,9 @@
 
             </div>
 
-            <p><a href="printslip.html">печать произвольного документа</a></p>
         </div>
     </div>
+
 </div>
 <footer>
 
@@ -109,11 +135,23 @@
     /**
      * Получаем информацию о подключенных устройствах
      * @param {KkmResponse} Rezult
-     * @constructor
      */
     function ExecuteGetList(Rezult){
         Rezult.ListUnit.forEach(function (unit) {
-            alert(unit.NameOrganization);
+            var tr = document.createElement('tr');
+            var td1 = document.createElement('td');
+            td1.innerText = unit.NameOrganization;
+            tr.appendChild(td1);
+            var td2 = document.createElement('td');
+            td2.innerText = unit.INN;
+            tr.appendChild(td2);
+            var td3 = document.createElement('td');
+            var btn1 = document.createElement('button');
+            btn1.textContent = 'Инфо '+unit.NumDevice;
+            btn1.onclick = function(){Kkm.doGetDataKKT(unit.NumDevice);};
+            td3.appendChild(btn1);
+            tr.appendChild(td3);
+            document.getElementById('unitList').appendChild(tr);
         });
     }
 

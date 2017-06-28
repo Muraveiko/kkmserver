@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>KkmServer API Class: KkmCheckString</title>
+	<title>KkmServer API Class: KkmUnit</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -65,13 +65,13 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: KkmCheckString</h1>
+	<h1 class="page-title">Class: KkmUnit</h1>
 <section>
 
 <header>
     
         <h2>
-        KkmCheckString
+        KkmUnit
         </h2>
         
     
@@ -84,7 +84,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="KkmCheckString"><span class="type-signature"></span>new KkmCheckString()</h4>
+    <h4 class="name" id="KkmUnit"><span class="type-signature"></span>new KkmUnit()</h4>
     
     
 </dt>
@@ -92,7 +92,7 @@
 
     
     <div class="description">
-        Общая структура для описания строк чека
+        Информация об одном устройстве в списке подключенных
     </div>
     
 
@@ -101,108 +101,6 @@
     
 
     
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Members</h3>
-
-        <dl>
-            
-<hr>
-<dt class="name" id="PrintText">
-    <h4 id="PrintText"><span class="type-signature"></span>PrintText<span class="type-signature"> :null|Object</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        текстовая строка
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">null</span>
-|
-
-<span class="param-type">Object</span>
-
-
-
-            </li>
-        </ul>
     
 
     
@@ -235,7 +133,103 @@
 
         <tr>
             
-                <td class="name"><code>Text</code></td>
+                <td class="name"><code>NumDevice</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Номер [1-9] устройства на сервере</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>IdDevice</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Уникальный ид, присвоенный сервером</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>OnOff</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Включено</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>Active</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Активно</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>TypeDevice</code></td>
             
 
             <td class="type">
@@ -259,13 +253,13 @@
 
         <tr>
             
-                <td class="name"><code>Font</code></td>
+                <td class="name"><code>IdTypeDevice</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">string</span>
 
 
 
@@ -283,7 +277,151 @@
 
         <tr>
             
-                <td class="name"><code>Intensity</code></td>
+                <td class="name"><code>IP</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Если подключено по сети</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>NameDevice</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>UnitName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>KktNumber</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Заводской номер кассового аппарата</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>INN</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">ИНН организации</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>NameOrganization</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Наименование организации</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>TaxVariant</code></td>
             
 
             <td class="type">
@@ -300,7 +438,199 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">При нескольких СНО через запятую, например: "0,3,5"</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>AddDate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Когда добавлено на сервере</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>OFD_Error</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Если не пусто, то сообщение об ошибке обмена с ОФД</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>OFD_NumErrorDoc</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Количество не переданных документов в ОФД</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>OFD_DateErrorDoc</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Дата первого не переданного документа в ОФД</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>FN_DateEnd</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Когда нужно менять фискальный накопитель</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>FN_MemOverflowl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Приближается переполнение фискального накопителя</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>FN_IsFiscal</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Кассовый принтер или фискальный аппарат</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>PaperOver</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Закончилась бумага</td>
         </tr>
 
     
@@ -344,7 +674,9 @@
 	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
 	<dd class="tag-see">
 		<ul>
-			<li><a href="KkmCheck.html#addTextString">KkmCheck#addTextString</a></li>
+			<li><a href="KkmServer.html#CommandList">KkmServer#CommandList</a></li>
+			
+			<li><a href="KkmServer.html#doGetList">KkmServer#doGetList</a></li>
 			</ul>
 	</dd>
 	
@@ -354,269 +686,24 @@
 
 
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 </dd>
 
-        
-            
-<hr>
-<dt class="name" id="Register">
-    <h4 id="Register"><span class="type-signature"></span>Register<span class="type-signature"> :null|Object</span></h4>
-
     
-</dt>
-<dd>
-    
-    <div class="description">
-        регистрация продажи
     </div>
-    
 
     
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">null</span>
-|
-
-<span class="param-type">Object</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    <dl>
-
-<table class="props table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>Name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>Quantity</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>Price</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>Amount</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>Department</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>Tax</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>EAN13</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>EGAIS</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-</dl>
-
-    
-
-	
-
-	
-
-	
 
     
 
@@ -626,331 +713,6 @@
 
     
 
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li><a href="KkmCheck.html#addRegisterString">KkmCheck#addRegisterString</a></li>
-			</ul>
-	</dd>
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="BarCode">
-    <h4 id="BarCode"><span class="type-signature"></span>BarCode<span class="type-signature"> :null|Object</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        штрихкод
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">null</span>
-|
-
-<span class="param-type">Object</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    <dl>
-
-<table class="props table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>BarcodeType</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>Barcode</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-</dl>
-
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li><a href="KkmCheck.html#addBarcodeString">KkmCheck#addBarcodeString</a></li>
-			</ul>
-	</dd>
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="PrintImage">
-    <h4 id="PrintImage"><span class="type-signature"></span>PrintImage<span class="type-signature"> :null|Object</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Картинка
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">null</span>
-|
-
-<span class="param-type">Object</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    <dl>
-
-<table class="props table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>Image</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-</dl>
-
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li><a href="KkmCheck.html#addImageString">KkmCheck#addImageString</a></li>
-			</ul>
-	</dd>
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        </dl>
     
 
     

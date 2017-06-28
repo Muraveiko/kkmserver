@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="KkmCheck.html">KkmCheck</a></li><li><a href="KkmCheckProperty.html">KkmCheckProperty</a></li><li><a href="KkmCheckString.html">KkmCheckString</a></li><li><a href="KkmCommand.html">KkmCommand</a></li><li><a href="KkmCommandCheck.html">KkmCommandCheck</a></li><li><a href="KkmCommandList.html">KkmCommandList</a></li><li><a href="KkmCommandWithAmount.html">KkmCommandWithAmount</a></li><li><a href="KkmCommandWithCashier.html">KkmCommandWithCashier</a></li><li><a href="KkmResponse.html">KkmResponse</a></li><li><a href="KkmResponseError.html">KkmResponseError</a></li><li><a href="KkmServer.html">KkmServer</a></li>
+					<li><a href="KkmCommand.html">KkmCommand</a></li><li><a href="KkmCommandWithCashier.html">KkmCommandWithCashier</a></li><li><a href="KkmCommandWithAmount.html">KkmCommandWithAmount</a></li><li><a href="KkmCommandList.html">KkmCommandList</a></li><li><a href="KkmUnit.html">KkmUnit</a></li><li><a href="KkmResponse.html">KkmResponse</a></li><li><a href="KkmResponseError.html">KkmResponseError</a></li><li><a href="KkmServer.html">KkmServer</a></li><li><a href="KkmCommandCheck.html">KkmCommandCheck</a></li><li><a href="KkmCheckProperty.html">KkmCheckProperty</a></li><li><a href="KkmAdditionalCheckProperty.html">KkmAdditionalCheckProperty</a></li><li><a href="KkmCheckString.html">KkmCheckString</a></li><li><a href="KkmCheck.html">KkmCheck</a></li>
 				</ul>
 			</li>
 			
@@ -188,6 +188,82 @@
         <dl>
             
 <hr>
+<dt class="name" id="InnKkm">
+    <h4 id="InnKkm"><span class="type-signature"></span>InnKkm<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Отбор по ИНН. Строка. Если "" или не указано то первое не блокированное на сервере
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="KkmCommand.html#InnKkm">KkmCommand#InnKkm</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
 <dt class="name" id="Active">
     <h4 id="Active"><span class="type-signature"></span>Active<span class="type-signature"> :boolean|null</span></h4>
 
@@ -268,15 +344,15 @@
         
             
 <hr>
-<dt class="name" id="Command">
-    <h4 id="Command"><span class="type-signature"></span>Command<span class="type-signature"> :string</span></h4>
+<dt class="name" id="OnOff">
+    <h4 id="OnOff"><span class="type-signature"></span>OnOff<span class="type-signature"> :boolean|null</span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        Название команды, одно из зарегистрированных слов api KkmServer.ru. <br/>необходимые реализованы как методы CommandXXX <a href="KkmServer.html">KkmServer</a>.<br/>Если Вам потребуется не реализованная команда апи LineLength, то ее можнообъявить явно.
+        Отбор выключенны-включенных
     </div>
     
 
@@ -285,7 +361,10 @@
         <ul>
             <li>
                 
-<span class="param-type">string</span>
+<span class="param-type">boolean</span>
+|
+
+<span class="param-type">null</span>
 
 
 
@@ -301,15 +380,6 @@
 
 	
 
-	
-	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
-	<dd class="inherited-from">
-		<ul class="dummy">
-			<li>
-				<a href="KkmCommand.html#Command">KkmCommand#Command</a>
-			</li>
-		</ul>
-	</dd>
 	
 
     
@@ -345,7 +415,7 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">kkm.execute(new KkmCommand(&#x27;LineLength&#x27;));</pre>
+    <pre class="sunlight-highlight-javascript">command = new KkmCommandList();command.Active = true;</pre>
 
 
     
@@ -354,15 +424,89 @@
         
             
 <hr>
-<dt class="name" id="FN_DateEnd">
-    <h4 id="FN_DateEnd"><span class="type-signature"></span>FN_DateEnd<span class="type-signature"> :string</span></h4>
+<dt class="name" id="OFD_Error">
+    <h4 id="OFD_Error"><span class="type-signature"></span>OFD_Error<span class="type-signature"> :boolean|null</span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        Все у которых дата окончания работы ФН меньше указанной. Дата-время.
+        Отбор наличию ошибок ОФВ. Булево. Если null или не указано то с ошибками и без
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+|
+
+<span class="param-type">null</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="OFD_DateErrorDoc">
+    <h4 id="OFD_DateErrorDoc"><span class="type-signature"></span>OFD_DateErrorDoc<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Все у которых дата не переданного док. в ОФД меньше указанной. Дата-время.
     </div>
     
 
@@ -420,20 +564,26 @@
 
 
     
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">command = new KkmCommandList();command.OFD_DateErrorDoc = &#x27;2100-01-01T00:00:00&#x27;;</pre>
+
+
+    
 </dd>
 
         
             
 <hr>
-<dt class="name" id="FN_IsFiscal">
-    <h4 id="FN_IsFiscal"><span class="type-signature"></span>FN_IsFiscal<span class="type-signature"> :boolean|null</span></h4>
+<dt class="name" id="FN_DateEnd">
+    <h4 id="FN_DateEnd"><span class="type-signature"></span>FN_DateEnd<span class="type-signature"> :string</span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        Фискализированные или нет ФН; Булево. Если null или не указано то все
+        Все у которых дата окончания работы ФН меньше указанной. Дата-время.
     </div>
     
 
@@ -442,10 +592,7 @@
         <ul>
             <li>
                 
-<span class="param-type">boolean</span>
-|
-
-<span class="param-type">null</span>
+<span class="param-type">string</span>
 
 
 
@@ -573,6 +720,256 @@
         
             
 <hr>
+<dt class="name" id="FN_IsFiscal">
+    <h4 id="FN_IsFiscal"><span class="type-signature"></span>FN_IsFiscal<span class="type-signature"> :boolean|null</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Фискализированные или нет ФН; Булево. Если null или не указано то все
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+|
+
+<span class="param-type">null</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="Command">
+    <h4 id="Command"><span class="type-signature"></span>Command<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Название команды, одно из зарегистрированных слов api KkmServer.ru. <br/>необходимые реализованы как методы CommandXXX <a href="KkmServer.html">KkmServer</a>.<br/>Если Вам потребуется не реализованная команда апи LineLength, то ее можнообъявить явно.
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommand.html#Command">KkmCommand#Command</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">kkm.execute(new KkmCommand(&#x27;LineLength&#x27;));</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="NumDevice">
+    <h4 id="NumDevice"><span class="type-signature"></span>NumDevice<span class="type-signature"> :number|null</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Номер устройства 0-9 по умолчанию 0 - первое свободное
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+|
+
+<span class="param-type">null</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommand.html#NumDevice">KkmCommand#NumDevice</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmServer.html#setNumDevice">KkmServer#setNumDevice</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
 <dt class="name" id="IdCommand">
     <h4 id="IdCommand"><span class="type-signature"></span>IdCommand<span class="type-signature"> :string</span></h4>
 
@@ -650,82 +1047,6 @@
 			<li>KkmServer#setIdCommand</li>
 			</ul>
 	</dd>
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="InnKkm">
-    <h4 id="InnKkm"><span class="type-signature"></span>InnKkm<span class="type-signature"> :string</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Отбор по ИНН. Строка. Если "" или не указано то первое не блокированное на сервере
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">string</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="KkmCommand.html#InnKkm">KkmCommand#InnKkm</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
 	
 
 	
@@ -904,327 +1225,6 @@
 
 	
 </dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="NumDevice">
-    <h4 id="NumDevice"><span class="type-signature"></span>NumDevice<span class="type-signature"> :number|null</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Номер устройства 0-9 по умолчанию 0 - первое свободное
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">number</span>
-|
-
-<span class="param-type">null</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
-	<dd class="inherited-from">
-		<ul class="dummy">
-			<li>
-				<a href="KkmCommand.html#NumDevice">KkmCommand#NumDevice</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li><a href="KkmServer.html#setNumDevice">KkmServer#setNumDevice</a></li>
-			</ul>
-	</dd>
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="OFD_DateErrorDoc">
-    <h4 id="OFD_DateErrorDoc"><span class="type-signature"></span>OFD_DateErrorDoc<span class="type-signature"> :string</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Все у которых дата не переданного док. в ОФД меньше указанной. Дата-время.
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">string</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-        <h5>Example</h5>
-        
-    <pre class="sunlight-highlight-javascript">command = new KkmCommandList();command.OFD_DateErrorDoc = &#x27;2100-01-01T00:00:00&#x27;;</pre>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="OFD_Error">
-    <h4 id="OFD_Error"><span class="type-signature"></span>OFD_Error<span class="type-signature"> :boolean|null</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Отбор наличию ошибок ОФВ. Булево. Если null или не указано то с ошибками и без
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">boolean</span>
-|
-
-<span class="param-type">null</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="OnOff">
-    <h4 id="OnOff"><span class="type-signature"></span>OnOff<span class="type-signature"> :boolean|null</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Отбор выключенны-включенных
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">boolean</span>
-|
-
-<span class="param-type">null</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-        <h5>Example</h5>
-        
-    <pre class="sunlight-highlight-javascript">command = new KkmCommandList();command.Active = true;</pre>
 
 
     

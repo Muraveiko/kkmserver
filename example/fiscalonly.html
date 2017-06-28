@@ -51,13 +51,16 @@
 
 
             </pre>
+                    <h2>Важно</h2>
+                    <pre>check.setIdCommand('id-based-on-order-number');</pre>
+                    Указав свой ид команды, можно избежать повторной фискализации чека в пределах перезапуска KkmServer'а.
                     <h3 id="itogo"></h3>
                     <p>
                         <button onclick="check.fiscalOnly()">Электронно
                         </button>
                         <b>check.fiscalOnly()</b>
                     </p>
-                    <p><a href="checksetall.html">Все методы для формирования команды registerCheck</a></p>
+                    <p><a href="server.html">Взаимодействие с сервером</a></p>
 
                 </div>
                 <div class="col offset-md-1 col-md-4">
@@ -108,6 +111,8 @@
             document.getElementById('Status').textContent = "Ошибка";
         } else if (Rezult.Status === 3) {
             document.getElementById('Status').textContent = "Данные не найдены!";
+        }else{
+            document.getElementById('Status').textContent = "Не известный код "+Rezult.Status;
         }
 
 
@@ -131,7 +136,8 @@
     // примеры
 
     var check = new KkmCheck(Kkm, 0);
-    //check.setInnKkm('7701237658'); // Для конкретного чека
+    //check.setInnKkm('7701237658');
+    check.setIdCommand('id-based-on-order-number');
     // используем шорткат
     check.r('Мыло', 1, 58.50, 58.50).r('Шило', 2, 25, 50, 18, 0, "1234567890123");
     check.setPayments(0,108.50);

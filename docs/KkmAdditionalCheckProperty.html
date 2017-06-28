@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>KkmServer API Class: KkmResponseError</title>
+	<title>KkmServer API Class: KkmAdditionalCheckProperty</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -65,13 +65,13 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: KkmResponseError</h1>
+	<h1 class="page-title">Class: KkmAdditionalCheckProperty</h1>
 <section>
 
 <header>
     
         <h2>
-        KkmResponseError
+        KkmAdditionalCheckProperty
         </h2>
         
     
@@ -84,7 +84,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="KkmResponseError"><span class="type-signature"></span>new KkmResponseError(errMessage)</h4>
+    <h4 class="name" id="KkmAdditionalCheckProperty"><span class="type-signature"></span>new KkmAdditionalCheckProperty(print, printInHeader, name, value)</h4>
     
     
 </dt>
@@ -92,7 +92,7 @@
 
     
     <div class="description">
-        Эмуляция сообщение об ошибке от API <br />используется во встроенном обработчике ошибки ajax запроса
+        Дополнительное свойство чека
     </div>
     
 
@@ -127,10 +127,16 @@
 
         <tr>
             
-                <td class="name"><code>errMessage</code></td>
+                <td class="name"><code>print</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
             
             </td>
 
@@ -138,7 +144,79 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last">печатать</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>printInHeader</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">печатать в шапке</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">название</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">значение тега</td>
         </tr>
 
     
@@ -185,7 +263,7 @@
 	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
 	<dd class="tag-see">
 		<ul>
-			<li><a href="KkmServer.html#hookAjaxFail">KkmServer#hookAjaxFail</a></li>
+			<li><a href="KkmCheck.html#addAdditionalProps">KkmCheck#addAdditionalProps</a></li>
 			</ul>
 	</dd>
 	
@@ -213,17 +291,6 @@
     </div>
 
     
-        <h3 class="subsection-title">Extends</h3>
-
-        
-
-
-    <ul>
-        <li><a href="KkmResponse.html">KkmResponse</a></li>
-    </ul>
-
-
-    
 
     
 
@@ -239,15 +306,15 @@
         <dl>
             
 <hr>
-<dt class="name" id="Status">
-    <h4 id="Status"><span class="type-signature"></span>Status<span class="type-signature"> :number</span></h4>
+<dt class="name" id="Print">
+    <h4 id="Print"><span class="type-signature"></span>Print<span class="type-signature"> :boolean</span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        Status Статус исполнения<ul><li>Ok = 0,</li><li>Run(Запущено на выполнение) = 1,</li><li>Error = 2,</li><li>NotFound(устройство не найдено) = 3,</li><li>NotRun = 4</ul>
+        печатать
     </div>
     
 
@@ -256,7 +323,7 @@
         <ul>
             <li>
                 
-<span class="param-type">number</span>
+<span class="param-type">boolean</span>
 
 
 
@@ -272,15 +339,6 @@
 
 	
 
-	
-	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
-	<dd class="inherited-from">
-		<ul class="dummy">
-			<li>
-				<a href="KkmResponse.html#Status">KkmResponse#Status</a>
-			</li>
-		</ul>
-	</dd>
 	
 
     
@@ -319,15 +377,86 @@
         
             
 <hr>
-<dt class="name" id="Error">
-    <h4 id="Error"><span class="type-signature"></span>Error<span class="type-signature"> :string</span></h4>
+<dt class="name" id="PrintInHeader">
+    <h4 id="PrintInHeader"><span class="type-signature"></span>PrintInHeader<span class="type-signature"> :boolean</span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        Пустая строка или текст ошибки
+        печатать в шапке
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="NameProp">
+    <h4 id="NameProp"><span class="type-signature"></span>NameProp<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Название
     </div>
     
 
@@ -353,15 +482,6 @@
 	
 
 	
-	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
-	<dd class="inherited-from">
-		<ul class="dummy">
-			<li>
-				<a href="KkmResponse.html#Error">KkmResponse#Error</a>
-			</li>
-		</ul>
-	</dd>
-	
 
     
 
@@ -399,15 +519,15 @@
         
             
 <hr>
-<dt class="name" id="Command">
-    <h4 id="Command"><span class="type-signature"></span>Command<span class="type-signature"> :string</span></h4>
+<dt class="name" id="Prop">
+    <h4 id="Prop"><span class="type-signature"></span>Prop<span class="type-signature"> :string</span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        Команда апи <a href="KkmCommand.html#Command">KkmCommand#Command</a>
+        Значение тега
     </div>
     
 
@@ -432,255 +552,6 @@
 
 	
 
-	
-	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
-	<dd class="inherited-from">
-		<ul class="dummy">
-			<li>
-				<a href="KkmResponse.html#Command">KkmResponse#Command</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="IdCommand">
-    <h4 id="IdCommand"><span class="type-signature"></span>IdCommand<span class="type-signature"> :string</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Уникальный идентификатор комманды, назначенный вами или присвоенный сервером.
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">string</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
-	<dd class="inherited-from">
-		<ul class="dummy">
-			<li>
-				<a href="KkmResponse.html#IdCommand">KkmResponse#IdCommand</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="NumDevice">
-    <h4 id="NumDevice"><span class="type-signature"></span>NumDevice<span class="type-signature"> :number</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Номер устройства выполневшего команду
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">number</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
-	<dd class="inherited-from">
-		<ul class="dummy">
-			<li>
-				<a href="KkmResponse.html#NumDevice">KkmResponse#NumDevice</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="UnitName">
-    <h4 id="UnitName"><span class="type-signature"></span>UnitName<span class="type-signature"> :string</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Название устройства
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">string</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
-	<dd class="inherited-from">
-		<ul class="dummy">
-			<li>
-				<a href="KkmResponse.html#UnitName">KkmResponse#UnitName</a>
-			</li>
-		</ul>
-	</dd>
 	
 
     

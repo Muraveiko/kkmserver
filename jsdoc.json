@@ -7,7 +7,7 @@
   "templates": {
     "sort"                  : false,
     "systemName"            : "KkmServer API",
-    "copyright"             : "&copy; 2017 Oleg Muraveyko",
+    "copyright"             : "&copy; 2017 Oleg Muraveyko <a href='//jskkmserver.ru'>jskkmserver.ru</a>",
     "includeDate"           : false,
     "navType"               : "vertical",
     "theme"                 : "cerulean",

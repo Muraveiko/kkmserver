@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="KkmCommand.html">KkmCommand</a></li><li><a href="KkmCommandWithCashier.html">KkmCommandWithCashier</a></li><li><a href="KkmCommandWithAmount.html">KkmCommandWithAmount</a></li><li><a href="KkmCommandList.html">KkmCommandList</a></li><li><a href="KkmUnit.html">KkmUnit</a></li><li><a href="KkmResponse.html">KkmResponse</a></li><li><a href="KkmResponseError.html">KkmResponseError</a></li><li><a href="KkmServer.html">KkmServer</a></li><li><a href="KkmCommandCheck.html">KkmCommandCheck</a></li><li><a href="KkmCheckProperty.html">KkmCheckProperty</a></li><li><a href="KkmAdditionalCheckProperty.html">KkmAdditionalCheckProperty</a></li><li><a href="KkmCheckString.html">KkmCheckString</a></li><li><a href="KkmCheck.html">KkmCheck</a></li>
+					<li><a href="KkmAdditionalCheckProperty.html">KkmAdditionalCheckProperty</a></li><li><a href="KkmCheck.html">KkmCheck</a></li><li><a href="KkmCheckProperty.html">KkmCheckProperty</a></li><li><a href="KkmCheckString.html">KkmCheckString</a></li><li><a href="KkmCommand.html">KkmCommand</a></li><li><a href="KkmCommandCheck.html">KkmCommandCheck</a></li><li><a href="KkmCommandList.html">KkmCommandList</a></li><li><a href="KkmCommandWithAmount.html">KkmCommandWithAmount</a></li><li><a href="KkmCommandWithCashier.html">KkmCommandWithCashier</a></li><li><a href="KkmResponse.html">KkmResponse</a></li><li><a href="KkmResponseError.html">KkmResponseError</a></li><li><a href="KkmServer.html">KkmServer</a></li><li><a href="KkmUnit.html">KkmUnit</a></li>
 				</ul>
 			</li>
 			
@@ -245,7 +245,7 @@
 
 
     <ul>
-        <li><a href="KkmCommand.html">KkmCommand</a></li>
+        <li><a href="KkmCommandWithCashier.html">KkmCommandWithCashier</a></li>
     </ul>
 
 
@@ -263,6 +263,1152 @@
         <h3 class="subsection-title">Members</h3>
 
         <dl>
+            
+<hr>
+<dt class="name" id="AdditionalProps">
+    <h4 id="AdditionalProps"><span class="type-signature"></span>AdditionalProps<span class="type-signature"> :Array.&lt;<a href="KkmAdditionalCheckProperty.html">KkmAdditionalCheckProperty</a>></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Дополнительные произвольные реквизиты (не обязательно) пока только 1 строка
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="KkmAdditionalCheckProperty.html">KkmAdditionalCheckProperty</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCommandCheck.html#addAdditionalProps">KkmCommandCheck#addAdditionalProps</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="CancelOpenedCheck">
+    <h4 id="CancelOpenedCheck"><span class="type-signature"></span>CancelOpenedCheck<span class="type-signature"> :boolean</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Аннулировать открытый чек если ранее чек небыл  завершен до конца (устарело)
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+	<dt class="important tag-deprecated method-doc-label method-doc-details-label">Deprecated:</dt>
+	
+    <dd class="yes-def tag-deprecated">
+        <ul class="dummy">
+            <li>Yes</li>
+        </ul>
+    </dd>
+    
+    
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="Cash">
+    <h4 id="Cash"><span class="type-signature"></span>Cash<span class="type-signature"> :number</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Наличная оплата
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#setTotal">KkmCheck#setTotal</a></li>
+			
+			<li><a href="KkmCheck.html#setPayments">KkmCheck#setPayments</a></li>
+			
+			<li><a href="KkmCommandCheck.html#setCash">KkmCommandCheck#setCash</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="CashierName">
+    <h4 id="CashierName"><span class="type-signature"></span>CashierName<span class="type-signature"> :string|null</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        ФИО Кассира
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">null</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommandWithCashier.html#CashierName">KkmCommandWithCashier#CashierName</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="CashLessType1">
+    <h4 id="CashLessType1"><span class="type-signature"></span>CashLessType1<span class="type-signature"> :number</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Безналичная оплата типа 1 (по умолчанию - Оплата картой)
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#setTotal">KkmCheck#setTotal</a></li>
+			
+			<li><a href="KkmCheck.html#setPayments">KkmCheck#setPayments</a></li>
+			
+			<li><a href="KkmCommandCheck.html#setCashLessType1">KkmCommandCheck#setCashLessType1</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="CashLessType2">
+    <h4 id="CashLessType2"><span class="type-signature"></span>CashLessType2<span class="type-signature"> :number</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Безналичная оплата типа 2 (по умолчанию - Оплата кредитом)
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#setPayments">KkmCheck#setPayments</a></li>
+			
+			<li><a href="KkmCommandCheck.html#setCashLessType2">KkmCommandCheck#setCashLessType2</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="CashLessType3">
+    <h4 id="CashLessType3"><span class="type-signature"></span>CashLessType3<span class="type-signature"> :number</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Безналичная оплата типа 3 (по умолчанию - Оплата сертификатом)
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#setPayments">KkmCheck#setPayments</a></li>
+			
+			<li><a href="KkmCommandCheck.html#setCashLessType3">KkmCommandCheck#setCashLessType3</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="CheckProps">
+    <h4 id="CheckProps"><span class="type-signature"></span>CheckProps<span class="type-signature"> :Array.&lt;<a href="KkmCheckProperty.html">KkmCheckProperty</a>></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Дополниельные реквизиты чека (не обязательно)
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="KkmCheckProperty.html">KkmCheckProperty</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCommandCheck.html#addCheckProps">KkmCommandCheck#addCheckProps</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="CheckStrings">
+    <h4 id="CheckStrings"><span class="type-signature"></span>CheckStrings<span class="type-signature"> :Array.&lt;<a href="KkmCheckString.html">KkmCheckString</a>></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Строки чека
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="KkmCheckString.html">KkmCheckString</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#addRegisterString">KkmCheck#addRegisterString</a></li>
+			
+			<li><a href="KkmCommandCheck.html#addRegisterString">KkmCommandCheck#addRegisterString</a></li>
+			
+			<li><a href="KkmCommandCheck.html#addTextString">KkmCommandCheck#addTextString</a></li>
+			
+			<li><a href="KkmCommandCheck.html#addBarcodeString">KkmCommandCheck#addBarcodeString</a></li>
+			
+			<li><a href="KkmCommandCheck.html#addImageString">KkmCommandCheck#addImageString</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="ClientAddress">
+    <h4 id="ClientAddress"><span class="type-signature"></span>ClientAddress<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Телефон или е-Майл покупателя, тег ОФД 1008 <br />Если чек не печатается (NotPrint = true) то указывать обязательно
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#setEmail">KkmCheck#setEmail</a></li>
+			
+			<li><a href="KkmCheck.html#setPhone">KkmCheck#setPhone</a></li>
+			
+			<li><a href="KkmCommandCheck.html#setClientAddress">KkmCommandCheck#setClientAddress</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="ClientId">
+    <h4 id="ClientId"><span class="type-signature"></span>ClientId<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Это только для тестов
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="Command">
+    <h4 id="Command"><span class="type-signature"></span>Command<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Название команды, одно из зарегистрированных слов api KkmServer.ru. <br/>необходимые реализованы как методы CommandXXX <a href="KkmServer.html">KkmServer</a>.<br/>Если Вам потребуется не реализованная команда апи LineLength, то ее можнообъявить явно.
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommand.html#Command">KkmCommand#Command</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">kkm.execute(new KkmCommand(&#x27;LineLength&#x27;));</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="IdCommand">
+    <h4 id="IdCommand"><span class="type-signature"></span>IdCommand<span class="type-signature"> :string</span></h4>
+
+    
+    <p class="summary">Уникальный идентификатор команды</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Любая строока из 40 символов По этому идентификатору можно запросить результат выполнения команды. Поле не обязательно
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommand.html#IdCommand">KkmCommand#IdCommand</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li>KkmServer#setIdCommand</li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="InnKkm">
+    <h4 id="InnKkm"><span class="type-signature"></span>InnKkm<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        ИНН ККМ. Если "" то ККМ ищется только по NumDevice, <br />Если NumDevice = 0 а InnKkm заполнено то ККМ ищется только по InnKkm
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommand.html#InnKkm">KkmCommand#InnKkm</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmServer.html#setInnKkm">KkmServer#setInnKkm</a></li>
+			
+			<li><a href="KkmCommand.html#setInnKkm">KkmCommand#setInnKkm</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
             
 <hr>
 <dt class="name" id="IsFiscalCheck">
@@ -298,6 +1444,670 @@
 
 	
 
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="KeySubLicensing">
+    <h4 id="KeySubLicensing"><span class="type-signature"></span>KeySubLicensing<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Kлюч суб-лицензии
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommand.html#KeySubLicensing">KkmCommand#KeySubLicensing</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmServer.html#setKeySubLicensing">KkmServer#setKeySubLicensing</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="KktNumber">
+    <h4 id="KktNumber"><span class="type-signature"></span>KktNumber<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Заводской номер ККМ для поиска. Если "" то ККМ ищется только по NumDevice
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommand.html#KktNumber">KkmCommand#KktNumber</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li>KkmServer.setKktNumber</li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="KPP">
+    <h4 id="KPP"><span class="type-signature"></span>KPP<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        КПП организации, нужно только для ЕГАИС
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCommandCheck.html#setKpp">KkmCommandCheck#setKpp</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="NotPrint">
+    <h4 id="NotPrint"><span class="type-signature"></span>NotPrint<span class="type-signature"> :boolean</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Не печатать чек на бумагу
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#fiscalOnly">KkmCheck#fiscalOnly</a></li>
+			
+			<li><a href="KkmCommandCheck.html#setNotPrint">KkmCommandCheck#setNotPrint</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="NumberCopies">
+    <h4 id="NumberCopies"><span class="type-signature"></span>NumberCopies<span class="type-signature"> :number</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Количество копий документа
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCommandCheck.html#setNumberCopies">KkmCommandCheck#setNumberCopies</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="NumDevice">
+    <h4 id="NumDevice"><span class="type-signature"></span>NumDevice<span class="type-signature"> :number|null</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Номер устройства 0-9 по умолчанию 0 - первое свободное
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+|
+
+<span class="param-type">null</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommand.html#NumDevice">KkmCommand#NumDevice</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmServer.html#setNumDevice">KkmServer#setNumDevice</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="TaxVariant">
+    <h4 id="TaxVariant"><span class="type-signature"></span>TaxVariant<span class="type-signature"> :number</span></h4>
+
+    
+    <p class="summary">Система налогообложения (СНО) применяемая для чека.</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <pre>      Если не указанно - система СНО настроенная в ККМ по умолчанию      0: Общая СНО - ОСН      1: Упрощенная СНО (Доход)      2: Упрощенная СНО(Доход минус Расход)      3: Единый налог на вмененный доход      4: Единый сельскохозяйственный налог      5: Патентная система налогообложения      Комбинация разных СНО не возможна</pre>      Надо указываеть если ККМ настроена на несколько систем СНО
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCommandCheck.html#setSno">KkmCommandCheck#setSno</a></li>
+			
+			<li><a href="KkmCommandCheck.html#setTaxVariant">KkmCommandCheck#setTaxVariant</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="Timeout">
+    <h4 id="Timeout"><span class="type-signature"></span>Timeout<span class="type-signature"> :number</span></h4>
+
+    
+    <p class="summary">Время (сек) ожидания выполнения команды.</p>
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Если За это время команда не выполнилась в статусе вернется результат "NotRun" или "Run" <br />Проверить результат еще не выполненной команды можно командой "GetRezult" <br />Если не указано или 0 - то значение по умолчанию 60 сек.<br />Это поле можно указвать во всех командах
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommand.html#Timeout">KkmCommand#Timeout</a>
+			</li>
+		</ul>
+	</dd>
 	
 
     
@@ -413,32 +2223,155 @@
     
 </dd>
 
-        
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
             
 <hr>
-<dt class="name" id="CancelOpenedCheck">
-    <h4 id="CancelOpenedCheck"><span class="type-signature"></span>CancelOpenedCheck<span class="type-signature"> :boolean</span></h4>
-
+<dt>
+    <h4 class="name" id="addAdditionalProps"><span class="type-signature"></span>addAdditionalProps(print, printInHeader, name, value)</h4>
+    
     
 </dt>
 <dd>
+
     
     <div class="description">
-        Аннулировать открытый чек если ранее чек небыл  завершен до конца (устарело)
+        Дополнительные свойства чека
     </div>
     
 
     
-        <h5>Type:</h5>
-        <ul>
-            <li>
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>print</code></td>
+            
+
+            <td class="type">
+            
                 
 <span class="param-type">boolean</span>
 
 
 
-            </li>
-        </ul>
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">печатать</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>printInHeader</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">печатать в шапке</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">наименование</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">значение тега</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -460,35 +2393,58 @@
     
 
 	
-	<dt class="important tag-deprecated method-doc-label method-doc-details-label">Deprecated:</dt>
+
 	
-    <dd class="yes-def tag-deprecated">
-        <ul class="dummy">
-            <li>Yes</li>
-        </ul>
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmAdditionalCheckProperty.html">KkmAdditionalCheckProperty</a></span>
+
+
+
     </dd>
-    
-    
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
 </dl>
 
+
+        
 
     
 </dd>
@@ -496,267 +2452,98 @@
         
             
 <hr>
-<dt class="name" id="NotPrint">
-    <h4 id="NotPrint"><span class="type-signature"></span>NotPrint<span class="type-signature"> :boolean</span></h4>
-
+<dt>
+    <h4 class="name" id="addBarcodeString"><span class="type-signature"></span>addBarcodeString(BarcodeType, Barcode)</h4>
+    
     
 </dt>
 <dd>
+
     
     <div class="description">
-        Не печатать чек на бумагу
+        Добавление печати штрихкода.
     </div>
     
 
     
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">boolean</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
 
     
 
     
-
     
+        <h5>Parameters:</h5>
+        
 
-    
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
 
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li><a href="KkmCheck.html#fiscalOnly">KkmCheck#fiscalOnly</a></li>
-			
-			<li><a href="KkmCheck.html#setNotPrint">KkmCheck#setNotPrint</a></li>
-			</ul>
-	</dd>
-	
-
-	
-</dl>
-
-
-    
-</dd>
+        <th>Type</th>
 
         
-            
-<hr>
-<dt class="name" id="NumberCopies">
-    <h4 id="NumberCopies"><span class="type-signature"></span>NumberCopies<span class="type-signature"> :number</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Количество копий документа
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">number</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li><a href="KkmCheck.html#setNumberCopies">KkmCheck#setNumberCopies</a></li>
-			</ul>
-	</dd>
-	
-
-	
-</dl>
-
-
-    
-</dd>
 
         
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
             
-<hr>
-<dt class="name" id="CashierName">
-    <h4 id="CashierName"><span class="type-signature"></span>CashierName<span class="type-signature"> :string</span></h4>
+                <td class="name"><code>BarcodeType</code></td>
+            
 
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Продавец, тег ОФД 1021
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
+            <td class="type">
+            
                 
 <span class="param-type">string</span>
 
 
 
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li>KkmCheck#setCashierName</li>
-			
-			<li><a href="KkmServer.html#setCashierName">KkmServer#setCashierName</a></li>
-			</ul>
-	</dd>
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
             
-<hr>
-<dt class="name" id="ClientAddress">
-    <h4 id="ClientAddress"><span class="type-signature"></span>ClientAddress<span class="type-signature"> :string</span></h4>
+            </td>
+
+            
+
+            
+
+            <td class="description last">"EAN13", "CODE39", "CODE128", "QR", "PDF417"</td>
+        </tr>
 
     
-</dt>
-<dd>
-    
-    <div class="description">
-        Телефон или е-Майл покупателя, тег ОФД 1008 <br />Если чек не печатается (NotPrint = true) то указывать обязательно
-    </div>
-    
 
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
+        <tr>
+            
+                <td class="name"><code>Barcode</code></td>
+            
+
+            <td class="type">
+            
                 
 <span class="param-type">string</span>
 
 
 
-            </li>
-        </ul>
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Значение</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -797,9 +2584,7 @@
 	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
 	<dd class="tag-see">
 		<ul>
-			<li><a href="KkmCheck.html#setEmail">KkmCheck#setEmail</a></li>
-			
-			<li><a href="KkmCheck.html#setPhone">KkmCheck#setPhone</a></li>
+			<li><a href="KkmCheck.html#b">шорткат b()</a></li>
 			</ul>
 	</dd>
 	
@@ -809,876 +2594,41 @@
 
 
     
-</dd>
 
-        
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
             
-<hr>
-<dt class="name" id="TaxVariant">
-    <h4 id="TaxVariant"><span class="type-signature"></span>TaxVariant<span class="type-signature"> :number</span></h4>
 
-    
-    <p class="summary">Система налогообложения (СНО) применяемая для чека.</p>
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <pre>      Если не указанно - система СНО настроенная в ККМ по умолчанию      0: Общая СНО - ОСН      1: Упрощенная СНО (Доход)      2: Упрощенная СНО(Доход минус Расход)      3: Единый налог на вмененный доход      4: Единый сельскохозяйственный налог      5: Патентная система налогообложения      Комбинация разных СНО не возможна</pre>      Надо указываеть если ККМ настроена на несколько систем СНО
-    </div>
-    
 
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">number</span>
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
 
 
 
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li><a href="KkmCheck.html#setSno">KkmCheck#setSno</a></li>
-			
-			<li><a href="KkmCheck.html#setTaxVariant">KkmCheck#setTaxVariant</a></li>
-			</ul>
-	</dd>
-	
-
-	
+    </dd>
 </dl>
 
 
-    
-</dd>
-
         
-            
-<hr>
-<dt class="name" id="CheckProps">
-    <h4 id="CheckProps"><span class="type-signature"></span>CheckProps<span class="type-signature"> :Array.&lt;<a href="KkmCheckProperty.html">KkmCheckProperty</a>></span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Дополниельные реквизиты чека (не обязательно)
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">Array.&lt;<a href="KkmCheckProperty.html">KkmCheckProperty</a>></span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li><a href="KkmCheck.html#addCheckProps">KkmCheck#addCheckProps</a></li>
-			</ul>
-	</dd>
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="AdditionalProps">
-    <h4 id="AdditionalProps"><span class="type-signature"></span>AdditionalProps<span class="type-signature"> :Array.&lt;<a href="KkmAdditionalCheckProperty.html">KkmAdditionalCheckProperty</a>></span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Дополнительные произвольные реквизиты (не обязательно) пока только 1 строка
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">Array.&lt;<a href="KkmAdditionalCheckProperty.html">KkmAdditionalCheckProperty</a>></span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li><a href="KkmCheck.html#addAdditionalProps">KkmCheck#addAdditionalProps</a></li>
-			</ul>
-	</dd>
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="ClientId">
-    <h4 id="ClientId"><span class="type-signature"></span>ClientId<span class="type-signature"> :string</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Это только для тестов
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">string</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="KPP">
-    <h4 id="KPP"><span class="type-signature"></span>KPP<span class="type-signature"> :string</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        КПП организации, нужно только для ЕГАИС
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">string</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li><a href="KkmCheck.html#setKpp">KkmCheck#setKpp</a></li>
-			</ul>
-	</dd>
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="CheckStrings">
-    <h4 id="CheckStrings"><span class="type-signature"></span>CheckStrings<span class="type-signature"> :Array.&lt;<a href="KkmCheckString.html">KkmCheckString</a>></span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Строки чека
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">Array.&lt;<a href="KkmCheckString.html">KkmCheckString</a>></span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li><a href="KkmCheck.html#addRegisterString">KkmCheck#addRegisterString</a></li>
-			
-			<li><a href="KkmCheck.html#addTextString">KkmCheck#addTextString</a></li>
-			
-			<li><a href="KkmCheck.html#addBarcodeString">KkmCheck#addBarcodeString</a></li>
-			
-			<li><a href="KkmCheck.html#addImageString">KkmCheck#addImageString</a></li>
-			</ul>
-	</dd>
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="Cash">
-    <h4 id="Cash"><span class="type-signature"></span>Cash<span class="type-signature"> :number</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Наличная оплата
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">number</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li><a href="KkmCheck.html#setTotal">KkmCheck#setTotal</a></li>
-			
-			<li><a href="KkmCheck.html#setPayments">KkmCheck#setPayments</a></li>
-			</ul>
-	</dd>
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="CashLessType1">
-    <h4 id="CashLessType1"><span class="type-signature"></span>CashLessType1<span class="type-signature"> :number</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Безналичная оплата типа 1 (по умолчанию - Оплата картой)
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">number</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li><a href="KkmCheck.html#setTotal">KkmCheck#setTotal</a></li>
-			
-			<li><a href="KkmCheck.html#setPayments">KkmCheck#setPayments</a></li>
-			</ul>
-	</dd>
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="CashLessType2">
-    <h4 id="CashLessType2"><span class="type-signature"></span>CashLessType2<span class="type-signature"> :number</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Безналичная оплата типа 2 (по умолчанию - Оплата кредитом)
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">number</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li><a href="KkmCheck.html#setPayments">KkmCheck#setPayments</a></li>
-			</ul>
-	</dd>
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="CashLessType3">
-    <h4 id="CashLessType3"><span class="type-signature"></span>CashLessType3<span class="type-signature"> :number</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Безналичная оплата типа 3 (по умолчанию - Оплата сертификатом)
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">number</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li><a href="KkmCheck.html#setPayments">KkmCheck#setPayments</a></li>
-			</ul>
-	</dd>
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="Command">
-    <h4 id="Command"><span class="type-signature"></span>Command<span class="type-signature"> :string</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Название команды, одно из зарегистрированных слов api KkmServer.ru. <br/>необходимые реализованы как методы CommandXXX <a href="KkmServer.html">KkmServer</a>.<br/>Если Вам потребуется не реализованная команда апи LineLength, то ее можнообъявить явно.
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">string</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
-	<dd class="inherited-from">
-		<ul class="dummy">
-			<li>
-				<a href="KkmCommand.html#Command">KkmCommand#Command</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
 
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">kkm.execute(new KkmCommand(&#x27;LineLength&#x27;));</pre>
+    <pre class="sunlight-highlight-javascript">var barString = check.addBarcodeString(&quot;EAN13&quot;, &quot;1254789547853&quot;);// можно модифицировать сформированную строкуbarString.BarcodeType = &#x27;&#x27;;barString.Barcode = &#x27;&#x27;;</pre>
 
 
     
@@ -1687,121 +2637,146 @@
         
             
 <hr>
-<dt class="name" id="NumDevice">
-    <h4 id="NumDevice"><span class="type-signature"></span>NumDevice<span class="type-signature"> :number|null</span></h4>
-
+<dt>
+    <h4 class="name" id="addCheckProps"><span class="type-signature"></span>addCheckProps(print, printInHeader, teg, value)</h4>
+    
     
 </dt>
 <dd>
+
     
     <div class="description">
-        Номер устройства 0-9 по умолчанию 0 - первое свободное
+        Добаляет данные по тегам <ul><li>1005 Адрес оператора по переводу денежных средств (Строка 100)</li><li>1016 ИНН оператора по переводу денежных средств (Строка 12)</li><li>1026 Наименование оператора по переводу денежных средств (Строка 64)</li><li>1044 Операция банковского агента (Строка 24)</li><li>1045 Операция банковского субагента (Строка 24)</li><li>1073 Телефон банковского агента (Строка 19)</li><li>1074 Телефон платежного агента (Строка 19)</li><li>1075 Телефона оператора по переводу денежных средств (Строка 19)</li><li>1082 Телефон банковского субагента (Строка 19)</li><li>1083 Телефон платежного субагента (Строка 19)</li><li>1119 Телефон оператора по приему платежей (Строка 19)</li><li>1117 адрес электронной почты отправителя чека</li></ul>
     </div>
     
 
     
-        <h5>Type:</h5>
-        <ul>
-            <li>
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>print</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">печатать</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>printInHeader</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">печатать в шапке</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>teg</code></td>
+            
+
+            <td class="type">
+            
                 
 <span class="param-type">number</span>
-|
-
-<span class="param-type">null</span>
 
 
 
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
-	<dd class="inherited-from">
-		<ul class="dummy">
-			<li>
-				<a href="KkmCommand.html#NumDevice">KkmCommand#NumDevice</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li><a href="KkmServer.html#setNumDevice">KkmServer#setNumDevice</a></li>
-			</ul>
-	</dd>
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
             
-<hr>
-<dt class="name" id="IdCommand">
-    <h4 id="IdCommand"><span class="type-signature"></span>IdCommand<span class="type-signature"> :string</span></h4>
+            </td>
+
+            
+
+            
+
+            <td class="description last">номер тега</td>
+        </tr>
 
     
-    <p class="summary">Уникальный идентификатор команды</p>
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Любая строока из 40 символов По этому идентификатору можно запросить результат выполнения команды. Поле не обязательно
-    </div>
-    
 
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
                 
 <span class="param-type">string</span>
 
 
 
-            </li>
-        </ul>
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">значение тега</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -1813,14 +2788,153 @@
 	
 
 	
-	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
-	<dd class="inherited-from">
-		<ul class="dummy">
-			<li>
-				<a href="KkmCommand.html#IdCommand">KkmCommand#IdCommand</a>
-			</li>
-		</ul>
-	</dd>
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCheckProperty.html">KkmCheckProperty</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="addImageString"><span class="type-signature"></span>addImageString(Image)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Строка с печатью картинки
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>Image</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Картинка в Base64. <br/> Картинка будет преобразована в 2-х цветное изображение - поэтому лучше посылать 2-х цветный bmp</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
 	
 
     
@@ -1851,7 +2965,7 @@
 	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
 	<dd class="tag-see">
 		<ul>
-			<li>KkmServer#setIdCommand</li>
+			<li><a href="KkmCheck.html#i">шорткат i()</a></li>
 			</ul>
 	</dd>
 	
@@ -1861,17 +2975,3045 @@
 
 
     
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">check.addImageString(&#x27;&#x27;).Image = demoImage; // можно модифицировать</pre>
+
+
+    
 </dd>
 
         
             
 <hr>
-<dt class="name" id="KeySubLicensing">
-    <h4 id="KeySubLicensing"><span class="type-signature"></span>KeySubLicensing<span class="type-signature"> :string</span></h4>
-
+<dt>
+    <h4 class="name" id="addRegisterString"><span class="type-signature"></span>addRegisterString(name, quantity, price, amount, tax [, department] [, ean13])</h4>
+    
     
 </dt>
 <dd>
+
+    
+    <div class="description">
+        Фискальная строка чека
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Название товара</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>quantity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Количество</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>price</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">цена</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>amount</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">сумма</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tax</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Налогообложение</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>department</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">отдел магазина</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>ean13</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">штрих код</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="addTextString"><span class="type-signature"></span>addTextString(Text [, Font] [, Intensity])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Добавляем текстовую строку <ul><li>   <#10#> -  При вставке в текст в середину строки символов "<#10#>" Левая часть строки будет выравнена по левому краю, правая по правому, где 10 - это на сколько меньше станет строка ККТ</li><li>   <#10#>> - При вставке в текст в середину строки символов "<#10#>>" Левая часть строки будет выравнена по правому краю, правая по правому, где 10 - отступ от правого края</li><li>   >#10#<текст - сделать строку на 10 символов уже и отцентрировать текст</li><li> </li></ul>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>Text</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">текст для вывода с управляющими кодами</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>Font</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Шрифт 1-4 , 0 - по настройкам ККМ</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>Intensity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Интесивность 1-15 , 0 - по настройкам ККМ</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">var string4edit =  check.addTextString(&#x27;ЗАГОЛОВОК&#x27;);string4edit.Text = &#x27;&gt;#0#&lt;&#x27; + string4edit.Text; // Добавляем центрированиеstring4edit.Font=1; // Самый крупный шрифтstring4edit.Intensity = 15;</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="b"><span class="type-signature"></span>b(BarcodeType, Barcode)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Шорткат к addBarcodeString. Поддерживает цепочку вызовов.
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>BarcodeType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>Barcode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#addBarcodeString">addBarcodeString</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCheck.html">KkmCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="execute"><span class="type-signature"></span>execute( [successHook])</h4>
+    
+    
+    <p class="summary">Выполнить</p>
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Выполнить для патерна проектирования Команда.
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>successHook</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">по умолчанию обработчик объявленый через hookAjaxSuccess</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommand.html#execute">KkmCommand#execute</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCommand.html">KkmCommand</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandWithCashier.html">KkmCommandWithCashier</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandWithAmount.html">KkmCommandWithAmount</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandList.html">KkmCommandList</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandCheck.html">KkmCommandCheck</a></span>
+|
+
+<span class="param-type">*</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="i"><span class="type-signature"></span>i(Image)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Шорткат к addImageString . Поддерживает цепочку вызовов.
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>Image</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#addImageString">addImageString</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCheck.html">KkmCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="injectDependencies"><span class="type-signature"></span>injectDependencies(kkm)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Внедрение исполнителя команды
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>kkm</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="KkmServer.html">KkmServer</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommand.html#injectDependencies">KkmCommand#injectDependencies</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="r"><span class="type-signature"></span>r(name, quantity, price, amount, tax [, department] [, ean13])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Шоркат к addRegisterString. Поддерживает цепочку вызовов.
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>quantity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>price</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>amount</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>tax</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>department</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>ean13</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#addRegisterString">addRegisterString</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCheck.html">KkmCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setCash"><span class="type-signature"></span>setCash(cash)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cash</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCommandCheck.html">KkmCommandCheck</a></span>
+|
+
+<span class="param-type"><a href="KkmCheck.html">KkmCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setCashierName"><span class="type-signature"></span>setCashierName(cashierName)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        ФИО кассира
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cashierName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommandWithCashier.html#setCashierName">KkmCommandWithCashier#setCashierName</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCommandWithCashier.html">KkmCommandWithCashier</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandWithAmount.html">KkmCommandWithAmount</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandCheck.html">KkmCommandCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setCashLessType1"><span class="type-signature"></span>setCashLessType1(cashLessType1)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cashLessType1</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCommandCheck.html">KkmCommandCheck</a></span>
+|
+
+<span class="param-type"><a href="KkmCheck.html">KkmCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setCashLessType2"><span class="type-signature"></span>setCashLessType2(cashLessType2)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cashLessType2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCommandCheck.html">KkmCommandCheck</a></span>
+|
+
+<span class="param-type"><a href="KkmCheck.html">KkmCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setCashLessType3"><span class="type-signature"></span>setCashLessType3(cashLessType3)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cashLessType3</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCommandCheck.html">KkmCommandCheck</a></span>
+|
+
+<span class="param-type"><a href="KkmCheck.html">KkmCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setClientAddress"><span class="type-signature"></span>setClientAddress(clientAddress)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Телефон или емайл покупателя
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>clientAddress</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCommandCheck.html">KkmCommandCheck</a></span>
+|
+
+<span class="param-type"><a href="KkmCheck.html">KkmCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setIdCommand"><span class="type-signature"></span>setIdCommand(idCommand)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Любая строока из 40 символов. По этому идентификатору можно запросить результат выполнения команды.
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>idCommand</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommand.html#setIdCommand">KkmCommand#setIdCommand</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCommand.html">KkmCommand</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandWithCashier.html">KkmCommandWithCashier</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandWithAmount.html">KkmCommandWithAmount</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandList.html">KkmCommandList</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandCheck.html">KkmCommandCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setInnKkm"><span class="type-signature"></span>setInnKkm(innKkm)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        ИНН ККМ. Если "" то ККМ ищется только по NumDevice
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>innKkm</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommand.html#setInnKkm">KkmCommand#setInnKkm</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCommand.html">KkmCommand</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandWithCashier.html">KkmCommandWithCashier</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandWithAmount.html">KkmCommandWithAmount</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandList.html">KkmCommandList</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandCheck.html">KkmCommandCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setIsFiscalCheck"><span class="type-signature"></span>setIsFiscalCheck(isFiscal)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Это фискальный или не фискальный чек
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>isFiscal</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCommandCheck.html">KkmCommandCheck</a></span>
+|
+
+<span class="param-type"><a href="KkmCheck.html">KkmCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setKeySubLicensing"><span class="type-signature"></span>setKeySubLicensing(keySubLicensing)</h4>
+    
+    
+</dt>
+<dd>
+
     
     <div class="description">
         Kлюч суб-лицензии
@@ -1879,16 +6021,60 @@
     
 
     
-        <h5>Type:</h5>
-        <ul>
-            <li>
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>keySubLicensing</code></td>
+            
+
+            <td class="type">
+            
                 
 <span class="param-type">string</span>
 
 
 
-            </li>
-        </ul>
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -1904,7 +6090,7 @@
 	<dd class="inherited-from">
 		<ul class="dummy">
 			<li>
-				<a href="KkmCommand.html#KeySubLicensing">KkmCommand#KeySubLicensing</a>
+				<a href="KkmCommand.html#setKeySubLicensing">KkmCommand#setKeySubLicensing</a>
 			</li>
 		</ul>
 	</dd>
@@ -1935,17 +6121,42 @@
 	
 
 	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li><a href="KkmServer.html#setKeySubLicensing">KkmServer#setKeySubLicensing</a></li>
-			</ul>
-	</dd>
-	
 
 	
 </dl>
 
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCommand.html">KkmCommand</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
 
     
 </dd>
@@ -1953,101 +6164,13 @@
         
             
 <hr>
-<dt class="name" id="InnKkm">
-    <h4 id="InnKkm"><span class="type-signature"></span>InnKkm<span class="type-signature"> :string</span></h4>
-
+<dt>
+    <h4 class="name" id="setKktNumber"><span class="type-signature"></span>setKktNumber(kktNumber)</h4>
+    
     
 </dt>
 <dd>
-    
-    <div class="description">
-        ИНН ККМ. Если "" то ККМ ищется только по NumDevice, <br />Если NumDevice = 0 а InnKkm заполнено то ККМ ищется только по InnKkm
-    </div>
-    
 
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">string</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
-	<dd class="inherited-from">
-		<ul class="dummy">
-			<li>
-				<a href="KkmCommand.html#InnKkm">KkmCommand#InnKkm</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li><a href="KkmServer.html#setInnKkm">KkmServer#setInnKkm</a></li>
-			
-			<li><a href="KkmCheck.html#setInnKkm">KkmCheck#setInnKkm</a></li>
-			</ul>
-	</dd>
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="KktNumber">
-    <h4 id="KktNumber"><span class="type-signature"></span>KktNumber<span class="type-signature"> :string</span></h4>
-
-    
-</dt>
-<dd>
     
     <div class="description">
         Заводской номер ККМ для поиска. Если "" то ККМ ищется только по NumDevice
@@ -2055,16 +6178,60 @@
     
 
     
-        <h5>Type:</h5>
-        <ul>
-            <li>
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>kktNumber</code></td>
+            
+
+            <td class="type">
+            
                 
 <span class="param-type">string</span>
 
 
 
-            </li>
-        </ul>
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -2080,10 +6247,899 @@
 	<dd class="inherited-from">
 		<ul class="dummy">
 			<li>
-				<a href="KkmCommand.html#KktNumber">KkmCommand#KktNumber</a>
+				<a href="KkmCommand.html#setKktNumber">KkmCommand#setKktNumber</a>
 			</li>
 		</ul>
 	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCommand.html">KkmCommand</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandWithCashier.html">KkmCommandWithCashier</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandWithAmount.html">KkmCommandWithAmount</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandList.html">KkmCommandList</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandCheck.html">KkmCommandCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setKpp"><span class="type-signature"></span>setKpp(Kpp)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        КПП организации, нужно только для ЕГАИС
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>Kpp</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCheck.html">KkmCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setNotPrint"><span class="type-signature"></span>setNotPrint(notPrint)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Не печатать чек на бумагу
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>notPrint</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCommandCheck.html">KkmCommandCheck</a></span>
+|
+
+<span class="param-type"><a href="KkmCheck.html">KkmCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setNumberCopies"><span class="type-signature"></span>setNumberCopies(numberCopies)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Количество копий документа
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>numberCopies</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCommandCheck.html">KkmCommandCheck</a></span>
+|
+
+<span class="param-type"><a href="KkmCheck.html">KkmCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setNumDevice"><span class="type-signature"></span>setNumDevice(numDevice)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Номер устройства 0-9 по умолчанию 0 - первое свободное
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>numDevice</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommand.html#setNumDevice">KkmCommand#setNumDevice</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCommand.html">KkmCommand</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandWithCashier.html">KkmCommandWithCashier</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandWithAmount.html">KkmCommandWithAmount</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandList.html">KkmCommandList</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandCheck.html">KkmCommandCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setSno"><span class="type-signature"></span>setSno(sno)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Система налогообложения.где sno<ul>     <li> 0 | «osn» – общая СН;</li><li> 1 | «usn_income»  – упрощенная СН(доходы);</li><li> 2 | «usn_income_outcome»   – упрощенная СН (доходы минус расходы);</li><li> 3 | «envd»  – единый налог на вмененный  доход;</li><li> 4 | «esn»  – единый сельскохозяйственный  налог;</li><li> 5 | «patent»  – патентная СН.</li></ul>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>sno</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+|
+
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Система налогообложения (см. <a href="KkmCommandCheck.html#TaxVariant">KkmCommandCheck#TaxVariant</a>)</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCommandCheck.html">KkmCommandCheck</a></span>
+|
+
+<span class="param-type"><a href="KkmCheck.html">KkmCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+        <h5>Example</h5>
+        
+    <pre class="sunlight-highlight-javascript">check.setSno(0);// check.setSno(&#x27;osn&#x27;)</pre>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setTaxVariant"><span class="type-signature"></span>setTaxVariant()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Синоним к setSno
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
 	
 
     
@@ -2114,7 +7170,7 @@
 	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
 	<dd class="tag-see">
 		<ul>
-			<li>KkmServer.setKktNumber</li>
+			<li><a href="KkmCommandCheck.html#setSno">KkmCommandCheck#setSno</a></li>
 			</ul>
 	</dd>
 	
@@ -2124,36 +7180,91 @@
 
 
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 </dd>
 
         
             
 <hr>
-<dt class="name" id="Timeout">
-    <h4 id="Timeout"><span class="type-signature"></span>Timeout<span class="type-signature"> :number</span></h4>
-
+<dt>
+    <h4 class="name" id="setTimeout"><span class="type-signature"></span>setTimeout(timeout)</h4>
     
-    <p class="summary">Время (сек) ожидания выполнения команды.</p>
     
 </dt>
 <dd>
+
     
     <div class="description">
-        Если За это время команда не выполнилась в статусе вернется результат "NotRun" или "Run" <br />Проверить результат еще не выполненной команды можно командой "GetRezult" <br />Если не указано или 0 - то значение по умолчанию 60 сек.<br />Это поле можно указвать во всех командах
+        Максимальное время за которое должна исполниться команда на сервере
     </div>
     
 
     
-        <h5>Type:</h5>
-        <ul>
-            <li>
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>timeout</code></td>
+            
+
+            <td class="type">
+            
                 
 <span class="param-type">number</span>
 
 
 
-            </li>
-        </ul>
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -2169,7 +7280,7 @@
 	<dd class="inherited-from">
 		<ul class="dummy">
 			<li>
-				<a href="KkmCommand.html#Timeout">KkmCommand#Timeout</a>
+				<a href="KkmCommand.html#setTimeout">KkmCommand#setTimeout</a>
 			</li>
 		</ul>
 	</dd>
@@ -2206,11 +7317,256 @@
 
 
     
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCommand.html">KkmCommand</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandWithCashier.html">KkmCommandWithCashier</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandWithAmount.html">KkmCommandWithAmount</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandList.html">KkmCommandList</a></span>
+|
+
+<span class="param-type"><a href="KkmCommandCheck.html">KkmCommandCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="t"><span class="type-signature"></span>t(Text, Font, Intensity)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Шорткат к addTextString. Поддерживает цепочку вызовов.
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>Text</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>Font</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>Intensity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li><a href="KkmCheck.html#addTextString">addTextString</a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCheck.html">KkmCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
 </dd>
 
         </dl>
-    
-
     
 
     
@@ -2258,7 +7614,7 @@
 
 
 	<span class="copyright">
-	&copy; 2017 Oleg Muraveyko <a href='//jskkmserver.ru'>jskkmserver.ru</a>
+	&copy; 2017 Oleg Muraveyko  <a href='//jskkmserver.ru'>jskkmserver.ru</a>
 	</span>
 
 <span class="jsdoc-message">

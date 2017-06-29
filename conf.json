@@ -10,7 +10,7 @@
   },
   "plugins": [],
   "templates": {
-    "sort"                  : false,
+    "sort"                  : true,
     "systemName"            : "KkmServer API",
     "copyright"             : "&copy; 2017 Oleg Muraveyko  <a href='//jskkmserver.ru'>jskkmserver.ru</a>",
     "includeDate"           : false,

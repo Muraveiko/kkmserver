@@ -1,83 +1,269 @@
 <!DOCTYPE html>
-
-<html lang="ru">
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>KkmServer API Index</title>
+<title>JS library for API KkmServer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="landing/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="landing/css/style.css" rel='stylesheet' type='text/css' />
+<script src="landing/js/jquery-1.11.0.min.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+<!---- start-smoth-scrolling---->
+<script type="text/javascript" src="landing/js/move-top.js"></script>
+<script type="text/javascript" src="landing/js/easing.js"></script>
+<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+				});
+			});
+		</script>
 
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="docs/styles/sunlight.default.css">
-
-    <link type="text/css" rel="stylesheet" href="docs/styles/site.cerulean.css">
-
+<!--start-smoth-scrolling-->
 </head>
-
 <body>
-
-<div class="navbar navbar-default navbar-fixed-top ">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="index.html">KkmServer API</a>
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-
-    </div>
-</div>
-
-
-<div class="container" id="toc-content">
-    <div class="row">
-
-
-        <div class="col-md-8">
-
-            <div id="main">
-
-
-                <section class="readme-section">
-                    <article><h1>KkmServer.js</h1>
-                        <p>Js-библиотека для взаимодействия со специальным сервером(KkmServer), посредством
-                            Ajax запросов. Дополнительные библиотеки не требуются.</p>
-
-
-                        <p><a href="docs/index.html">Документация</a></p>
-                        <p><a href="example/index.html">Примеры</a></p>
-                        <p><a href="https://github.com/Muraveiko/kkmserver/releases">Скачать библиотеку</a>
-                    </article>
-
-                </section>
-
-
-            </div>
-        </div>
-
-        <div class="clearfix"></div>
-
-
-        <div class="col-md-3">
-            <div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-        </div>
-
-
-    </div>
-</div>
-
-
-<footer>
-
-
-	<span class="copyright">
-	&copy; 2017 Oleg Muraveyko
-	</span>
-
-</footer>
-
+<!--start-banner-->
+	<div class="banner" id="home">
+		<div class="container">
+			<div class="header">
+			<div class="logo">
+				<a href="index.html"><span>Js</span> KkmServer</a>
+			</div>
+			<div class="navigation">
+				 <span class="menu"></span> 
+					<ul class="navig">
+						<li><a href="index.html" class="scroll">Home</a></li>
+						<li><a href="#pricing" class="scroll">Download</a></li>
+						<li><a href="#testimonials" class="scroll">Examples</a></li>
+						<li><a href="/docs/index.html" class="scroll">Documentation</a></li>
+					</ul>
+			</div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="banner-btm">
+				<div  id="top" class="callbacks_container">
+			      	<ul class="rslides" id="slider4">
+			        	<li>
+							<div class="banner-bottom">
+								<h1>Библиотека для работы по ФЗ-54</h1>
+								<p>фискализация чеков теперь проще</p>
+							</div>
+						</li>
+			      	</ul>
+			    </div>
+			  <div class="clearfix"> </div>
+			</div>
+			</div>
+		</div>	
+	<!-- script-for-menu -->
+		 <script>
+				$("span.menu").click(function(){
+					$(" ul.navig").slideToggle("slow" , function(){
+					});
+				});
+		 </script>
+		 <!-- script-for-menu -->
+		 <!--Slider-Starts-Here-->
+				<script src="landing/js/responsiveslides.min.js"></script>
+			 <script>
+			    // You can also use "$(window).load(function() {"
+			    $(function () {
+			      // Slideshow 4
+			      $("#slider4").responsiveSlides({
+			        auto: true,
+			        pager: true,
+			        nav: true,
+			        speed: 500,
+			        namespace: "callbacks",
+			        before: function () {
+			          $('.events').append("<li>before event fired.</li>");
+			        },
+			        after: function () {
+			          $('.events').append("<li>after event fired.</li>");
+			        }
+			      });
+			
+			    });
+			  </script>
+			<!--End-slider-script-->	
+	<!--end-banner-->
+	<!--start-about-->
+	<div class="about" id="about">
+		<div class="container">
+			<div class="about-main">
+				<h3>Кратко о KkmServer.js</h3>
+				<p>Js-библиотека для взаимодействия со специальным сервером(KkmServer), посредством Ajax запросов.</p>
+			</div>
+			<div class="about-bottom">
+			<div class="abt">
+				<div class="col-md-4 about-left active">
+					<div class="abt-one">
+						<div class="abt-left">
+							<span class="hnd active"> </span>
+						</div>
+						<div class="abt-right">
+							<h4>Автозавершение</h4>
+							<p>кода при редактирование</p>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<div class="col-md-4 about-left">
+					<div class="abt-one">
+						<div class="abt-left">
+							<span class="d"> </span>
+						</div>
+						<div class="abt-right">
+							<h4>Подсказки в коде</h4>
+							<p>по методам и свойствам</p>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<div class="col-md-4 about-left">
+					<div class="abt-one">
+						<div class="abt-left">
+							<span class="ar"> </span>
+						</div>
+						<div class="abt-right">
+							<h4>Открытый код</h4>
+							<p>репозитарий на gitHub</p>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+				</div>
+				<div class="abt">
+				<div class="col-md-4 about-left">
+					<div class="abt-one">
+						<div class="abt-left">
+							<span class="flg"> </span>
+						</div>
+						<div class="abt-right">
+							<h4>Легко использовать</h4>
+							<p>всего 2 объекта</p>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<div class="col-md-4 about-left">
+					<div class="abt-one">
+						<div class="abt-left">
+							<span class="ard"> </span>
+						</div>
+						<div class="abt-right">
+							<h4>Релизы</h4>
+							<p>Разработка с контролем версий</p>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<div class="col-md-4 about-left">
+					<div class="abt-one">
+						<div class="abt-left">
+							<span class="flr"> </span>
+						</div>
+						<div class="abt-right">
+							<h4>Поддержка</h4>
+							<p>через pull-request</p>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--end-about-->
+	<!--start-testimonials-->
+	<div class="test" id="testimonials">
+		<div class="container">
+			<div class="test-top">
+				<img src="landing/images/test-1.png" alt="" />
+				<h3>Примеры использования</h3>
+				<p>доступны в скаченном архиве, а также <a href="example/index.html">on-line</a></p>
+			</div>
+			<div class="test-bottom">
+				<div class="col-md-4 test-bottom-left">
+					<div class="test-left">
+						<p><b>Перед запуском примеров</b><p>
+<p>скачайте программу <a href="https://kkmserver.ru/Donload/Setup_KkmServer.exe">KkmServer</a>.
+Запустите ее и войдите в настройки (Admin,пустой пароль).
+Добавьте новое устройство - эмулятор ККТ.
+Выполните регистрацию эмулятора.
+<a href="https://kkmserver.ru/KkmServer">Страница прогаммы</a>.
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4 test-bottom-left">
+					<div class="test-left">
+						<p><b>В своем проекте</b></p>
+<p>Скопируйте из архива src/kkmserver.js. Взаимодействие с апи осуществляется через объекты класса KkmServer и KkmCheck.
+Вам остается только реализовать логику обработки ответов</p>
+					</div>
+				</div>
+				<div class="col-md-4 test-bottom-left">
+					<div class="test-left">
+						<p>Выразить благодарность и стимулировать дальнейшее развитие библиотеки можно добровольным пожертованием
+<a href="https://money.yandex.ru/to/410013790927405">на яд-кошелек 410013790927405</a></p>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	<!--end-testimonials-->
+	<!--start-pricing-->
+	<div class="pricing" id="pricing">
+		<div class="container">
+			<div class="pricing-top">
+				<img src="landing/images/price-1.png" alt="" />
+				<h3>Скачать библиотеку</h3>
+				<p>Вы можете на <a href="https://github.com/Muraveiko/kkmserver/releases">странице релизов</a> вместе с документацией.</p>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<!--end-pricing-->
+	<!--start-account-->
+	<div class="account">
+		<div class="container">
+			<div class="account-main">
+				<div class="col-md-12 account-left">
+					<p>Надеюсь эта библиотека поможет Вам в разработке</p>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	<!--end-account-->
+	<!--start-footer-->
+	<div class="footer">
+		<div class="container">
+			<div class="footer-main">
+				<p>&copy 2017 Oleg Muraveyko. Страница создана с помощью шаблона от <a href="http://w3layouts.com/">w3layouts</a></p>
+			</div>
+		</div>
+		 <script type="text/javascript">
+									$(document).ready(function() {
+										/*
+										var defaults = {
+								  			containerID: 'toTop', // fading element id
+											containerHoverID: 'toTopHover', // fading element hover id
+											scrollSpeed: 1200,
+											easingType: 'linear' 
+								 		};
+										*/
+										
+										$().UItoTop({ easingType: 'easeOutQuart' });
+										
+									});
+								</script>
+		<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+	</div>
+	<!--end-footer-->
 </body>
 </html>

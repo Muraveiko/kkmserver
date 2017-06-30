@@ -2,7 +2,7 @@
   "author": "Oleg Muraveyko <oleg@muraveyko.ru>",
   "name": "kkmserver",
   "description": "JS library for KkmServer API",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/Muraveiko/kkmserver.git"

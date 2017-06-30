@@ -2629,7 +2629,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Object</span>
+<span class="param-type"><a href="KkmCheckString.html">KkmCheckString</a></span>
 
 
 
@@ -3024,7 +3024,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Object</span>
+<span class="param-type"><a href="KkmCheckString.html">KkmCheckString</a></span>
 
 
 
@@ -3037,7 +3037,7 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">check.addImageString(&#x27;&#x27;).Image = demoImage; // можно модифицировать</pre>
+    <pre class="sunlight-highlight-javascript">check.addImageString(&#x27;&#x27;).setImage(demoImage); // можно модифицироватьcheck.addTextString(&#x27;текст&#x27;).setImage(demoImage); // добавить к текстовой строке</pre>
 
 
     
@@ -3047,7 +3047,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="addRegisterString"><span class="type-signature"></span>addRegisterString(name, quantity, price, amount, tax [, department] [, ean13])</h4>
+    <h4 class="name" id="addRegisterString"><span class="type-signature"></span>addRegisterString(name, quantity, price, amount [, tax] [, department] [, ean13])</h4>
     
     
 </dt>
@@ -3236,6 +3236,8 @@
             
                 <td class="attributes">
                 
+                    &lt;optional><br>
+                
 
                 
 
@@ -3245,7 +3247,7 @@
 
             
 
-            <td class="description last">Налогообложение</td>
+            <td class="description last">НДС  0 (НДС 0%), 10 (НДС 10%), 18 (НДС 18%), -1 (НДС не облагается), 118 (НДС 18/118), 110 (НДС 10/110)</td>
         </tr>
 
     
@@ -3391,7 +3393,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Object</span>
+<span class="param-type"><a href="KkmCheckString.html">KkmCheckString</a></span>
 
 
 
@@ -3624,7 +3626,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Object</span>
+<span class="param-type"><a href="KkmCheckString.html">KkmCheckString</a></span>
 
 
 
@@ -4326,7 +4328,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="r"><span class="type-signature"></span>r(name, quantity, price, amount, tax [, department] [, ean13])</h4>
+    <h4 class="name" id="r"><span class="type-signature"></span>r(name, quantity, price, amount [, tax] [, department] [, ean13])</h4>
     
     
 </dt>
@@ -4514,6 +4516,8 @@
 
             
                 <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
                 

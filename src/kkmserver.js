@@ -3,7 +3,7 @@
  * Дополнительные библиотеки не требуются.<br />
  *
  * @author Oleg Muraveyko
- * @version 0.2.5
+ * @version 0.3.0
  *
  * @see Source code on Github  {@link https://github.com/Muraveiko/kkmserver}
  * @see Server API part by Dmitriy Garbuz  {@link https://kkmserver.ru/KkmServer}

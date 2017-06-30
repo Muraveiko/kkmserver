@@ -1269,21 +1269,20 @@ function KkmCommandCheck(typeCheck) {
      * @param {number} quantity Количество
      * @param {number} price  цена
      * @param {number} amount сумма
-     * @param {number} tax  Налогообложение
+     * @param {number} [tax]  НДС  0 (НДС 0%), 10 (НДС 10%), 18 (НДС 18%), -1 (НДС не облагается), 118 (НДС 18/118), 110 (НДС 10/110)
      * @param {number} [department]  отдел магазина
      * @param {string} [ean13]  штрих код
      *
-     * @returns {{Name : string, Quantity : number, Price: number, Amount: number , Department: number, Tax: number, EAN13: string,EGAIS}}
-     * @since 0.3.0 будет возращать {KkmCheckString}
+     * @returns {KkmCheckString}
+     * @since 0.3.0 возращает {KkmCheckString}
      * @since 0.2.5 перенесено в базовый класс
      */
     this.addRegisterString = function (name, quantity, price, amount, tax, department, ean13) {
         var registerString = new KkmCheckString();
-        alert(name);
-        registerString.setRegister(name, quantity, price, amount, department, tax, ean13);
+        registerString.setRegister(name, quantity, price, amount, tax, department, ean13);
 
         this.CheckStrings.push(registerString);
-        return registerString.Register;
+        return registerString;
 
     };
     /**
@@ -1293,7 +1292,7 @@ function KkmCommandCheck(typeCheck) {
      * @param {number} quantity
      * @param {number} price
      * @param {number} amount
-     * @param {number} tax
+     * @param {number} [tax]
      * @param {number} [department]
      * @param {string} [ean13]
      *
@@ -1316,8 +1315,8 @@ function KkmCommandCheck(typeCheck) {
      * @param {string} text  - текст для вывода с управляющими кодами
      * @param {number} [font] - Шрифт 1-4 , 0 - по настройкам ККМ
      * @param {number} [intensity] - Интесивность 1-15 , 0 - по настройкам ККМ
-     * @return {{Text, Font, Intensity}}
-     * @since 0.3.0 будет возращать {KkmCheckString}
+     * @returns {KkmCheckString}
+     * @since 0.3.0 возращает {KkmCheckString}
      * @since 0.2.5 перенесено в базовый класс
      *
      * @example
@@ -1336,7 +1335,7 @@ function KkmCommandCheck(typeCheck) {
         };
 
         this.CheckStrings.push(textString);
-        return textString.PrintText;
+        return textString;
 
     };
     /**
@@ -1357,9 +1356,9 @@ function KkmCommandCheck(typeCheck) {
      *
      * @param {string} barcodeType "EAN13", "CODE39", "CODE128", "QR", "PDF417"
      * @param {string} barcode Значение
-     * @return {{BarcodeType, Barcode}}
+     * @returns {KkmCheckString}
      * @see [шорткат b()]{@link KkmCheck#b}
-     * @since 0.3.0 будет возращать {KkmCheckString}
+     * @since 0.3.0 возращает {KkmCheckString}
      * @since 0.2.5 перенесено в базовый класс
      *
      * @example
@@ -1373,7 +1372,7 @@ function KkmCommandCheck(typeCheck) {
         barcodeString.setBarcode(barcodeType, barcode);
         this.CheckStrings.push(barcodeString);
 
-        return barcodeString.BarCode;
+        return barcodeString;
     };
     /**
      * Шорткат к addBarcodeString. Поддерживает цепочку вызовов.
@@ -1394,20 +1393,21 @@ function KkmCommandCheck(typeCheck) {
      * @param {string} image - Картинка в Base64. <br/>
      *  Картинка будет преобразована в 2-х цветное изображение - поэтому лучше посылать 2-х цветный bmp
      *
-     * @return {{Image}}
-     * @since 0.3.0 будет возращать {KkmCheckString}
+     * @returns {KkmCheckString}
+     * @since 0.3.0 возращает {KkmCheckString}
      * @since 0.2.5 перенесено в базовый класс
      * @see [шорткат i()]{@link KkmCheck#i}
      *
      * @example
-     * check.addImageString('').Image = demoImage; // можно модифицировать
+     * check.addImageString('').setImage(demoImage); // можно модифицировать
+     * check.addTextString('текст').setImage(demoImage); // добавить к текстовой строке
      */
     this.addImageString = function (image) {
         var imageString = new KkmCheckString();
         imageString.setPrintImage(image);
         this.CheckStrings.push(imageString);
 
-        return imageString.PrintImage;
+        return imageString;
     };
     /**
      * Шорткат к addImageString . Поддерживает цепочку вызовов.
@@ -1765,7 +1765,7 @@ function KkmCheckString() {
      * @param {number} quantity Количество
      * @param {number} price  цена
      * @param {number} amount сумма
-     * @param {number} tax  Налогообложение
+     * @param {number} [tax]  0 (НДС 0%), 10 (НДС 10%), 18 (НДС 18%), -1 (НДС не облагается), 118 (НДС 18/118), 110 (НДС 10/110)
      * @param {number} [department]  отдел магазина
      * @param {string} [ean13]  штрих код
      *
@@ -1785,6 +1785,26 @@ function KkmCheckString() {
             EGAIS: null
         };
 
+        return this;
+    };
+
+    /**
+     * @param {number} tax  -  0 (НДС 0%), 10 (НДС 10%), 18 (НДС 18%), -1 (НДС не облагается), 118 (НДС 18/118), 110 (НДС 10/110)
+     * @returns {KkmCheckString}
+     * @since 0.3.0
+     */
+    this.setTax = function(tax){
+        this.Register.Tax = tax;
+        return this;
+    };
+
+    /**
+     * @param {string} ean  штрих код EAN13
+     * @returns {KkmCheckString}
+     * @since 0.3.0
+     */
+    this.setEan13 = function(ean){
+        this.Register.EAN13 = ean;
         return this;
     };
 
@@ -1832,11 +1852,11 @@ function KkmCheckString() {
  * check.r(...).t(...).b(...).i(...) // рекомендую использовать шорткаты
  * // или полные варианты addXxxString(), если нужно модифицировать сформированную строку
  *  var goodsWithEgais = check.addRegisterString(...);
- *  goodsWithEgais.EGAIS = {
- *       Barcode: "22N0000154NUCPRZ3R8381461004001003499NKAQ0ZBUVDNV62JQAR69PEV878RO93V",
- *       Ean: "3423290167937",
- *       Volume: 0.7500,
- *   };
+ *  // с версии 0.3.0
+ *  goodsWithEgais.setEGAIS("22N0000154NUCPRZ3R8381461004001003499NKAQ0ZBUVDNV62JQAR69PEV878RO93V",
+ *       "3423290167937",
+ *       0.7500
+ *   );
  * // и в конце вызываем
  * check.fiscal(); // или .print()
  */
@@ -1944,6 +1964,7 @@ function KkmCheck(kkm, typeCheck) {
     this.parentAddRegisterString = this.addRegisterString;
     /**
      * @inheritDoc
+     * @returns {KkmCheckString}
      */
     this.addRegisterString = function (name, quantity, price, amount, tax, department, ean13) {
         totalCheck = totalCheck + amount;

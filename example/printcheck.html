@@ -44,14 +44,17 @@
     var check = new KkmCheck(Kkm, 0);
     //check.setInnKkm('7701237658'); // Для конкретного чека
 
-    // формируем используем шорткат
-    check.r('Мыло', 1, 58.50, 58.50).r('Шило', 2, 25, 50, 18, 0, "1234567890123");
-    // или если нужен расширенный доступ
-    check.addRegisterString('водка', 1, 128, 128, 10).EGAIS = {
-        Barcode: "22N0000154NUCPRZ3R8381461004001003499NKAQ0ZBUVDNV62JQAR69PEV878RO93V",
-        Ean: "3423290167937",
-        Volume: 0.7500
-    };
+    // формируем используя шорткат
+    check.r('Мыло', 1, 58.50, 58.50,0,10);
+
+    // нужен расширенный доступ (синтаксис с 0.3.0)
+    check.addRegisterString('Шило', 2, 25, 50).setTax(18).setEan13("1234567890123");
+
+    check.addRegisterString('водка', 1, 128, 128).setEGAIS(
+        "22N0000154NUCPRZ3R8381461004001003499NKAQ0ZBUVDNV62JQAR69PEV878RO93V",
+        "3423290167937",
+         0.7500
+    );
     // просто для демонстрации взятие суммы авторасчитанной
     document.getElementById('itogo').textContent = 'Итого:' + check.getTotal();
             </pre>
@@ -142,13 +145,15 @@
     var check = new KkmCheck(Kkm, 0);
     //check.setInnKkm('7701237658'); // Для конкретного чека
     // используем шорткат
-    check.r('Мыло', 1, 58.50, 58.50).r('Шило', 2, 25, 50, 18, 0, "1234567890123");
-    // нужен расширенный доступ
-    check.addRegisterString('водка', 1, 128, 128, 10).EGAIS = {
-        Barcode: "22N0000154NUCPRZ3R8381461004001003499NKAQ0ZBUVDNV62JQAR69PEV878RO93V",
-        Ean: "3423290167937",
-        Volume: 0.7500
-    };
+    check.r('Мыло', 1, 58.50, 58.50,0,10);
+    // нужен расширенный доступ (синтаксис с 0.3.0)
+    check.addRegisterString('Шило', 2, 25, 50).setTax(18).setEan13("1234567890123");
+
+    check.addRegisterString('водка', 1, 128, 128).setEGAIS(
+        "22N0000154NUCPRZ3R8381461004001003499NKAQ0ZBUVDNV62JQAR69PEV878RO93V",
+        "3423290167937",
+         0.7500
+    );
     document.getElementById('itogo').textContent = 'Итого:' + check.getTotal();
 </script>
 </body>

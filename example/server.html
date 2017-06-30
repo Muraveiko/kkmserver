@@ -37,7 +37,9 @@
                     <p>Получение списка подключенных устройств</p>
                     <pre>
 // навесить персональный обработчик можно через KkmServer.execute()
-  Kkm.execute(Kkm.CommandList(),ExecuteGetList);</pre>
+  Kkm.execute(Kkm.CommandList(),ExecuteGetList);
+// или так
+  Kkm.CommandList().execute(ExecuteGetList);</pre>
                     <table id="unitList" border="1" width=100%">
                     </table>
                     <br /><br />
@@ -158,7 +160,7 @@
     // Инитим
     Kkm = new KkmServer('Admin', '').hookAjaxSuccess(ExecuteSuccess);
     // навесить персональный обработчик можно через KkmServer.execute()
-    Kkm.execute(Kkm.CommandList(),ExecuteGetList);
+    Kkm.CommandList().execute(ExecuteGetList);
 
 </script>
 </body>

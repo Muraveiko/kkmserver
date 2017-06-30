@@ -521,6 +521,11 @@
 	
 
     
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="KkmCommandCheck.html#Cash">KkmCommandCheck#Cash</a>
+    </li></ul></dd>
+    
 
     
 
@@ -695,6 +700,11 @@
 	
 
     
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="KkmCommandCheck.html#CashLessType1">KkmCommandCheck#CashLessType1</a>
+    </li></ul></dd>
+    
 
     
 
@@ -786,6 +796,11 @@
 	
 
     
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="KkmCommandCheck.html#CashLessType2">KkmCommandCheck#CashLessType2</a>
+    </li></ul></dd>
+    
 
     
 
@@ -874,6 +889,11 @@
 	</dd>
 	
 
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="KkmCommandCheck.html#CashLessType3">KkmCommandCheck#CashLessType3</a>
+    </li></ul></dd>
     
 
     
@@ -1146,6 +1166,11 @@
 	
 
     
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="KkmCommandCheck.html#ClientAddress">KkmCommandCheck#ClientAddress</a>
+    </li></ul></dd>
+    
 
     
 
@@ -1349,7 +1374,7 @@
     
         <h5>Example</h5>
         
-    <pre class="sunlight-highlight-javascript">kkm.execute(new KkmCommand(&#x27;LineLength&#x27;));</pre>
+    <pre class="sunlight-highlight-javascript">kkm.execute(new KkmCommand(&#x27;LineLength&#x27;)); // не реализованная// design pattern commandkkm.CommandXReport().setIdCommand(&#x27;ххх-хххх-ххх&#x27;).execute();</pre>
 
 
     
@@ -1580,6 +1605,11 @@
 	</dd>
 	
 
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="KkmCommandCheck.html#IsFiscalCheck">KkmCommandCheck#IsFiscalCheck</a>
+    </li></ul></dd>
     
 
     
@@ -1921,6 +1951,11 @@
 	</dd>
 	
 
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="KkmCommandCheck.html#NotPrint">KkmCommandCheck#NotPrint</a>
+    </li></ul></dd>
     
 
     
@@ -2420,7 +2455,7 @@
 
     
     <div class="description">
-        Дополнительные свойства чека
+        Добавить дополнительное свойство чека
     </div>
     
 
@@ -2560,6 +2595,13 @@
 	
 
 	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5 перенесено в базовый класс</li>
+		</ul>
+	</dd>
+	
 
 	
 	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
@@ -2641,7 +2683,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="addBarcodeString"><span class="type-signature"></span>addBarcodeString(BarcodeType, Barcode)</h4>
+    <h4 class="name" id="addBarcodeString"><span class="type-signature"></span>addBarcodeString(barcodeType, barcode)</h4>
     
     
 </dt>
@@ -2684,7 +2726,7 @@
 
         <tr>
             
-                <td class="name"><code>BarcodeType</code></td>
+                <td class="name"><code>barcodeType</code></td>
             
 
             <td class="type">
@@ -2708,7 +2750,7 @@
 
         <tr>
             
-                <td class="name"><code>Barcode</code></td>
+                <td class="name"><code>barcode</code></td>
             
 
             <td class="type">
@@ -2740,6 +2782,13 @@
 
 	
 
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5 перенесено в базовый класс</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -2983,6 +3032,13 @@
 	
 
 	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5 перенесено в базовый класс</li>
+		</ul>
+	</dd>
+	
 
 	
 	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
@@ -3064,7 +3120,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="addImageString"><span class="type-signature"></span>addImageString(Image)</h4>
+    <h4 class="name" id="addImageString"><span class="type-signature"></span>addImageString(image)</h4>
     
     
 </dt>
@@ -3107,7 +3163,7 @@
 
         <tr>
             
-                <td class="name"><code>Image</code></td>
+                <td class="name"><code>image</code></td>
             
 
             <td class="type">
@@ -3139,6 +3195,13 @@
 
 	
 
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5 перенесено в базовый класс</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -3242,7 +3305,7 @@
 
     
     <div class="description">
-        Фискальная строка чека
+        Фискальная строка чека <br>в базовом классе (KkmCommandCheck) только добавление. В KkmCheck с накоплением Total
     </div>
     
 
@@ -3516,7 +3579,23 @@
 	
 
 	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5 перенесено в базовый класс</li>
+		</ul>
+	</dd>
+	
 
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommandCheck.html#addRegisterString">KkmCommandCheck#addRegisterString</a>
+			</li>
+		</ul>
+	</dd>
 	
 
     
@@ -3593,7 +3672,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="addTextString"><span class="type-signature"></span>addTextString(Text [, Font] [, Intensity])</h4>
+    <h4 class="name" id="addTextString"><span class="type-signature"></span>addTextString(text [, font] [, intensity])</h4>
     
     
 </dt>
@@ -3638,7 +3717,7 @@
 
         <tr>
             
-                <td class="name"><code>Text</code></td>
+                <td class="name"><code>text</code></td>
             
 
             <td class="type">
@@ -3670,7 +3749,7 @@
 
         <tr>
             
-                <td class="name"><code>Font</code></td>
+                <td class="name"><code>font</code></td>
             
 
             <td class="type">
@@ -3704,7 +3783,7 @@
 
         <tr>
             
-                <td class="name"><code>Intensity</code></td>
+                <td class="name"><code>intensity</code></td>
             
 
             <td class="type">
@@ -3746,6 +3825,13 @@
 
 	
 
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5 перенесено в базовый класс</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -3834,7 +3920,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="b"><span class="type-signature"></span>b(BarcodeType, Barcode)</h4>
+    <h4 class="name" id="b"><span class="type-signature"></span>b(barcodeType, barcode)</h4>
     
     
 </dt>
@@ -3877,7 +3963,7 @@
 
         <tr>
             
-                <td class="name"><code>BarcodeType</code></td>
+                <td class="name"><code>barcodeType</code></td>
             
 
             <td class="type">
@@ -3901,7 +3987,7 @@
 
         <tr>
             
-                <td class="name"><code>Barcode</code></td>
+                <td class="name"><code>barcode</code></td>
             
 
             <td class="type">
@@ -3933,6 +4019,13 @@
 
 	
 
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5 перенесено в базовый класс</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -4105,6 +4198,13 @@
 
 	
 
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -4711,7 +4811,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="i"><span class="type-signature"></span>i(Image)</h4>
+    <h4 class="name" id="i"><span class="type-signature"></span>i(image)</h4>
     
     
 </dt>
@@ -4754,7 +4854,7 @@
 
         <tr>
             
-                <td class="name"><code>Image</code></td>
+                <td class="name"><code>image</code></td>
             
 
             <td class="type">
@@ -4786,6 +4886,13 @@
 
 	
 
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5 перенесено в базовый класс</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -4950,6 +5057,13 @@
 
 	
 
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -5392,14 +5506,25 @@
 	
 
 	
-
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5 перенесено в базовый класс</li>
+		</ul>
+	</dd>
 	
 
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="KkmCommandCheck.html#r">KkmCommandCheck#r</a>
-    </li></ul></dd>
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommandCheck.html#r">KkmCommandCheck#r</a>
+			</li>
+		</ul>
+	</dd>
+	
+
     
 
     
@@ -5460,6 +5585,170 @@
     <dd>
         
 <span class="param-type"><a href="KkmCheck.html">KkmCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setAdditionalProps"><span class="type-signature"></span>setAdditionalProps(props)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Установить дополнительные свойства чека
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>props</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="KkmAdditionalCheckProperty.html">KkmAdditionalCheckProperty</a>></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5</li>
+		</ul>
+	</dd>
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommandCheck.html#setAdditionalProps">KkmCommandCheck#setAdditionalProps</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCommandCheck.html">KkmCommandCheck</a></span>
 
 
 
@@ -5547,6 +5836,13 @@
 
 	
 
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -5708,6 +6004,13 @@
 	
 
 	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5</li>
+		</ul>
+	</dd>
+	
 
 	
 	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
@@ -5867,6 +6170,13 @@
 	
 
 	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5</li>
+		</ul>
+	</dd>
+	
 
 	
 	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
@@ -6022,6 +6332,13 @@
 
 	
 
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -6179,6 +6496,13 @@
 	
 
 	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5</li>
+		</ul>
+	</dd>
+	
 
 	
 	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
@@ -6247,6 +6571,170 @@
 |
 
 <span class="param-type"><a href="KkmCheck.html">KkmCheck</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setCheckProps"><span class="type-signature"></span>setCheckProps(props)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Установить данные по тегам
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>props</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="KkmCheckProperty.html">KkmCheckProperty</a>></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5</li>
+		</ul>
+	</dd>
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="KkmCommandCheck.html#setCheckProps">KkmCommandCheck#setCheckProps</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="KkmCommandCheck.html">KkmCommandCheck</a></span>
 
 
 
@@ -6338,6 +6826,13 @@
 
 	
 
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5 перенесено в базовый класс</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -6647,6 +7142,13 @@
 	
 
 	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5</li>
+		</ul>
+	</dd>
+	
 
 	
 	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
@@ -6815,6 +7317,13 @@
 
 	
 
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -6985,6 +7494,13 @@
 	
 
 	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5 перенесено в базовый класс</li>
+		</ul>
+	</dd>
+	
 
 	
 	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
@@ -7145,6 +7661,13 @@
 	
 
 	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5</li>
+		</ul>
+	</dd>
+	
 
 	
 	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
@@ -7301,6 +7824,13 @@
 
 	
 
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -7628,6 +8158,13 @@
 	
 
 	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5 перенесено в базовый класс</li>
+		</ul>
+	</dd>
+	
 
 	
 	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
@@ -7788,6 +8325,13 @@
 	
 
 	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5 перенесено в базовый класс</li>
+		</ul>
+	</dd>
+	
 
 	
 	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
@@ -7947,6 +8491,13 @@
 
 	
 
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -8696,6 +9247,13 @@
 	
 
 	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5 перенесено в базовый класс</li>
+		</ul>
+	</dd>
+	
 
 	
 	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
@@ -8811,6 +9369,13 @@
 
 	
 
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5 перенесено в базовый класс</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -8955,6 +9520,13 @@
 
 	
 
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -9329,6 +9901,13 @@
 
 	
 
+	
+	<dt class="tag-since method-doc-label method-doc-details-label">Since:</dt>
+	<dd class="tag-since">
+		<ul class="dummy">
+			<li>0.2.5 перенесено в базовый класс</li>
+		</ul>
+	</dd>
 	
 
 	

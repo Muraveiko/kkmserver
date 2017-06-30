@@ -1279,7 +1279,6 @@ function KkmCommandCheck(typeCheck) {
      */
     this.addRegisterString = function (name, quantity, price, amount, tax, department, ean13) {
         var registerString = new KkmCheckString();
-        alert(name);
         registerString.setRegister(name, quantity, price, amount, department, tax, ean13);
 
         this.CheckStrings.push(registerString);

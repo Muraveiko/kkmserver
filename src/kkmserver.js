@@ -3,7 +3,7 @@
  * Дополнительные библиотеки не требуются.<br />
  *
  * @author Oleg Muraveyko
- * @version 0.3.0
+ * @version 0.3.1
  *
  * @see Source code on Github  {@link https://github.com/Muraveiko/kkmserver}
  * @see Server API part by Dmitriy Garbuz  {@link https://kkmserver.ru/KkmServer}
@@ -245,15 +245,16 @@ function KkmCommandWithAmount(command, amount, cashierName, numDevice) {
  * Команда Список ККТ подключенных к серверу
  * @extends KkmCommand
  * @constructor
+ *
+ * @example
+ * command = new KkmCommandList();
+ * command.setInnKkm('1234567890'); // command.InnKkm = '1234567890'; // старый синтаксис
  */
 function KkmCommandList() {
     KkmCommand.call(this, 'List');
     /**
      * Отбор активных. Булево. Если null или не указано то активные и не активные
      * @type {boolean|null}
-     * @example
-     * command = new KkmCommandList();
-     * command.InnKkm = '1234567890';
      */
     this.Active = null;
     /**

@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 html, body{
     font-size: 100%;
 	background:	#fff;
-	font-family: 'Lato', sans-serif;
+	font-family: sans-serif;
 }
 body a{
 	transition: 0.5s all ease;
@@ -2107,8 +2107,6 @@ div#portfoliolist {
 }
 .test-left p {
 	padding: 0 5% 0px 9%;
-	overflow: hidden;
-	height: 92px;
 }
 .test-left {
 	padding: 1.25em 0px;
@@ -2214,8 +2212,6 @@ div#portfoliolist {
 .about-main p, .special-bottom p, .contact-top p, 
 .pricing-top p, .test-top p {
 	font-size: 14px;
-	overflow: hidden;
-	height: 40px;
 }
 .about-main h3, .special-bottom h3, .contact-top h3, 
 .pricing-top h3, .test-top h3 {

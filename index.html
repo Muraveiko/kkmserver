@@ -6,21 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="landing/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <link href="landing/css/style.css" rel='stylesheet' type='text/css' />
-<script src="landing/js/jquery-1.11.0.min.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
-<!---- start-smoth-scrolling---->
-<script type="text/javascript" src="landing/js/move-top.js"></script>
-<script type="text/javascript" src="landing/js/easing.js"></script>
-<script type="text/javascript">
-			jQuery(document).ready(function($) {
-				$(".scroll").click(function(event){		
-					event.preventDefault();
-					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-				});
-			});
-		</script>
-
-<!--start-smoth-scrolling-->
 </head>
 <body>
 <!--start-banner-->
@@ -57,36 +43,7 @@
 			</div>
 		</div>	
 	<!-- script-for-menu -->
-		 <script>
-				$("span.menu").click(function(){
-					$(" ul.navig").slideToggle("slow" , function(){
-					});
-				});
-		 </script>
 		 <!-- script-for-menu -->
-		 <!--Slider-Starts-Here-->
-				<script src="landing/js/responsiveslides.min.js"></script>
-			 <script>
-			    // You can also use "$(window).load(function() {"
-			    $(function () {
-			      // Slideshow 4
-			      $("#slider4").responsiveSlides({
-			        auto: true,
-			        pager: true,
-			        nav: true,
-			        speed: 500,
-			        namespace: "callbacks",
-			        before: function () {
-			          $('.events').append("<li>before event fired.</li>");
-			        },
-			        after: function () {
-			          $('.events').append("<li>after event fired.</li>");
-			        }
-			      });
-			
-			    });
-			  </script>
-			<!--End-slider-script-->	
 	<!--end-banner-->
 	<!--start-about-->
 	<div class="about" id="about">
@@ -244,26 +201,74 @@
 	<div class="footer">
 		<div class="container">
 			<div class="footer-main">
-				<p>&copy 2017 Oleg Muraveyko. Страница создана с помощью шаблона от <a href="http://w3layouts.com/">w3layouts</a></p>
+				<p>&copy; 2017 Oleg Muraveyko. Страница создана с помощью шаблона от <a href="http://w3layouts.com/">w3layouts</a></p>
 			</div>
 		</div>
-		 <script type="text/javascript">
-									$(document).ready(function() {
-										/*
-										var defaults = {
-								  			containerID: 'toTop', // fading element id
-											containerHoverID: 'toTopHover', // fading element hover id
-											scrollSpeed: 1200,
-											easingType: 'linear' 
-								 		};
-										*/
-										
-										$().UItoTop({ easingType: 'easeOutQuart' });
-										
-									});
-								</script>
 		<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 	</div>
 	<!--end-footer-->
+
+<!-- start-smoth-scrolling -->
+<script src="landing/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="landing/js/move-top.js"></script>
+<script type="text/javascript" src="landing/js/easing.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $(".scroll").click(function(event){
+            event.preventDefault();
+            $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+        });
+    });
+</script>
+
+<script>
+    $("span.menu").click(function(){
+        $(" ul.navig").slideToggle("slow" , function(){
+        });
+    });
+</script>
+
+<!--start-smoth-scrolling-->
+
+<!--Slider-Starts-Here-->
+<script src="landing/js/responsiveslides.min.js"></script>
+<script>
+    // You can also use "$(window).load(function() {"
+    $(function () {
+        // Slideshow 4
+        $("#slider4").responsiveSlides({
+            auto: true,
+            pager: true,
+            nav: true,
+            speed: 500,
+            namespace: "callbacks",
+            before: function () {
+                $('.events').append("<li>before event fired.</li>");
+            },
+            after: function () {
+                $('.events').append("<li>after event fired.</li>");
+            }
+        });
+
+    });
+</script>
+<!--End-slider-script-->
+<script type="text/javascript">
+    $(document).ready(function() {
+		/*
+		 var defaults = {
+		 containerID: 'toTop', // fading element id
+		 containerHoverID: 'toTopHover', // fading element hover id
+		 scrollSpeed: 1200,
+		 easingType: 'linear'
+		 };
+		 */
+
+        $().UItoTop({ easingType: 'easeOutQuart' });
+
+    });
+</script>
+
+
 </body>
 </html>

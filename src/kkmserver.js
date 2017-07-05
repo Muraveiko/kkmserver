@@ -951,9 +951,7 @@ function KkmServer(user, password, urlServer) {
      * @since 0.2.5
      */
     this.CommandCheck = function (typeCheck) {
-        var command = new KkmCheck(typeCheck);
-        command.injectDependencies(this);
-        return command;
+        return new KkmCheck(this,typeCheck);
     };
 
     // -------------------------------------------------------

@@ -23,7 +23,7 @@ ul.navig li a:after{width:15px;height:15px;background:red;display:none;content:"
 .stars{margin:7em 0 2em 0;text-align:center;position:relative;}
 .stars:before{content:"";background:rgba(88, 86, 104, 0.33);height:1px;width:35%;position:absolute;top:59%;left:9%;}
 .stars:after{content:"";background:rgba(88, 86, 104, 0.33);height:1px;width:35%;position:absolute;top:59%;right:9%;}
-@media (max-width:768px){span.menu:before{content:url(../images/nav-icon.png);cursor:pointer;height:32px;}
+@media (max-width:768px){span.menu:before{content:url(//jskkmserver.ru/landing/images/nav-icon.png);cursor:pointer;height:32px;}
 ul.navig{width:11%;float:right;margin:0;}
 .header{margin:0 auto;position:absolute;width:100%;left:0;}
 ul.navig{display:none;}
@@ -36,11 +36,11 @@ ul.navig{margin:0;z-index:999;position:absolute;width:96%;text-align:center;top:
 ul.navig li:nth-of-type(4){margin:0 0px 0 0em;}
 ul.navig li:nth-of-type(3){margin:0 0em 0 0px;}
 }
-.banner{background:url(../images/banner.jpg) no-repeat;background-size:cover;-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;-ms-background-size:cover;min-height:780px;}
+.banner{background:url(//jskkmserver.ru/landing/images/banner.jpg) no-repeat;background-size:cover;-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;-ms-background-size:cover;min-height:780px;}
 .banner-bottom h1{color:#fff;font-weight:700;font-size:2.1em;width:60%;margin:0 auto;line-height:1.4em;}
 .banner-bottom p{color:#fff;font-size:21px;font-weight:400;margin:0 auto;width:53%;margin-top:7px;line-height:1.4em;}
 .banner-btm{text-align:center;margin-top:23%;}
-.slider{background:url(../images/slide-banner.jpg)no-repeat;background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;min-height:300px;}
+.slider{background:url(//jskkmserver.ru/landing/images/slide-banner.jpg)no-repeat;background-size:cover;-webkit-background-size:cover;-o-background-size:cover;-ms-background-size:cover;-moz-background-size:cover;min-height:300px;}
 #slider2,
 #slider3{box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;margin:0 auto;}
 .rslides_tabs{list-style:none;padding:0;background:rgba(0,0,0,.25);box-shadow:0 0 1px rgba(255,255,255,.3), inset 0 0 5px rgba(0,0,0,1.0);-moz-box-shadow:0 0 1px rgba(255,255,255,.3), inset 0 0 5px rgba(0,0,0,1.0);-webkit-box-shadow:0 0 1px rgba(255,255,255,.3), inset 0 0 5px rgba(0,0,0,1.0);font-size:18px;list-style:none;margin:0 auto 50px;max-width:540px;padding:10px 0;text-align:center;width:100%;}
@@ -54,7 +54,7 @@ ul.navig li:nth-of-type(3){margin:0 0em 0 0px;}
 .callbacks li{position:absolute;width:100%;left:0;top:0;}
 .callbacks img{position:relative;z-index:1;height:auto;border:0;}
 .callbacks .caption{display:block;position:absolute;z-index:2;font-size:20px;text-shadow:none;color:#fff;left:0;right:0;padding:10px 20px;margin:0;max-width:none;top:10%;text-align:center;}
-.callbacks_nav{position:absolute;-webkit-tap-highlight-color:rgba(0,0,0,0);top:100%;left:46%;opacity:0.7;z-index:3;text-indent:-9999px;overflow:hidden;text-decoration:none;height:36px;width:36px;background:transparent url("../images/arrow.png") no-repeat left top;}
+.callbacks_nav{position:absolute;-webkit-tap-highlight-color:rgba(0,0,0,0);top:100%;left:46%;opacity:0.7;z-index:3;text-indent:-9999px;overflow:hidden;text-decoration:none;height:36px;width:36px;background:transparent url("//jskkmserver.ru/landing/images/arrow.png") no-repeat left top;}
 .callbacks_nav:active{opacity:1.0;}
 .callbacks_nav.next{left:auto;background-position:right top;right:46%;}
 #slider3-pager a{display:inline-block;}
@@ -86,7 +86,7 @@ ul.callbacks_tabs.callbacks2_tabs{display:none;}
 .about-main{text-align:center;}
 .about-bottom{margin-top:8%;}
 .about{padding:5em 0px;}
-.abt-left span{background:url(../images/abt-sprit.png) no-repeat;width:50px;height:49px;display:block;transition:0.5s all ease;-webkit-transition:0.5s all ease;-moz-transition:0.5s all ease;-o-transition:0.5s all ease;-ms-transition:0.5s all ease;margin:0 auto;}
+.abt-left span{background:url(//jskkmserver.ru/landing/images/abt-sprit.png) no-repeat;width:50px;height:49px;display:block;transition:0.5s all ease;-webkit-transition:0.5s all ease;-moz-transition:0.5s all ease;-o-transition:0.5s all ease;-ms-transition:0.5s all ease;margin:0 auto;}
 .abt-left span.hnd{background-position:0px 0px;}
 .abt-left span.d{background-position:-50px 0px;}
 .abt-left span.ar{background-position:-100px 0px;}
@@ -110,7 +110,7 @@ ul.callbacks_tabs.callbacks2_tabs{display:none;}
 .special{background:#f0f0f0;padding-bottom:6.5em;}
 .special-bottom{margin-top:10%;text-align:center;}
 .spl-one{text-align:center;padding:14% 0 11% 0;}
-.spl-one span{background:url(../images/spl-sprit.png) no-repeat;width:70px;height:65px;margin:0 auto;display:block;transition:0.5s all ease;-webkit-transition:0.5s all ease;-moz-transition:0.5s all ease;-o-transition:0.5s all ease;-ms-transition:0.5s all ease;}
+.spl-one span{background:url(//jskkmserver.ru/landing/images/spl-sprit.png) no-repeat;width:70px;height:65px;margin:0 auto;display:block;transition:0.5s all ease;-webkit-transition:0.5s all ease;-moz-transition:0.5s all ease;-o-transition:0.5s all ease;-ms-transition:0.5s all ease;}
 .spl-one span.hnd{background-position:0px 0px;}
 .spl-one span.wtp{background-position:-74px 0px;}
 .spl-one span.sml{background-position:-144px 0px;}
@@ -185,7 +185,7 @@ div#portfoliolist{padding:5.5% 0px;}
 .price-one p{color:#333333;font-size:15px;border-top:1px solid #cccccc;padding:10px 0px;font-weight:700;}
 .price-one p:nth-child(9){border-bottom:1px solid #cccccc;}
 .col-md-4.pricing-left:hover .price-one span,.col-md-4.pricing-left.active .price-one span{display:block;transition:0.5s all ease;-webkit-transition:0.5s all ease;-moz-transition:0.5s all ease;-o-transition:0.5s all ease;-ms-transition:0.5s all ease;}
-.price-one span{background:url(../images/price-2.png) no-repeat;width:98px;height:95px;display:block;position:absolute;top:0;left:74.5%;display:none;}
+.price-one span{background:url(//jskkmserver.ru/landing/images/price-2.png) no-repeat;width:98px;height:95px;display:block;position:absolute;top:0;left:74.5%;display:none;}
 .p-btn{margin-top:11.5%;}
 .p-btn a{padding:8px 18px;border:1px solid #333333;color:#333333;font-size:12px;font-weight:900;background:#fff;}
 .col-md-4.pricing-left:hover .p-btn a,.col-md-4.pricing-left.active .p-btn a{background:#2ea8fa;text-decoration:none;transition:0.5s all ease;-webkit-transition:0.5s all ease;-moz-transition:0.5s all ease;-o-transition:0.5s all ease;-ms-transition:0.5s all ease;}
@@ -228,7 +228,7 @@ div#portfoliolist{padding:5.5% 0px;}
 .footer-main p a:hover{color:#33afe5;text-decoration:none;transition:0.5s all ease;-webkit-transition:0.5s all ease;-moz-transition:0.5s all ease;-o-transition:0.5s all ease;-ms-transition:0.5s all ease;}
 .footer-main ul{padding:0;margin-top:2%;}
 .footer-main ul li{list-style:none;display:inline-block;margin:0px 2px;}
-.footer-main ul li span{background:url(../images/footer-sprit.png) no-repeat;width:42px;height:42px;display:block;transition:0.5s all ease;-webkit-transition:0.5s all ease;-moz-transition:0.5s all ease;-o-transition:0.5s all ease;-ms-transition:0.5s all ease;}
+.footer-main ul li span{background:url(//jskkmserver.ru/landing/images/footer-sprit.png) no-repeat;width:42px;height:42px;display:block;transition:0.5s all ease;-webkit-transition:0.5s all ease;-moz-transition:0.5s all ease;-o-transition:0.5s all ease;-ms-transition:0.5s all ease;}
 .footer-main ul li span.fb{background-position:1px 0px;}
 .footer-main ul li span.twt{background-position:-42px 0px;}
 .footer-main ul li span.p{background-position:-84px 0px;}
@@ -237,7 +237,7 @@ div#portfoliolist{padding:5.5% 0px;}
 .footer-main ul li span.twt:hover{background-position:-42px -42px;}
 .footer-main ul li span.p:hover{background-position:-84px -42px;}
 .footer-main ul li span.d:hover{background-position:-126px -42px;}
-#toTop{display:none;text-decoration:none;position:fixed;bottom:10px;right:10px;overflow:hidden;width:32px;height:32px;border:none;text-indent:100%;background:url(../images/top-arrow.png) no-repeat;}
+#toTop{display:none;text-decoration:none;position:fixed;bottom:10px;right:10px;overflow:hidden;width:32px;height:32px;border:none;text-indent:100%;background:url(//jskkmserver.ru/landing/images/top-arrow.png) no-repeat;}
 @media (max-width:1440px){.banner{min-height:700px;}
 .banner-btm{margin-top:18.5%;}
 .callbacks_tabs{top:210%;}

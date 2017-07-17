@@ -1070,7 +1070,7 @@ function KkmServer(user, password, urlServer) {
  * @see {@link KkmCheck}
  */
 function KkmCommandCheck(typeCheck) {
-    KkmCommand.call(this, 'RegisterCheck');
+    KkmCommandWithCashier.call(this, 'RegisterCheck');
     this.VerFFD = "1.0";
     /**
      *  Это фискальный или не фискальный чек <br/>

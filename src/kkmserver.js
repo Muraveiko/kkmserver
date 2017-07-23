@@ -1136,11 +1136,11 @@ function KkmCommandCheck(typeCheck) {
      *       Надо указываеть если ККМ настроена на несколько систем СНО
      *
      * @summary Система налогообложения (СНО) применяемая для чека.
-     * @type {number}
+     * @type {null|number}
      * @see {@link KkmCommandCheck#setSno}
      * @see {@link KkmCommandCheck#setTaxVariant}
      */
-    this.TaxVariant = 0;
+    this.TaxVariant = null;
     /**
      * Дополниельные реквизиты чека (не обязательно)
      * @type {Array.<KkmCheckProperty>}

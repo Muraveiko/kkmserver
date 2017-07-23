@@ -951,9 +951,7 @@ function KkmServer(user, password, urlServer) {
      * @since 0.2.5
      */
     this.CommandCheck = function (typeCheck) {
-        var command = new KkmCheck(typeCheck);
-        command.injectDependencies(this);
-        return command;
+        return new KkmCheck(this,typeCheck);
     };
 
     // -------------------------------------------------------
@@ -1072,7 +1070,7 @@ function KkmServer(user, password, urlServer) {
  * @see {@link KkmCheck}
  */
 function KkmCommandCheck(typeCheck) {
-    KkmCommand.call(this, 'RegisterCheck');
+    KkmCommandWithCashier.call(this, 'RegisterCheck');
     this.VerFFD = "1.0";
     /**
      *  Это фискальный или не фискальный чек <br/>
@@ -1138,11 +1136,11 @@ function KkmCommandCheck(typeCheck) {
      *       Надо указываеть если ККМ настроена на несколько систем СНО
      *
      * @summary Система налогообложения (СНО) применяемая для чека.
-     * @type {number}
+     * @type {null|number}
      * @see {@link KkmCommandCheck#setSno}
      * @see {@link KkmCommandCheck#setTaxVariant}
      */
-    this.TaxVariant = 0;
+    this.TaxVariant = null;
     /**
      * Дополниельные реквизиты чека (не обязательно)
      * @type {Array.<KkmCheckProperty>}

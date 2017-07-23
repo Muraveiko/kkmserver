@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>KkmServer API Index</title>
+	<title>KkmServer API Tutorial: Взаимодействие с сервером</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -68,180 +68,149 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
-			
-
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-
-
-
-
-
-    <section class="readme-section">
-        <article><h1>KkmServer.js</h1><p>Js-библиотека для взаимодействия со специальным сервером(KkmServer), посредством<br>Ajax запросов. Дополнительные библиотеки не требуются.</p>
-<h2>Кратко о KkmServer</h2><ul>
-<li>Программа предназначена для печати и регистрации фискальных/не фискальных чеков на Контрольно-кассовой технике оборудованной фискальным накопителем (далее ККТ).</li>
-<li>Программа является маленьким HTTP web-сервером и имеет встроенные драйвера ККТ (кроме драйверов Usb-Com).</li>
-<li>Позволяет печатать/регистрировать чеки с мобильных устройств / планшетов или с настольного ПК из 1с одновременно.</li>
-<li>Позволяет печатать/регистрировать чеки на KKM подключенных к другим ПК.</li>
-<li>Есть возможность печати этикеток с штрих-кодами на принтерах этикеток.</li>
-<li>Так-же возможно использовать ККТ в качестве принтера этикеток.</li>
-<li>Технология использования - HTTP(Ajax/REST) запрос, данные передаются через JSON;</li>
-<li><a href="https://kkmserver.ru/KkmServer">Страница программы</a></li>
-</ul>
-<h2>Пример использования</h2><p>Смотрите в <a href="../example/">./example/</a></p>
-<h2>Благодарность автору</h2><p>Выразить благодарность и стимулировать дальнейшее развитие библиотеки можно добровольным пожертованием<br><a href="https://money.yandex.ru/to/410013790927405">на яд-кошелек 410013790927405</a> </p>
-<h2>History</h2><h3>Альфа версии</h3><ul>
-<li>0.3.0 - изменилось возращаемое значение функциями addTextString(),addImageString(),addBarcodeString(),addRegisterString() на {KkmCheckString}</li>
-<li>0.2.5 - возможность работать по патерну проектирования &quot;Команда&quot; </li>
-<li>0.2.0 - Извините еще один полный рефакторинг (предыдущий вариант плохо документировался и не получалось сделать автокомплит)   </li>
-<li>0.1.0 - Переработан полностью набор методов. Добавлена документация.   </li>
-<li>0.0.2 - Первая публичная версия </li>
-</ul></article>
-    </section>
-
-
-
-
-
-
-
-	<h1 class="page-title">Index</h1>
-<section>
+			<section class="tutorial-section">
 
 <header>
     
-        <h2>
-        kkmserver.js
-        </h2>
-        
-    
+
+    <h2>Взаимодействие с сервером</h2>
 </header>
 
-
 <article>
-    <div class="container-overview">
-    
-        
-            <div class="description">Js-библиотека для взаимодействия со специальным сервером, посредством  Ajax запросов.Дополнительные библиотеки не требуются.<br /></div>
-        
+        <script src="../src/kkmserver.js"></script>
 
-        
-<dl class="details">
-    
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Получение списка подключенных устройств</p>
+                    <pre>
+// навесить персональный обработчик можно через KkmServer.execute()
+  Kkm.execute(Kkm.CommandList(),ExecuteGetList);
+// или так
+  Kkm.CommandList().execute(ExecuteGetList);</pre>
+                    <table id="unitList" border="1" width=100%">
+                    </table>
+                    <br /><br />
+<p>Указываем @param {KkmResponse} Rezult, чтобы подключилось автозавершение кода.</p>
+<pre>
+     /**
+     * Получаем информацию о подключенных устройствах
+     * @param {KkmResponse} Rezult
+     */
+    function ExecuteGetList(Rezult){
+        Rezult.ListUnit.forEach(function (unit) {
+            var tr = document.createElement('tr');
+            var td1 = document.createElement('td');
+            td1.innerText = unit.NameOrganization;
+            tr.appendChild(td1);
+            var td2 = document.createElement('td');
+            td2.innerText = unit.INN;
+            tr.appendChild(td2);
+            var td3 = document.createElement('td');
+            var btn1 = document.createElement('button');
+            btn1.textContent = 'Инфо '+unit.NumDevice;
+            btn1.onclick = function(){Kkm.doGetDataKKT(unit.NumDevice);};
+            td3.appendChild(btn1);
+            tr.appendChild(td3);
+            document.getElementById('unitList').appendChild(tr);
+        });
+    }</pre>
+                </div>
+                <div class="col offset-md-1 col-md-5">
+                    <h4>Статус:</h4>
+                    <p id="Status"></p>
+                    <h4>Ошибка:</h4>
+                    <p id="Error"></p>
+                    <h4>Запрос к АПИ:</h4>
+                    <p id="Request" style="white-space:pre;"></p>
 
-	
-	<dt class="tag-version method-doc-label method-doc-details-label">Version:</dt>
-	<dd class="tag-version">
-		<ul class="dummy">
-			<li>0.3.1</li>
-		</ul>
-	</dd>
-	
+                    <h4>Ответ сервера:</h4>
+                    <p id="Responce" style="white-space:pre;"></p>
 
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-	<dt class="tag-author method-doc-label method-doc-details-label">Author:</dt>
-	<dd class="tag-author">
-		<ul>
-			<li>Oleg Muraveyko</li>
-			</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
-	<dd class="tag-see">
-		<ul>
-			<li>Source code on Github  <a href="https://github.com/Muraveiko/kkmserver">https://github.com/Muraveiko/kkmserver</a></li>
-			
-			<li>Server API part by Dmitriy Garbuz  <a href="https://kkmserver.ru/KkmServer">https://kkmserver.ru/KkmServer</a></li>
-			</ul>
-	</dd>
-	
-
-	
-</dl>
+                </div>
 
 
-        
-    
-    </div>
+            </div>
 
-    
 
-    
+<script>
+    /**
+     * Функция вызываемая после обработки команды - обработка возвращаемых данных
+     * @param {KkmResponse} Rezult
+     */
+    function ExecuteSuccess(Rezult) {
+        document.getElementById('Error').textContent = '';
+        document.getElementById('Responce').textContent = '';
+        document.getElementById('Request').textContent = '';
+        document.getElementById('Status').textContent = '';
 
-    
+        var Responce = "";
+        if (Rezult.Status === 0) {
+            document.getElementById('Status').textContent = "Ok";
+        } else if (Rezult.Status === 1) {
+            document.getElementById('Status').textContent = "Выполняется";
+        } else if (Rezult.Status === 2) {
+            document.getElementById('Status').textContent = "Ошибка";
+        } else if (Rezult.Status === 3) {
+            document.getElementById('Status').textContent = "Данные не найдены!";
+        }
 
-    
 
-    
+        // Текст ошибки
+        if (Rezult.Error !== undefined && Rezult.Error !== "") {
+            document.getElementById('Error').textContent = Rezult.Error;
+        }
 
-    
+        if (Rezult !== undefined) {
+            Responce = JSON.stringify(Rezult, null, 4);
+        }
 
-    
+        document.getElementById('Responce').textContent = Responce;
+        document.getElementById('Request').textContent = JSON.stringify(Kkm.lastCommand, null, 4);
 
-    
+    }
 
-    
+    /**
+     * Получаем информацию о подключенных устройствах
+     * @param {KkmResponse} Rezult
+     */
+    function ExecuteGetList(Rezult){
+        Rezult.ListUnit.forEach(function (unit) {
+            var tr = document.createElement('tr');
+            var td1 = document.createElement('td');
+            td1.innerText = unit.NameOrganization;
+            tr.appendChild(td1);
+            var td2 = document.createElement('td');
+            td2.innerText = unit.INN;
+            tr.appendChild(td2);
+            var td3 = document.createElement('td');
+            var btn1 = document.createElement('button');
+            btn1.textContent = 'Инфо '+unit.NumDevice;
+            btn1.onclick = function(){Kkm.doGetDataKKT(unit.NumDevice);};
+            td3.appendChild(btn1);
+            tr.appendChild(td3);
+            document.getElementById('unitList').appendChild(tr);
+        });
+    }
+
+    // Инитим
+    Kkm = new KkmServer('Admin', '').hookAjaxSuccess(ExecuteSuccess);
+    // навесить персональный обработчик можно через KkmServer.execute()
+    Kkm.CommandList().execute(ExecuteGetList);
+
+</script>
+
 </article>
 
 </section>
-
-
-
 
 		</div>
 	</div>
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>
